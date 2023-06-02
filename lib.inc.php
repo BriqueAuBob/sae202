@@ -20,13 +20,13 @@
         $db = null;
     }
 
-    function register($db, $login, $password) {
+    function register($db, $last_name, $first_name, $email, $password) {
         $query = $db->prepare('INSERT INTO users(last_name, first_name, email, password, created_at) VALUES(:last_name, :first_name, :email, :password, NOW())');
         $query->execute(array(
             'last_name' => $last_name,
             'first_name' => $first_name,
-            'email' => $email
-
+            'email' => $email,
+            'password' => password_hash($password, PASSWORD_DEFAULT)
         ));
     }
 ?>
