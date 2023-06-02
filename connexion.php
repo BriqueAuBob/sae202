@@ -1,27 +1,15 @@
-<?php 
-require "head.php";
-require "nav.php";
-?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require 'inc/lib.inc.php';
 
-<h1>Connexion</h1>
-<form action="connexion_verif.php" method="post">
-    <div>
-        <label for="email">Email :</label>
-        <input type="email" name="email" id="email">
-    </div>
-    <div>
-        <label for="password">Mot de passe :</label>
-        <input type="password" name="password" id="password">
-    </div>
-    <div>
-        <input type="submit" value="Se connecter">
-    </div>
-</form>
+    $db = dbConnect();
 
-<?php 
-    require 'tail.php';
-    if (isset($_SESSION['error'])) {
-        echo '<p>' . $_SESSION['error'] . '</p>';
-        unset($_SESSION['error']);
-    }
-?>
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    login($db, $email, $password);
+    die();
+}
+
+$template = 'forms/login';
+require 'layouts/default.php';

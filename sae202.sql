@@ -86,10 +86,10 @@ CREATE TABLE `trips` (
   `id` int(11) NOT NULL,
   `departure_city` varchar(50) DEFAULT NULL,
   `departure_address` varchar(50) DEFAULT NULL,
-  `departure_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `departure_at` timestamp NOT NULL,
   `destination_city` varchar(50) DEFAULT NULL,
   `destination_address` varchar(50) DEFAULT NULL,
-  `arrival_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `arrival_at` timestamp NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -104,8 +104,9 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `first_name` varchar(50) DEFAULT NULL,
+  `picture` varchar(150) DEFAULT 'default.png',
   `email` varchar(50) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
