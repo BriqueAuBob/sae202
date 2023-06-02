@@ -1,12 +1,13 @@
 <?php
 
-    require "lib.inc.php";
+    require 'lib.inc.php';
 
     $db = dbConnect();
-    $email=$_POST['email'];
-    $pwd=$_POST['pwd'];
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
     
-    login($db, $email, $pwd);
+    login($db, $email, $password);
 
 ?>
     

@@ -5,7 +5,7 @@
     $last_name = $_POST['last_name'];
     $first_name = $_POST['first_name'];
     $email = $_POST['email'];
-    $password = $_POST['pwd'];
+    $password = $_POST['password'];
 
     register($db, $last_name, $first_name, $email, $password);
 ?>

@@ -1,19 +1,32 @@
-<?php require 'head.php'; ?>
+<?php 
+    require 'head.php';
+    require 'lib.inc.php';
+?>
 
 <form action="inscription_verif.php" method="post">
     <label for="first_name">Prénom :</label>
-    <input type="text" id="first_name" name="first_name" placeholder="John">
+    <input type="text" id="first_name" name="first_name" placeholder="Patrice">
 
-    <label for="last_name">Prénom :</label>
-    <input type="text" id="last_name" name="last_name" placeholder="Doe">
+    <label for="last_name">Nom :</label>
+    <input type="text" id="last_name" name="last_name" placeholder="Gommery">
 
     <label for="email">Adresse mail :</label>
-    <input type="text" id="email" name="email" placeholder="exemple@domain.com">
+    <input type="email" id="email" name="email" placeholder="exemple@domain.com">
 
-    <label for="pwd">Mot de passe :</label>
-    <input type="password" id="pwd" name="pwd">
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password">
 
     <input type="submit" value="Valider">
 </form>
 
-<?php require "tail.php"; ?>
+<?php
+if (isset($_SESSION['error'])) {
+    echo '<p>' . $_SESSION['error'] . '</p>';
+    unset($_SESSION['error']);
+} else if (isset($_SESSION['account'])) {
+    echo '<p>' . $_SESSION['account'] . '</p>';
+    unset($_SESSION['account']);
+}
+
+require "tail.php";
+?>
