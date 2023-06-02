@@ -7,3 +7,4 @@
     <title>Document</title>
 </head>
 <body>
+    <?php require 'lib.inc.php';?>

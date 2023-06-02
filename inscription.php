@@ -1,6 +1,5 @@
 <?php 
     require 'head.php';
-    require 'lib.inc.php';
 ?>
 
 <form action="inscription_verif.php" method="post">

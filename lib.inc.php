@@ -22,34 +22,47 @@
 
     function register($db, $last_name, $first_name, $email, $password) {
         $req = 'SELECT * FROM users WHERE email LIKE "'.$email.'"';
-        $result = $db -> query($req);
+        $query = $db -> query($req);
 
-        if ($result -> rowCount() > 0) {
-            $_SESSION['error'] = 'Cet email est déjà utilisé';
+        if ($query -> rowCount() > 0) {
+            $_SESSION['error'] = 'Cet adresse mail est déjà utilisé';
             header('Location: inscription.php');
         } else {
-            $query = $db -> prepare('INSERT INTO users(last_name, first_name, email, password, created_at) VALUES(:last_name, :first_name, :email, :password, NOW())');
+            $query = $db -> prepare('INSERT INTO users(last_name, first_name, profile_pic, email, password, created_at) VALUES(:last_name, :first_name, :profile_pic, :email, :password, NOW())');
             $query -> execute(array(
                 'last_name' => $last_name,
                 'first_name' => $first_name,
+                'profile_pic' => 'default.png',
                 'email' => $email,
                 'password' => password_hash($password, PASSWORD_DEFAULT)
             ));
 
-            $_SESSION['account'] = 'Votre compte a bien été créé !';
-            header('Location: inscription.php');
+            $_SESSION['message'] = 'Votre compte a bien été créé !';
+            
+            $user = $query -> fetch();
+            $_SESSION['name'] = $user['last_name'];
+            $_SESSION['firstname'] = $user['first_name'];
+            $_SESSION['profile_pic'] = $user['profile_pic'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['creation_date'] = $user['created_at'];
+
+            header('Location: index.php');
         }
     }
 
     function login($db, $email, $password) {
-        $query = $db->prepare('SELECT * FROM users WHERE email = :email');
+        $query = $db -> prepare('SELECT * FROM users WHERE email = :email');
         $query -> execute(array(
             'email' => $email
         ));
 
         $user = $query -> fetch();
         if (isset($user) && password_verify($password, $user['password'])) {
-            $_SESSION['user'] = $user;
+            $_SESSION['name'] = $user['last_name'];
+            $_SESSION['firstname'] = $user['first_name'];
+            $_SESSION['profile_pic'] = $user['profile_pic'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['creation_date'] = $user['created_at'];
             header('Location: index.php');
         } else {
             $_SESSION['error'] = 'Mauvais identifiants';

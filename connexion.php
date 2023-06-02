@@ -18,4 +18,10 @@ require "nav.php";
     </div>
 </form>
 
-<?php require 'tail.php';?>
+<?php 
+    require 'tail.php';
+    if (isset($_SESSION['error'])) {
+        echo '<p>' . $_SESSION['error'] . '</p>';
+        unset($_SESSION['error']);
+    }
+?>
