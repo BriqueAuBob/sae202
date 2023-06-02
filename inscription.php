@@ -1,4 +1,5 @@
 <?php require 'head.php'; ?>
+
 <form action="inscription_verif.php" method="post">
     <label for="first_name">Prénom :</label>
     <input type="text" id="first_name" name="first_name" placeholder="John">
@@ -10,7 +11,7 @@
     <input type="text" id="email" name="email" placeholder="exemple@domain.com">
 
     <label for="pwd">Mot de passe :</label>
-    <input type="text" id="pwd" name="pwd">
+    <input type="password" id="pwd" name="pwd">
 
     <input type="submit" value="Valider">
 </form>
