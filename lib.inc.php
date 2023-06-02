@@ -29,4 +29,19 @@
             'password' => password_hash($password, PASSWORD_DEFAULT)
         ));
     }
+
+    function login($db, $email, $password) {
+        $query = $db->prepare('SELECT * FROM users WHERE email = :email');
+        $query->execute(array(
+            'email' => $email
+        ));
+        $user = $query->fetch();
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['user'] = $user;
+            header('Location: index.php');
+        } else {
+            $_SESSION['erreur'] = '<p>Erreur d\'authentification</p>';
+            header('Location: connexion.php');
+        }
+    }
 ?>
