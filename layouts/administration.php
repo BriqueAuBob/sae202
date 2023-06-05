@@ -12,7 +12,7 @@
     <?php
     require '../inc/lib.inc.php';
 
-    include __DIR__ . '/../templates/admin/' . $template . '.php';
+    include __DIR__ . '/../views/admin/' . $template . '.php';
     ?>
 </body>
 
