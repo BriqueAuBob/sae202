@@ -4,7 +4,7 @@
         <form class="form-header">
             <div>
                 <label for="departure">Départ</label>
-                <input type="text" name="departure" id="departure" placeholder="Départ" autocomplete="street-address">
+                <input type="text" name="departure" id="departure" placeholder="Départ">
             </div>
             <div>
                 <label for="arrival">Arrivée</label>
