@@ -13,4 +13,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $template = 'forms/register';
+$pageTitle = "Inscription";
 require 'layouts/auth.php';

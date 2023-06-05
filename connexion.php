@@ -12,4 +12,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $template = 'forms/login';
+$pageTitle = "Connexion";
 require 'layouts/auth.php';
