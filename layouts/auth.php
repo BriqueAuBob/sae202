@@ -18,8 +18,10 @@
     echo <<<HTML
         <main class="grid cols-2" id="auth">
             <div>
-                <h1>VrooMMI</h1>
-                <p>Le covoiturage pour les étudiants de MMI</p>
+                <div>
+                    <h1>VrooMMI</h1>
+                    <p>Le covoiturage pour les MMI</p>
+                </div>
             </div>
         <div>
     HTML;

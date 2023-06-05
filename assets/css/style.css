@@ -303,6 +303,18 @@ section.grid {
   justify-content: center;
   padding: 96px;
   background: var(--color-primary-500);
+  background-image: url("../images/backgrounds/auth.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#auth > div:nth-child(1) > div {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 32px;
+  border-radius: 16px;
+  border: 2px solid var(--color-primary-200);
+  backdrop-filter: blur(8px);
 }
 
 #auth > div:nth-child(1) h1 {
