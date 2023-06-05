@@ -14,7 +14,17 @@
     require 'inc/lib.inc.php';
 
     require __DIR__ . '/../components/navbar.php';
+
+    echo <<<HTML
+        <main class="grid cols-2" id="auth">
+            <div>
+                <h1>VrooMMI</h1>
+                <p>Le covoiturage pour les étudiants de MMI</p>
+            </div>
+        <div>
+    HTML;
     include __DIR__ . '/../views/' . $template . '.php';
+    echo '</div></main>';
     ?>
 
     <script src="./assets/js/script.js"></script>

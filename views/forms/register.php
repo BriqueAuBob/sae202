@@ -11,8 +11,10 @@
     <label for="password">Mot de passe :</label>
     <input type="password" id="password" name="password">
 
-    <input type="submit" value="Valider">
+    <button class="btn green" type="submit">Créer mon compte</button>
 </form>
+
+<a href="./connexion.php">J'ai déjà un compte</a>
 
 <?php
 if (isset($_SESSION['error'])) {

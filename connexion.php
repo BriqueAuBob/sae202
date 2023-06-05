@@ -12,4 +12,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $template = 'forms/login';
-require 'layouts/default.php';
+require 'layouts/auth.php';

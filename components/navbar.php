@@ -1,10 +1,24 @@
-<nav>
-    <?php
-    if (isset($_SESSION['firstname'])) {
-        echo '<a href="deconnexion.php">Déconnexion</a>';
-    } else {
-        echo '<a href="connexion.php">Connexion</a>';
-        echo '<a href="inscription.php">Inscription</a>';
-    }
-    ?>
+<?php
+$currentPage = basename($_SERVER['PHP_SELF']);
+?>
+<nav class="container">
+    <a class="branding" href="./"><img src="./assets/images/logo_white.svg" alt="Logo White VrooMMI"></a>
+    <div class="wrapper">
+        <ul>
+            <li><a <?= $currentPage === 'index.php' ? 'class="active"' : '' ?> href="./">Accueil</a></li>
+            <li><a <?= $currentPage === 'trajets.php' ? 'class="active"' : '' ?> href="./trajets.php">Trajets</a></li>
+            <li><a <?= $currentPage === 'parkings.php' ? 'class="active"' : '' ?> href="./parkings.php">Parkings</a></li>
+            <li><a <?= $currentPage === 'contact.php' ? 'class="active"' : '' ?> href="./contact.php">Contact</a></li>
+        </ul>
+    </div>
+    <div class="btn-list">
+        <button class="no-style" id="dark-mode-toggle"><img src="./assets/images/icons/moon.svg" alt="Moon icon"></button>
+        <?php
+        if (isset($_SESSION['name'])) {
+            echo '<a href="./profil.php" id="profile"><img src="./assets/images/avatars/' . $_SESSION['picture'] . '" alt="Avatar">' . $_SESSION['firstname'] . '</a>';
+        } else {
+            echo '<a href="./connexion.php" class="btn">Accéder à mon compte</a>';
+        }
+        ?>
+    </div>
 </nav>

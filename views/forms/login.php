@@ -8,10 +8,10 @@
         <label for="password">Mot de passe :</label>
         <input type="password" name="password" id="password">
     </div>
-    <div>
-        <input type="submit" value="Se connecter">
-    </div>
+    <button class="btn green" type=" submit">Se connecter</button>
 </form>
+
+<a href="./inscription.php">Je n'ai pas encore de compte</a>
 
 <?php
 if (isset($_SESSION['error'])) {

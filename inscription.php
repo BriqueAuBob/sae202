@@ -13,4 +13,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $template = 'forms/register';
-require 'layouts/default.php';
+require 'layouts/auth.php';
