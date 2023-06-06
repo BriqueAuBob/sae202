@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VrooMMI <?= isset($pageTitle) ? ' - ' . $pageTitle : '' ?></title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://kit.fontawesome.com/1d20ef0596.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
