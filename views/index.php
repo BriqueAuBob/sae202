@@ -25,3 +25,53 @@
     </div>
     <img src="./assets/images/car.png" alt="car">
 </section>
+<section class="green">
+    <div class="container">
+        <h1>Nos fonctionnalités principales</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+        <div class="grid cols-3 mt-md">
+            <div class="card">
+                <div class="title">
+                    <img src="./assets/images/icons/load_icon.svg" alt="load">
+                    <h2>Recherche de trajets</h2>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+            </div>
+            <div class="card">
+                <div class="title">
+                    <img src="./assets/images/icons/load_icon.svg" alt="load">
+                    <h2>Recherche de trajets</h2>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+            </div>
+            <div class="card">
+                <div class="title">
+                    <img src="./assets/images/icons/load_icon.svg" alt="load">
+                    <h2>Recherche de trajets</h2>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container">
+    <h1 class="center">Quelques statistiques</h1>
+    <div class="grid cols-4 mt-md">
+        <div class="stat">
+            <p>Utilisateurs</p>
+            <div>105</div>
+        </div>
+        <div class="stat">
+            <p>Trajets effectués</p>
+            <div>123</div>
+        </div>
+        <div class="stat">
+            <p>CO2 évité</p>
+            <div>2 tonne</div>
+        </div>
+        <div class="stat">
+            <p>Distance parcourue</p>
+            <div>1000km</div>
+        </div>
+    </div>
+</section>

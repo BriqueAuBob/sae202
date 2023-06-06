@@ -272,12 +272,16 @@ header h1 {
   gap: 24px;
 }
 
+.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .cols-3 {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.cols-2 {
-  grid-template-columns: repeat(2, 1fr);
+.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .col-2 {
@@ -287,6 +291,11 @@ header h1 {
 section {
   padding-top: 96px !important;
   padding-bottom: 96px !important;
+}
+
+section.green {
+  background: var(--color-primary-500);
+  color: white;
 }
 
 section.grid {
@@ -339,4 +348,60 @@ form .btn {
 
 form .btn {
   width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 10px;
+  border: 2px solid var(--color-primary-700);
+  border-radius: 24px;
+  background: var(--color-primary-100);
+  color: black;
+}
+
+.card .title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card .title img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  padding: 8px;
+  background: white;
+  border-radius: 12px;
+}
+
+.card .title h2 {
+  font-size: 18px;
+}
+
+.mt-md {
+  margin-top: 24px;
+}
+
+.center {
+  text-align: center;
+}
+
+.stat {
+  text-align: center;
+  gap: 8px;
+}
+
+.stat > p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.stat > div {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: "Clash Display", sans-serif;
 }
