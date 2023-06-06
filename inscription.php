@@ -1,7 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require 'inc/lib.inc.php';
-
     $db = dbConnect();
 
     if(empty($_POST['last_name']) || empty($_POST['first_name']) || empty($_POST['email']) || empty($_POST['password'])) {
