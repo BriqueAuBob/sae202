@@ -69,6 +69,13 @@ a {
   color: black;
 }
 
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -470,6 +477,10 @@ form .btn {
   width: 100%;
   padding: 0 32px;
   font-weight: 500;
+}
+
+.card .trip > span {
+  text-align: center;
 }
 
 .card.hover {

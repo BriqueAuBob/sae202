@@ -21,9 +21,9 @@
 <section class="container grid cols-3">
     <div class="col-2">
         <h1>Que faisons nous?</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi. Ut a gravida enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam mollis luctus lacus, et gravida nisl varius pretium. Vivamus varius iaculis ex, ut mollis eros ultrices eget. Pellentesque in lacus tortor. Nulla pellentesque risus lobortis, faucibus mauris at, mattis arcu. Pellentesque molestie erat diam, a tristique eros convallis in. Duis convallis dolor neque, nec laoreet enim convallis vel.</p>
+        <p>Notre site VrooMMI est un site de covoiturage qui repose sur l'entraide entre étudiants, car nous ne disposons pas de système de paiement. Les trajets proposés visent principalement à se rendre à l'IUT, avec des points de départ et d'arrivée situés sur les parkings n°1 et n°2, ainsi que les places se trouvant devant l'IUT. Notre site incarne des valeurs écologiques grâce à son offre de covoiturage, mais aussi grâce qu'à sa conception qui s'inscrit dans une approche éco-conceptive.</p>
     </div>
-    <img src="./assets/images/car.png" alt="car">
+    <img src="./assets/images/car.svg" alt="car">
 </section>
 <section class="green">
     <div class="container">
@@ -89,7 +89,7 @@
                 <?php
                 include('./components/card_trip.php');
                 for ($i = 0; $i < 4; $i++) {
-                    cardTrip($i);
+                    cardTrip();
                 }
                 ?>
             </div>
