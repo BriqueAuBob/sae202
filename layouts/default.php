@@ -16,6 +16,7 @@
 
     require __DIR__ . '/../components/navbar.php';
     include __DIR__ . '/../views/' . $template . '.php';
+    require __DIR__ . '/../components/footer.php';
     ?>
 
     <script src="./assets/js/script.js"></script>
