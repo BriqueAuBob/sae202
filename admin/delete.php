@@ -12,7 +12,14 @@
     $query -> execute([
         'id' => $id
     ]);
-    $_SESSION['crudLog'] = 'L\'utilisateur n°'.$id.' a bien été supprimé !';
+
+    if($from == 'users_gestion.php') {
+        $_SESSION['crudLog'] = 'L\'utilisateur n°'.$id.' a bien été supprimé !';
+    }
+    if($from == 'vehicles_gestion.php') {
+        $_SESSION['crudLog'] = 'Le véhicule n°'.$id.' a bien été supprimé !';
+    }
+    
 
     dbDisconnect($bd);
-    header('Location: users_gestion.php');
+    header('Location: ' . $from);
