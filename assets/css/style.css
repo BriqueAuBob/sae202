@@ -69,7 +69,7 @@ a {
   color: black;
 }
 
-img {
+img.full {
   display: block;
   width: 100%;
   height: 100%;

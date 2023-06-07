@@ -23,7 +23,7 @@
         <h1>Que faisons nous?</h1>
         <p>Notre site VrooMMI est un site de covoiturage qui repose sur l'entraide entre étudiants, car nous ne disposons pas de système de paiement. Les trajets proposés visent principalement à se rendre à l'IUT, avec des points de départ et d'arrivée situés sur les parkings n°1 et n°2, ainsi que les places se trouvant devant l'IUT. Notre site incarne des valeurs écologiques grâce à son offre de covoiturage, mais aussi grâce qu'à sa conception qui s'inscrit dans une approche éco-conceptive.</p>
     </div>
-    <img src="./assets/images/car.svg" alt="car">
+    <img class="full" src="./assets/images/car.svg" alt="car">
 </section>
 <section class="green">
     <div class="container">
