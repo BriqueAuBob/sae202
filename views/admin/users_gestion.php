@@ -41,3 +41,7 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<?php
+    $_SESSION['crudLog'] = '';
+?>

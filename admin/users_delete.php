@@ -5,9 +5,9 @@
     $id = $_GET['id'];
 
     $query = $bd -> prepare('DELETE FROM users WHERE id = :id');
-    $query -> execute(array(
+    $query -> execute([
         'id' => $id
-    ));
+    ]);
     $_SESSION['crudLog'] = 'L\'utilisateur n°'.$id.' a bien été supprimé !';
 
     dbDisconnect($bd);

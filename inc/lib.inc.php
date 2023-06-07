@@ -99,3 +99,22 @@ function deleteAcc($db, $email, $password)
         header('Location: profil.php');
     }
 }
+
+
+function transformToWebp($picture, $path)
+{
+    $jpeg = imagecreatefromstring($picture);
+    $size = getimagesizefromstring($picture);
+    $ratio = $size[0]/$size[1];
+    if( $ratio > 1) {
+        $width = 500;
+        $height = 500 / $ratio;
+    }
+    else {
+        $width = 500 * $ratio;
+        $height = 500;
+    }
+    $webp = imagecreatetruecolor($width, $height);
+    imagecopyresized($webp, $jpeg, 0, 0, 0, 0, $width, $height, imagesx($jpeg), imagesy($jpeg));
+    imagewebp($webp, $path, 60);
+}
