@@ -2,9 +2,13 @@
     require '../inc/lib.inc.php';
 
     $bd = dbConnect();
+
+    $from = $_GET['from'];
+    $table = explode('_', $from)[0];
+
     $id = $_GET['id'];
 
-    $query = $bd -> prepare('DELETE FROM users WHERE id = :id');
+    $query = $bd -> prepare('DELETE FROM ' . $table . ' WHERE id = :id');
     $query -> execute([
         'id' => $id
     ]);

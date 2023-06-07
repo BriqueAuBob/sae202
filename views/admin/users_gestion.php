@@ -36,7 +36,7 @@
                 <td><?= $user['status'] ?></td>
                 <td><?= $user['created_at'] ?></td>
                 <th><a href="forms/users_update_form.php?id=<?= $user['id'] ?>">Modifier</a></th>
-                <th><a href="users_delete.php?id=<?= $user['id'] ?>">Supprimer</a></th>
+                <th><a href="delete.php?from=<?= basename($_SERVER['PHP_SELF']) ?>&id=<?= $user['id'] ?>">Supprimer</a></th>
             </tr>
         <?php endforeach; ?>
     </tbody>
