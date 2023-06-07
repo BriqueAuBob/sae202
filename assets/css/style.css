@@ -197,7 +197,7 @@ button img {
 header {
   text-align: center;
   padding: 270px 24px 290px 24px;
-  background: lightgray;
+  background: var(--color-primary-500);
 }
 
 #head__home {
@@ -231,23 +231,34 @@ header {
   flex: 1;
 }
 
-input {
+input,
+textarea {
   padding: 16px 24px;
   border: none;
   outline: none;
   width: 100%;
   background: var(--color-primary-50);
   transition: ease-in 0.1s;
+  border: 2px solid transparent;
+  border-radius: 16px;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   background: white;
+  border: 2px solid var(--color-primary-100);
+}
+
+label {
+  margin-left: 16px;
+  font-size: 14px;
 }
 
 .form-header input {
   border-top: 2px solid white;
   border-bottom: 2px solid white;
   border-right: 1px solid var(--color-primary-700);
+  border-radius: 0;
 }
 
 .form-header div:nth-child(1) input {
@@ -262,6 +273,12 @@ input:focus {
 .form-header .btn:hover {
   transform: none;
   border: 2px solid transparent;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 header h1 {
@@ -363,7 +380,7 @@ section.grid {
 }
 
 form .btn {
-  margin-top: 32px;
+  margin-top: 16px;
 }
 
 form .btn {
@@ -570,4 +587,35 @@ footer > p {
   font-weight: 700;
   font-size: 18px;
   margin-top: 24px;
+}
+
+section.overlap {
+  position: relative;
+  z-index: 1;
+}
+
+section.overlap > * {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  top: -270px;
+  background: white;
+  padding: 48px;
+  border-radius: 24px;
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.05);
+}
+
+input:disabled {
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 768px) {
+  .cols-2,
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: 1fr;
+  }
 }
