@@ -31,8 +31,8 @@ function register($db, $last_name, $first_name, $email, $password)
         $_SESSION['error'] = 'Cette adresse mail est déjà utilisé';
         header('Location: inscription.php');
     } else {
-        $query = $db -> prepare('INSERT INTO users(last_name, first_name, email, password, created_at) VALUES(:last_name, :first_name, :email, :password, NOW())');
-        $query -> execute(array(
+        $query = $db->prepare('INSERT INTO users(last_name, first_name, email, password, created_at) VALUES(:last_name, :first_name, :email, :password, NOW())');
+        $query->execute(array(
             'last_name' => $last_name,
             'first_name' => $first_name,
             'email' => $email,
@@ -41,11 +41,11 @@ function register($db, $last_name, $first_name, $email, $password)
 
         $_SESSION['message'] = 'Votre compte a bien été créé !';
 
-        $query = $db -> prepare('SELECT * FROM users WHERE email LIKE :email');
-        $query -> execute(array(
+        $query = $db->prepare('SELECT * FROM users WHERE email LIKE :email');
+        $query->execute(array(
             'email' => $email
         ));
-        $user = $query -> fetch();
+        $user = $query->fetch();
 
         $_SESSION['name'] = $user['last_name'];
         $_SESSION['firstname'] = $user['first_name'];
@@ -59,12 +59,12 @@ function register($db, $last_name, $first_name, $email, $password)
 
 function login($db, $email, $password)
 {
-    $query = $db -> prepare('SELECT * FROM users WHERE email LIKE :email');
+    $query = $db->prepare('SELECT * FROM users WHERE email LIKE :email');
     $query->execute(array(
         'email' => $email
     ));
 
-    $user = $query -> fetch();
+    $user = $query->fetch();
     if (isset($user) && password_verify($password, $user['password'])) {
         $_SESSION['name'] = $user['last_name'];
         $_SESSION['firstname'] = $user['first_name'];
@@ -81,14 +81,14 @@ function login($db, $email, $password)
 function deleteAcc($db, $email, $password)
 {
     $query = $db->prepare('SELECT * FROM users WHERE email LIKE :email');
-    $query -> execute(array(
+    $query->execute(array(
         'email' => $email
     ));
 
-    $user = $query -> fetch();
+    $user = $query->fetch();
     if (password_verify($password, $user['password'])) {
-        $query = $db -> prepare('DELETE FROM users WHERE email LIKE :email');
-        $query -> execute(array(
+        $query = $db->prepare('DELETE FROM users WHERE email LIKE :email');
+        $query->execute(array(
             'email' => $email
         ));
 

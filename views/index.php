@@ -21,19 +21,19 @@
 <section class="container grid cols-3">
     <div class="col-2">
         <h1>Que faisons nous?</h1>
-        <p>Notre site VrooMMI est un site de covoiturage qui repose sur l'entraide entre étudiants, car nous ne disposons pas de système de paiement. Les trajets proposés visent principalement à se rendre à l'IUT, avec des points de départ et d'arrivée situés sur les parkings n°1 et n°2, ainsi que les places se trouvant devant l'IUT. Notre site incarne des valeurs écologiques grâce à son offre de covoiturage, mais aussi grâce qu'à sa conception qui s'inscrit dans une approche éco-conceptive.</p>
+        <p>Notre site VrooMMI est un site de covoiturage qui repose sur l'entraide entre étudiants, car nous ne disposons pas de système de paiement. Les trajets proposés visent principalement à se rendre à l'IUT, avec des points de départ et d'arrivée situés sur les parkings n°1 et n°2, ainsi que les places se trouvant devant l'IUT. Notre site incarne des valeurs écologiques grâce à son offre de covoiturage, mais aussi grâce à sa conception qui s'inscrit dans une approche éco-conceptive.</p>
     </div>
     <img class="full" src="./assets/images/car.svg" alt="car">
 </section>
 <section class="green">
     <div class="container">
         <h1>Nos fonctionnalités principales</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+        <p>Vous pourriez vous demander ce qui nous distingue des autres sites de covoiturage. Voyez quelques fonctionnalités</p>
         <div class="grid cols-3 mt-md">
             <div class="card big">
                 <div class="title">
                     <img src="./assets/images/icons/load_icon.svg" alt="load">
-                    <h2>Recherche de trajets</h2>
+                    <h2>Réservation de trajets</h2>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
             </div>
