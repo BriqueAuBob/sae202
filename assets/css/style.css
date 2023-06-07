@@ -168,10 +168,14 @@ button img {
   font-weight: 500;
 }
 
+.btn.big {
+  padding: 24px 32px;
+  font-size: 16px;
+}
+
 .btn:hover {
   background: rgb(240, 240, 240);
   border: 2px solid lightgray;
-  transform: scale(1.05) translateY(-2px);
 }
 
 .btn.green {
@@ -272,6 +276,10 @@ header h1 {
   gap: 24px;
 }
 
+.grid.small-gap {
+  gap: 16px;
+}
+
 .cols-2 {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -289,12 +297,17 @@ header h1 {
 }
 
 section {
-  padding-top: 96px !important;
-  padding-bottom: 96px !important;
+  padding-top: 108px !important;
+  padding-bottom: 108px !important;
 }
 
 section.green {
   background: var(--color-primary-500);
+  color: white;
+}
+
+section.black {
+  background: var(--color-primary-950);
   color: white;
 }
 
@@ -355,12 +368,17 @@ form .btn {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 24px;
+  padding: 16px;
   gap: 10px;
   border: 2px solid var(--color-primary-700);
   border-radius: 24px;
   background: var(--color-primary-100);
   color: black;
+  position: relative;
+}
+
+.card.big {
+  padding: 24px;
 }
 
 .card .title {
@@ -380,6 +398,90 @@ form .btn {
 
 .card .title h2 {
   font-size: 18px;
+}
+
+.card.dark {
+  background: var(--color-primary-700);
+  color: white;
+  border: 2px solid var(--color-primary-600);
+}
+
+.card > img {
+  border-radius: 16px;
+  width: 100%;
+}
+
+.card > .gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card > .gradient:after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  border-radius: 16px;
+}
+
+.card .tags {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.card .tags.top {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+}
+
+.card .tags > span {
+  padding: 8px 16px;
+  border-radius: 100px;
+  background: var(--color-primary-200);
+  color: var(--color-primary-800);
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card .trip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 32px;
+  font-weight: 500;
+}
+
+.card.hover {
+  transition: var(--transitionShort);
+}
+
+.card.hover:hover {
+  cursor: pointer;
+  transform: scale(1.02) translateY(-4px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  filter: brightness(1.1);
 }
 
 .mt-md {
@@ -404,4 +506,53 @@ form .btn {
   font-size: 32px;
   font-weight: 700;
   font-family: "Clash Display", sans-serif;
+}
+
+ol.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+}
+
+ol.buttons li {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+ol.buttons .btn {
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 16px;
+  background: var(--color-primary-800);
+  border: 2px solid var(--color-primary-700);
+  color: white;
+}
+
+ol.buttons .btn:hover,
+ol.buttons .btn.active {
+  opacity: 1;
+  background: var(--color-primary-700);
+  border: 2px solid var(--color-primary-400);
+  padding: 32px 24px;
+}
+
+footer {
+  padding: 0 0 48px 0;
+}
+
+footer > div > ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 32px;
+  list-style: none;
+}
+
+footer > p {
+  font-family: "Clash Display", serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 24px;
 }

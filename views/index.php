@@ -1,6 +1,6 @@
 <header id="head__home">
     <div class="container">
-        <h1>Partagez vos trajets en toute tranquilité</h1>
+        <h1>Partagez vos trajets en toute tranquillité</h1>
         <form class="form-header">
             <div>
                 <label for="departure">Départ</label>
@@ -30,21 +30,21 @@
         <h1>Nos fonctionnalités principales</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
         <div class="grid cols-3 mt-md">
-            <div class="card">
+            <div class="card big">
                 <div class="title">
                     <img src="./assets/images/icons/load_icon.svg" alt="load">
                     <h2>Recherche de trajets</h2>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
             </div>
-            <div class="card">
+            <div class="card big">
                 <div class="title">
                     <img src="./assets/images/icons/load_icon.svg" alt="load">
                     <h2>Recherche de trajets</h2>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
             </div>
-            <div class="card">
+            <div class="card big">
                 <div class="title">
                     <img src="./assets/images/icons/load_icon.svg" alt="load">
                     <h2>Recherche de trajets</h2>
@@ -67,11 +67,53 @@
         </div>
         <div class="stat">
             <p>CO2 évité</p>
-            <div>2 tonne</div>
+            <div>2 tonnes</div>
         </div>
         <div class="stat">
             <p>Distance parcourue</p>
             <div>1000km</div>
+        </div>
+    </div>
+</section>
+<section class="black">
+    <div class="container">
+        <h1>Démonstration</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+        <div class="grid cols-3 mt-md">
+            <ol class="buttons">
+                <li><button class="btn big active">Trouver un trajet</button></li>
+                <li><button class="btn big">Réservation du trajet</button></li>
+                <li><button class="btn big">Récompenser le chauffeur</button></li>
+            </ol>
+            <div class="col-2 grid cols-2 small-gap">
+                <?php
+                include('./components/card_trip.php');
+                for ($i = 0; $i < 4; $i++) {
+                    cardTrip($i);
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container">
+    <h1 class="center">Questions fréquemment posées</h1>
+    <div class="grid cols-2 mt-md small-gap">
+        <div class="card big">
+            <h2>Comment s'inscrire?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+        </div>
+        <div class="card big">
+            <h2>Comment s'inscrire?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+        </div>
+        <div class="card big">
+            <h2>Comment s'inscrire?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+        </div>
+        <div class="card big">
+            <h2>Comment s'inscrire?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
         </div>
     </div>
 </section>
