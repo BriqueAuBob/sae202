@@ -1,4 +1,14 @@
 <?php
+    require '../inc/lib.inc.php';
 
-$template = 'users_delete';
-require '../layouts/administration.php';
+    $bd = dbConnect();
+    $id = $_GET['id'];
+
+    $query = $bd -> prepare('DELETE FROM users WHERE id = :id');
+    $query -> execute(array(
+        'id' => $id
+    ));
+    $_SESSION['crudLog'] = 'L\'utilisateur n°'.$id.' a bien été supprimé !';
+
+    dbDisconnect($bd);
+    header('Location: users_gestion.php');

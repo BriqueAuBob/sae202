@@ -6,6 +6,9 @@
     $users = $query -> fetchAll();
 ?>
 
+<h1>Gestion des utilisateurs</h1>
+<?= isset($_SESSION['crudLog']) ? '<p>' . $_SESSION['crudLog'] . '</p>': '' ?>
+
 <table border>
     <thead>
         <tr>

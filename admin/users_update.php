@@ -1,4 +1,2 @@
 <?php
-
-$template = 'users_update';
-require '../layouts/administration.php';
+    require '../inc/lib.inc.php';
