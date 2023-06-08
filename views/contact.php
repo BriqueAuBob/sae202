@@ -2,7 +2,7 @@
     <h1>Contactez-nous</h1>
 </header>
 <section class="overlap container">
-    <form class="form" method="post">
+    <form class="form" method="post" action="envoi_mail.php">
         <div>
             <label for="name">Nom</label>
             <input type="text" id="name" name="name" placeholder="John Doe" <?= isset($_SESSION['name']) ? 'value="' . $_SESSION['firstname'] . ' ' . $_SESSION['name'] . '" disabled' : '' ?> required>
