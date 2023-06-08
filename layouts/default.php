@@ -20,6 +20,7 @@
     ?>
 
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/trip_parking.js"></script>
 </body>
 
 </html>
