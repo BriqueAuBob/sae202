@@ -288,6 +288,18 @@ select {
   border-radius: 16px;
 }
 
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background: var(--color-primary-800);
+  color: white;
+}
+
+header input {
+  background: var(--color-primary-50) !important;
+  color: black !important;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
@@ -767,6 +779,7 @@ input:disabled {
   justify-content: center;
   z-index: 999;
   pointer-events: all;
+  transition: var(--transitionLong);
 }
 
 .modal-container {
@@ -778,10 +791,21 @@ input:disabled {
   flex-direction: column;
   gap: 24px;
   justify-content: space-between;
+  transform: translateY(0);
+  transition: var(--transitionLong);
 }
 
 .modal-container footer {
   padding: 0;
+}
+
+.modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal.hidden .modal-container {
+  transform: translateY(100px);
 }
 
 @media screen and (max-width: 768px) {

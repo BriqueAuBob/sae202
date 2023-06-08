@@ -42,3 +42,43 @@ if (saveChangesPopup) {
     });
   });
 }
+
+let currentModal = null;
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.classList.remove("hidden");
+  document.body.classList.add("overflow-hidden");
+  currentModal = modalId;
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.classList.add("hidden");
+  document.body.classList.remove("overflow-hidden");
+  currentModal = null;
+}
+
+function closeModalOnOutsideClick(e) {
+  if (e.target.classList.contains("modal")) {
+    closeModal(e.target.id);
+  }
+}
+
+function closeModalOnEscape(e) {
+  if (e.key === "Escape") {
+    closeModal(currentModal);
+  }
+}
+
+const modals = document.querySelectorAll(".modal");
+modals.forEach((modal) => {
+  modal.addEventListener("click", closeModalOnOutsideClick);
+});
+document.addEventListener("keydown", closeModalOnEscape);
+
+const closeModalButton = document.querySelectorAll("[data-close-modal]");
+closeModalButton.forEach((button) => {
+  button.addEventListener("click", () => {
+    closeModal(button.getAttribute("data-close-modal"));
+  });
+});

@@ -95,11 +95,11 @@
     <h1 class="center">Actions</h1>
     <div class="btn-list center mt-md">
         <a href="./deconnexion.php" class="btn gray">Me déconnecter</a>
-        <button class="btn red" type="submit">Supprimer définitivement mon compte</button>
+        <button class="btn red" type="submit" onclick="openModal('modal_delete_account')">Supprimer définitivement mon compte</button>
     </div>
 </section>
-<div class="modal" data-modal-id="delete_account">
-    <form action="" method="POST">
+<div class="modal hidden" id="modal_delete_account">
+    <form action="./desinscription.php" method="POST">
         <div class="modal-container">
             <main>
                 <h1>Supprimer mon compte</h1>
@@ -109,7 +109,7 @@
                 <input data-no-trigger-save class="mt-md" type="password" name="password" id="password_confirmation_delete" placeholder="Mot de passe...">
             </main>
             <footer class="btn-list">
-                <button class="btn no-margin" data-close-modal>Annuler</button>
+                <button type="button" class="btn no-margin" data-close-modal="modal_delete_account">Annuler</button>
                 <a href="./deconnexion.php" class="btn no-margin red">Supprimer</a>
             </footer>
         </div>
