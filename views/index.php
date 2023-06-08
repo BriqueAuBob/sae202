@@ -35,21 +35,21 @@
                     <img src="./assets/images/icons/load_icon.svg" alt="load">
                     <h2>Réservation de trajets</h2>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+                <p>Il est possible de réserver son trajet pour se déplacer où vous le voulez et en toute simplicité.</p>
             </div>
             <div class="card big">
                 <div class="title">
                     <img src="./assets/images/icons/load_icon.svg" alt="load">
-                    <h2>Recherche de trajets</h2>
+                    <h2>Sélection de l'emplacement</h2>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+                <p>Vous pouvez indiquer l'emplacement de votre place pour faciliter le lieu de rendez-vous.</p>
             </div>
             <div class="card big">
                 <div class="title">
                     <img src="./assets/images/icons/load_icon.svg" alt="load">
-                    <h2>Recherche de trajets</h2>
+                    <h2>Une organisation parfaite</h2>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+                <p>Avec notre système de messagerie instantanée vous pouvez discuter avec le covoitureur pour tout planifier avant de partir.</p>
             </div>
         </div>
     </div>
@@ -78,7 +78,7 @@
 <section class="black">
     <div class="container">
         <h1>Démonstration</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+        <p>Voici comment fonctionne notre système pour la réservation de trajet.</p>
         <div class="grid cols-3 mt-md">
             <ol class="buttons">
                 <li><button class="btn big active">Trouver un trajet</button></li>
@@ -100,20 +100,20 @@
     <h1 class="center">Questions fréquemment posées</h1>
     <div class="grid cols-2 mt-md small-gap">
         <div class="card big">
-            <h2>Comment s'inscrire?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+            <h2>Pourquoi utiliser le site?</h2>
+            <p>VrooMMI est avant tout un site qui se base sur l’entraide entre étudiant car celui-ci ne possède pas de système de paiement et notre site est inscrit dans une démarche éco-conceptive. En plus on est meilleur que les autres et ca c’est un bon point.</p>
         </div>
         <div class="card big">
-            <h2>Comment s'inscrire?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+            <h2>Comment suis-je débité ?</h2>
+            <p>Personne n’est débité puisque notre site ne possède pas de système de paiement. Tout est basé sur le volontariat du conducteur mais tu peux offrir quelque chose en échange pour que cela soit gagnant pour les deux.</p>
         </div>
         <div class="card big">
-            <h2>Comment s'inscrire?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+            <h2>Peut-on prendre plusieurs passagers ?</h2>
+            <p>Bien sûr il est possible de prendre plusieurs passagers et c’est même le but du covoiturage. Lorsque tu t’inscris sur VrooMMI tu indiques si tu as une voiture et combien de places elle possède comme ça les personnes voulant faire le même trajet que toi savent combien de places tu as.</p>
         </div>
         <div class="card big">
-            <h2>Comment s'inscrire?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis volutpat tellus. Etiam ac dignissim mi.</p>
+            <h2>Peut-on annuler un trajet ?</h2>
+            <p>Oui vous êtes dans la capacité d’annuler un trajet, que ce soit pour des raisons personnelles ou non. Ensuite le site s’occupe de prévenir les personnes qui avait déjà prévu de partager le trajet avec vous.</p>
         </div>
     </div>
 </section>

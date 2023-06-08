@@ -66,6 +66,7 @@ function login($db, $email, $password)
 
     $user = $query->fetch();
     if (isset($user) && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
         $_SESSION['name'] = $user['last_name'];
         $_SESSION['firstname'] = $user['first_name'];
         $_SESSION['picture'] = $user['picture'];
@@ -105,12 +106,11 @@ function transformToWebp($picture, $path)
 {
     $jpeg = imagecreatefromstring($picture);
     $size = getimagesizefromstring($picture);
-    $ratio = $size[0]/$size[1];
-    if( $ratio > 1) {
+    $ratio = $size[0] / $size[1];
+    if ($ratio > 1) {
         $width = 500;
         $height = 500 / $ratio;
-    }
-    else {
+    } else {
         $width = 500 * $ratio;
         $height = 500;
     }

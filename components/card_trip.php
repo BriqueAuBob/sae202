@@ -8,17 +8,35 @@ if (!function_exists("cardTrip")) {
                 'IUT de Troyes',
                 'Meltdown',
                 'Gare de Troyes',
-                'RU Les Lombards'
+                'RU Les Lombards',
+                'Burger King',
+                'McDonalds',
+                'Quick',
+                'KFC',
+                'Cinema CGR',
+                'Bowling des 3 Seine',
+                'Le Cube',
+                'Pont-Sainte-Marie',
+                'Stade de l\'Aube',
+                'Nigloland',
+                'Lac d\'Orient',
+                'Hôtel de Ville',
+                'Bowl de Troyes',
             ];
             $images = [
                 '206.jpeg',
                 'clio3.jpg',
                 'polo.jpg',
-                'twingo.jpg'
+                'twingo.jpg',
+                'twingo1.jpg',
+                'clio2.jpg',
+                'ford_ka.jpeg',
+                'c3.jpg',
+                '208.jpg'
             ];
             $countZone = count($zones);
             $trip = [
-                'seats' => rand(1, 4),
+                'seats' => 4,
                 'date' => date('d/m à H\hi', rand(time(), time() + 86400 * 7)),
                 'from' => $zones[rand(0, $countZone - 1)],
                 'to' => $zones[rand(0, $countZone - 1)],
@@ -33,7 +51,7 @@ if (!function_exists("cardTrip")) {
                 <img class="full" src="./assets/images/{$trip['image']}" alt="car">
                 <div class="gradient"></div>
                 <div class="tags top">
-                    <span><img src="./assets/images/icons/users.svg" alt="seats icon">3 places</span>
+                    <span><img src="./assets/images/icons/users.svg" alt="seats icon">{$trip['seats']} places</span>
                     <span><img src="./assets/images/icons/clock.svg" alt="clock icon">06/06 à 14h00</span>
                 </div>
                 <div class="trip">
