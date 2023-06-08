@@ -1,3 +1,16 @@
+const trip_reveal = document.querySelector('#trip_reveal');
+const trip_form = document.querySelector('#trip_form');
+
+trip_form.style.display = 'none';
+
+trip_reveal.addEventListener('click', () => {
+    trip_form.style.display = 'block';
+});
+
+
+
+
+
 const departure_city = document.querySelector('#departure_city');
 const departure_options = document.querySelector('#departure_options');
 const p1 = document.querySelector('#p1');
@@ -16,6 +29,8 @@ departure_city.addEventListener('input', () => {
         departure_options.style.display = 'block';
     } else {
         departure_options.style.display = 'none';
+        p1.style.display = 'none';
+        p2.style.display = 'none';
     }
 });
 

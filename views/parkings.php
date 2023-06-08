@@ -3,7 +3,6 @@
 	.st0{fill:#E6E6E6;stroke:#E52421;stroke-miterlimit:10;}
 </style>
 <g id="p1">
-	
 		<rect id="z1" x="-57.52" y="216.71" transform="matrix(0.8108 0.5853 -0.5853 0.8108 191.9382 -136.7077)" class="st0" width="729.95" height="23.74" onClick="console.log(ok)"/>
 	
 		<rect id="z2" x="462.3" y="589.4" transform="matrix(-8.426597e-07 -1 1 -8.426597e-07 -33.0282 1169.5138)" class="st0" width="211.88" height="23.74"/>
