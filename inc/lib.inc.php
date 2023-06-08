@@ -47,6 +47,7 @@ function register($db, $last_name, $first_name, $email, $password)
         ));
         $user = $query->fetch();
 
+        $_SESSION['user_id'] = $user['id'];
         $_SESSION['name'] = $user['last_name'];
         $_SESSION['firstname'] = $user['first_name'];
         $_SESSION['picture'] = $user['picture'];
