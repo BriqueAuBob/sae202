@@ -1,5 +1,6 @@
 <header>
     <h1>Contactez-nous</h1>
+    <?= isset($_SESSION['contactLog']['envoi']) ? '<p>' . $_SESSION['contactLog']['envoi'] . '</p>' : '' ?>
 </header>
 <section class="overlap container">
     <form class="form" method="post" action="envoi_mail.php">
