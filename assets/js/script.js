@@ -36,7 +36,7 @@ const saveChangesPopup = document.querySelector(".save_changes_popup");
 if (saveChangesPopup) {
   const inputs = document.querySelectorAll("input, textarea", "select");
   inputs.forEach((input) => {
-    if (input.getAttribute("data--no-trigger-save") === null) return;
+    if (input.getAttribute("data-no-trigger-save") !== null) return;
     input.addEventListener("input", () => {
       saveChangesPopup.classList.remove("hidden");
     });
