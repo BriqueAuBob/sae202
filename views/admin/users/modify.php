@@ -1,12 +1,12 @@
 <?php
-    $bd = dbConnect();
-    $id = $_GET['id'];
+$bd = dbConnect();
+$id = $_GET['id'];
 
-    $query = $bd -> prepare('SELECT * FROM users WHERE id = :id');
-    $query -> execute(array(
-        'id' => $id
-    ));
-    $user = $query -> fetch();
+$query = $bd->prepare('SELECT * FROM users WHERE id = :id');
+$query->execute(array(
+    'id' => $id
+));
+$user = $query->fetch();
 ?>
 
 <form action="../users_update.php" method="post" enctype="multipart/form-data">
@@ -18,7 +18,7 @@
     <div>
         <label for="first_name">Prénom</label>
         <input type="text" name="first_name" id="first_name" value="<?= $user['first_name'] ?>">
-    </div>   
+    </div>
     <div>
         <label for="picture">Photo de profil</label>
         <input type="file" name="picture" id="picture">
@@ -35,9 +35,9 @@
     <div>
         <label for="status">Status</label>
         <select name="status">
-            <option value="0" <?php if($user['status'] == '') echo 'selected' ?>>Aucun</option>
-            <option value="1" <?php if($user['status'] == 'covoitureur') echo 'selected' ?>>Covoitureur</option>
-            <option value="2" <?php if($user['status'] == 'passager') echo 'selected' ?>>Passager</option>
+            <option value="0" <?php if ($user['status'] == '') echo 'selected' ?>>Aucun</option>
+            <option value="1" <?php if ($user['status'] == 'covoitureur') echo 'selected' ?>>Covoitureur</option>
+            <option value="2" <?php if ($user['status'] == 'passager') echo 'selected' ?>>Passager</option>
         </select>
     </div>
     <div>
