@@ -1,16 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width=500px x="0px" y="0px" viewBox="0 0 613 1054.67" style="enable-background:new 0 0 613 1054.67;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#E6E6E6;stroke:#E52421;stroke-miterlimit:10;}
-</style>
-<g id="p1">
-		<rect id="z1" x="-57.52" y="216.71" transform="matrix(0.8108 0.5853 -0.5853 0.8108 191.9382 -136.7077)" class="st0" width="729.95" height="23.74" onClick="console.log(ok)"/>
-	
-		<rect id="z2" x="462.3" y="589.4" transform="matrix(-8.426597e-07 -1 1 -8.426597e-07 -33.0282 1169.5138)" class="st0" width="211.88" height="23.74"/>
-	
-		<rect id="z3" x="429.16" y="660.1" transform="matrix(-1.092025e-06 -1 1 -1.092025e-06 -161.0593 1182.8784)" class="st0" width="163.49" height="23.74"/>
-	
-		<rect id="z4" x="253.82" y="858.8" transform="matrix(-0.7539 0.657 -0.657 -0.7539 1249.8707 1273.1616)" class="st0" width="265.34" height="23.74"/>
-	
-		<rect id="z5" x="220.87" y="895.35" transform="matrix(-0.7539 0.657 -0.657 -0.7539 1348.469 1309.3286)" class="st0" width="416.29" height="23.74"/>
-</g>
-</svg>
+<header>
+	<h1>Parkings</h1>
+</header>
+<section class="overlap container">
+
+</section>
