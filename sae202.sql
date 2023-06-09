@@ -82,10 +82,13 @@ DROP TABLE IF EXISTS `parkings`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `parkings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `area` varchar(10) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `location` varchar(500) DEFAULT NULL,
+  `spaces` smallint(3) DEFAULT NULL,
+  `picture` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +97,6 @@ CREATE TABLE `parkings` (
 
 LOCK TABLES `parkings` WRITE;
 /*!40000 ALTER TABLE `parkings` DISABLE KEYS */;
-INSERT INTO `parkings` VALUES (1,'p1','z1');
 /*!40000 ALTER TABLE `parkings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +207,7 @@ CREATE TABLE `users` (
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +216,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Lamaty','Cassandre','default.png','lamatycassandre@gmail.com','$2y$10$igfZG3p/GgGg.feWcf0cqelkHV/W0U7CsGAbx9R4l4ftJC.c0vXZa',NULL,'2023-06-09 06:19:04');
+INSERT INTO `users` VALUES (3,'Lamaty','Cassandre','default.png','lamatycassandre@gmail.com','$2y$10$YYgBqULjHxhXNMhXWboKaejnBEis2OsXluK9R2L6RJuuBxGCslwK6',NULL,'2023-06-09 07:31:42');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,16 +229,16 @@ DROP TABLE IF EXISTS `vehicles`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vehicles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `brand` varchar(50) NOT NULL,
-  `model` varchar(50) NOT NULL,
-  `places` tinyint(4) NOT NULL,
-  `color` varchar(6) NOT NULL,
-  `image` varchar(150) NOT NULL,
+  `brand` varchar(50) DEFAULT NULL,
+  `model` varchar(50) DEFAULT NULL,
+  `places` tinyint(4) DEFAULT NULL,
+  `color` varchar(6) DEFAULT NULL,
+  `image` varchar(150) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`),
   CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -245,6 +247,7 @@ CREATE TABLE `vehicles` (
 
 LOCK TABLES `vehicles` WRITE;
 /*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
+INSERT INTO `vehicles` VALUES (12,'maman',NULL,NULL,NULL,NULL,3);
 /*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -257,4 +260,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-09  6:20:21
+-- Dump completed on 2023-06-09  8:33:16
