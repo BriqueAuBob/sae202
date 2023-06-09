@@ -1,1 +1,2 @@
-Alias /gestion /admin
+RewriteEngine On
+RewriteRule gestion /var/www/sae202/admin
