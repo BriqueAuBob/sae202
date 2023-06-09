@@ -5,10 +5,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <a class="branding" href="./"><img src="./assets/images/logo_white.svg" alt="Logo White VrooMMI"></a>
     <div class="wrapper">
         <ul>
-            <li><a <?= $currentPage === 'index.php' ? 'class="active"' : '' ?> href="/">Accueil</a></li>
-            <li><a <?= $currentPage === 'trajets.php' ? 'class="active"' : '' ?> href="/trajets.php">Trajets</a></li>
-            <li><a <?= $currentPage === 'parkings.php' ? 'class="active"' : '' ?> href="/parkings.php">Parkings</a></li>
-            <li><a <?= $currentPage === 'contact.php' ? 'class="active"' : '' ?> href="/contact.php">Contact</a></li>
+            <li><a <?= $currentPage === 'index.php' ? 'class="active"' : '' ?> href="./">Accueil</a></li>
+            <li><a <?= $currentPage === 'trajets.php' ? 'class="active"' : '' ?> href="./trajets.php">Trajets</a></li>
+            <li><a <?= $currentPage === 'parkings.php' ? 'class="active"' : '' ?> href="./parkings.php">Parkings</a></li>
+            <li><a <?= $currentPage === 'contact.php' ? 'class="active"' : '' ?> href="./contact.php">Contact</a></li>
         </ul>
     </div>
     <div class="btn-list">
