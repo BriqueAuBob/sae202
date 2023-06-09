@@ -1,8 +1,8 @@
-<form action="" method="POST">
+<form action="profile_update.php" method="POST">
     <header class="small">
-        <h1>Bonjour <?= $_SESSION['firstname'] ?> !</h1>
+        <h1>Bonjour <?= $_SESSION['user']['firstname'] ?> !</h1>
         <div class="avatar huge center upload_input">
-            <img class="avatar full" src="assets/images/avatars/<?= $_SESSION['picture'] ?>" alt="Profile picture">
+            <img class="avatar full" src="assets/images/avatars/<?= $_SESSION['user']['picture'] ?>" alt="Profile picture">
             <input type="file" name="picture" id="picture">
             <div class="gradient rounded_full">
                 Modifier
@@ -14,16 +14,16 @@
         <div class="form-group">
             <div>
                 <label for="firstname">Prénom</label>
-                <input type="text" name="firstname" id="firstname" value="<?= $_SESSION['firstname'] ?>">
+                <input type="text" name="firstname" id="firstname" value="<?= $_SESSION['user']['firstname'] ?>">
             </div>
             <div>
                 <label for="lastname">Nom</label>
-                <input type="text" name="lastname" id="lastname" value="<?= $_SESSION['name'] ?>">
+                <input type="text" name="lastname" id="lastname" value="<?= $_SESSION['user']['name'] ?>">
             </div>
         </div>
         <div>
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="<?= $_SESSION['email'] ?>">
+            <input type="email" name="email" id="email" value="<?= $_SESSION['user']['email'] ?>">
         </div>
         <div class="form-group">
             <div>
@@ -40,7 +40,7 @@
         <h1 class="center">Mon véhicule</h1>
         <?php
         $db = dbConnect();
-        $query = $db->prepare('SELECT * FROM vehicles WHERE user_id = ' . $_SESSION['user_id']);
+        $query = $db->prepare('SELECT * FROM vehicles WHERE user_id = ' . $_SESSION['user']['id']);
         $query->execute();
 
         if ($query->rowCount() > 0) {
@@ -49,7 +49,7 @@
                 $brand = $vehicle['brand'];
                 $model = $vehicle['model'];
                 $color = $vehicle['color'];
-                $sits = $vehicle['places'];
+                $seats = $vehicle['places'];
             }
         }
 
@@ -72,7 +72,7 @@
             </div>
             <div>
                 <label for="seats">Nombre de places</label>
-                <input type="number" name="seats" id="seats" min="1" max="4" <?= isset($sits) ? 'value="' . $sits . '"' : 'placeholder="Nombre de places"' ?>>
+                <input type="number" name="seats" id="seats" min="1" max="4" <?= isset($seats) ? 'value="' . $seats . '"' : 'placeholder="Nombre de places"' ?>>
             </div>
         </div>
         <div class="half center upload_input">

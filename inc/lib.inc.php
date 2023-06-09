@@ -47,12 +47,14 @@ function register($db, $last_name, $first_name, $email, $password)
         ));
         $user = $query->fetch();
 
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['name'] = $user['last_name'];
-        $_SESSION['firstname'] = $user['first_name'];
-        $_SESSION['picture'] = $user['picture'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['creation_date'] = $user['created_at'];
+        $_SESSION['user'] = [
+            'id' => $user['id'],
+            'name' => $user['last_name'],
+            'firstname' => $user['first_name'],
+            'picture' => $user['picture'],
+            'email' => $user['email'],
+            'creation_date' => $user['created_at']
+        ];
 
         header('Location: index.php');
     }
@@ -67,12 +69,14 @@ function login($db, $email, $password)
 
     $user = $query->fetch();
     if (isset($user) && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['name'] = $user['last_name'];
-        $_SESSION['firstname'] = $user['first_name'];
-        $_SESSION['picture'] = $user['picture'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['creation_date'] = $user['created_at'];
+        $_SESSION['user'] = [
+            'id' => $user['id'],
+            'name' => $user['last_name'],
+            'firstname' => $user['first_name'],
+            'picture' => $user['picture'],
+            'email' => $user['email'],
+            'creation_date' => $user['created_at']
+        ];
         header('Location: index.php');
     } else {
         $_SESSION['error'] = 'Mauvais identifiants';

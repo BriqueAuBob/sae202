@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $email = htmlspecialchars($_POST['email']);
     $query = $db -> prepare('SELECT * FROM users WHERE email = :email');
-    $query -> bindValue(':email', $email, PDO::PARAM_STR);
+    $query -> bindValue(':email', $email);
     $query -> execute();
     $user = $query -> fetch();
     if($user) {
