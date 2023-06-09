@@ -43,7 +43,7 @@ $message = $_POST['message'];
 
 
 
-$to = "mmi22d01@mmi-troyes.fr";
+$to = "mmi22c14@mmi-troyes.fr";
 $subject = "Demande de contact de $name";
 $headers = "From: $from" . "\r\n" .
     "Reply-To: $from" . "\r\n" .
