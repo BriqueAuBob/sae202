@@ -1,18 +1,25 @@
 <?= isset($_SESSION['crudLog']) ? '<p>' . $_SESSION['crudLog'] . '</p>' : '' ?>
 
-<form action="./create.php" method="post">
+<form action="./create.php" method="post" enctype="multipart/form-data">
     <div>
         <label for="parking_name">Nom du parking</label>
-        <!-- <select name="parking_name" id="parking_name">
-            <option value="p1">Parking IUT 1</option>
-            <option value="p2">Parking IUT 2</option>
-            <option value="other">Autre</option>
-        </select> -->
-        <input type="text" name="parking_name" id="parking_name" placeholder="Nom du parking a ajouter">
+        <input type="text" name="parking_name" id="parking_name" placeholder="Nom">
     </div>
     <div>
-        <label for="area_name">Nom de la zone</label>
-        <input type="text" name="area_name" id="area_name" placeholder="Nom de la zone">
+        <label for="adress">Adresse du parking</label>
+        <input type="text" name="adress" id="adress" placeholder="Adresse">
+    </div>
+    <div>
+        <label for="location">Lien MAPS de l'emplacement</label>
+        <input type="text" name="location" id="location" placeholder="Emplacement MAPS">
+    </div>
+    <div>
+        <label for="spaces">Nombre de places disponibles</label>
+        <input type="number" name="spaces" id="spaces" placeholder="Nombre de places">
+    </div>
+    <div>
+        <label for="picture">Photo du parking</label>
+        <input type="file" name="picture" id="picture">
     </div>
 
     <button class="btn green" type="submit">Valider l'ajout</button>

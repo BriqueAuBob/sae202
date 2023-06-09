@@ -16,7 +16,10 @@ $parkings = $query->fetchAll();
         <tr>
             <th>ID</th>
             <th>Nom</th>
-            <th>Zone</th>
+            <th>Adresse</th>
+            <th>Lien MAPS</th>
+            <th>Nombre de places</th>
+            <th>Image</th>
             <th></th>
             <th></th>
         </tr>
@@ -26,7 +29,10 @@ $parkings = $query->fetchAll();
             <tr>
                 <td><?= $parking['id'] ?></td>
                 <td><?= $parking['name'] ?></td>
-                <td><?= $parking['area'] ?></td>
+                <td><?= $parking['address'] ?></td>
+                <td><?= $parking['location'] ?></td>
+                <td><?= $parking['spaces'] ?></td>
+                <td><?= $parking['picture'] ?></td>
                 <th><a href="modifications.php?id=<?= $parking['id'] ?>">Modifier</a></th>
                 <th><a href="delete.php?id=<?= $parking['id'] ?>">Supprimer</a></th>
             </tr>
