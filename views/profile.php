@@ -72,7 +72,7 @@
             </div>
             <div>
                 <label for="seats">Nombre de places</label>
-                <input type="number" name="seats" id="seats" min="1" max="4" <?= isset($seats) ? 'value="' . $seats . '"' : 'placeholder="Nombre de places"' ?>>
+                <input type="number" name="seats" id="seats" max="4" <?= isset($seats) ? 'value="' . $seats . '"' : 'placeholder="Nombre de places"' ?>>
             </div>
         </div>
         <div class="half center upload_input">

@@ -9,7 +9,7 @@
             die();
         }
 
-        $id = $_SESSION['user_id'];
+        $id = $_SESSION['user']['id'];
         $last_name = ucwords(strtolower(htmlspecialchars($_POST['lastname'])));
         $first_name = ucwords(strtolower(htmlspecialchars($_POST['firstname'])));
 
@@ -34,11 +34,9 @@
         $query -> bindValue(':id', $id);
         $query -> execute();
 
-        $_SESSION['user'] = [
-            'name' => $last_name,
-            'firstname' => $first_name,
-            'email' => $email
-        ];
+        $_SESSION['user']['name'] = $last_name;
+        $_SESSION['user']['firstname'] = $first_name;
+        $_SESSION['user']['email'] = $email;
 
         $brand = (isset($_POST['brand'])) ? htmlspecialchars($_POST['brand']) : '';
         $model = (isset($_POST['model'])) ? htmlspecialchars($_POST['model']) : '';
@@ -48,24 +46,55 @@
         $query = $db -> prepare('SELECT * FROM vehicles WHERE user_id = '. $id);
         $query -> execute();
         
-        if($query -> rowCount() > 0) {
-            $query = $db -> prepare('UPDATE vehicles SET brand = :brand, model = :model, color = :color, places = :places WHERE user_id = :user_id');
-            $query -> execute([
-                ':brand' => $brand,
-                ':model' => $model,
-                ':color' => $color,
-                ':places' => $seats,
-                ':user_id' => $id
-            ]);
+        if ($query -> rowCount() > 0) {
+            $updateColumns = [];
+            
+            if ($brand !== '') {$updateColumns[] = 'brand = :brand';}
+            if ($model !== '') {$updateColumns[] = 'model = :model';}
+            if ($color !== '') {$updateColumns[] = 'color = :color';}
+            if ($seats !== '' || (int)$seats != 0) {$updateColumns[] = 'places = :places';}
+            
+            $query = $db -> prepare('UPDATE vehicles SET ' . implode(', ', $updateColumns) . ' WHERE user_id = :user_id');
+        
+            if ($brand !== '') {$query->bindValue(':brand', $brand);}
+            if ($model !== '') {$query->bindValue(':model', $model);}
+            if ($color !== '') {$query->bindValue(':color', $color);}
+            if ($seats !== '' || (int)$seats != 0) {$query->bindValue(':places', (int)$seats);}
+        
+            $query->bindValue(':user_id', $id);
+            $query->execute();
         } else {
-            $query = $db -> prepare('INSERT INTO vehicles (brand, model, color, places, user_id) VALUES (:brand, :model, :color, :places, :user_id)');
-            $query -> execute([
-                ':brand' => $brand,
-                ':model' => $model,
-                ':color' => $color,
-                ':places' => (int)$seats,
-                ':user_id' => $id
-            ]);
+            if ($brand !== '' || $model !== '' || $color !== '' || ($seats !== '' || (int)$seats != 0)) {
+                $columns = [];
+                $values = [];
+            
+                if ($brand !== '') {
+                    $columns[] = 'brand';
+                    $values[] = ':brand';
+                }
+                if ($model !== '') {
+                    $columns[] = 'model';
+                    $values[] = ':model';
+                }
+                if ($color !== '') {
+                    $columns[] = 'color';
+                    $values[] = ':color';
+                }
+                if ($seats !== '' || (int)$seats != 0) {
+                    $columns[] = 'places';
+                    $values[] = ':places';
+                }
+            
+                $query = $db->prepare('INSERT INTO vehicles (' . implode(', ', $columns) . ', user_id) VALUES (' . implode(', ', $values) . ', :user_id)');
+            
+                if ($brand !== '') {$query -> bindValue(':brand', $brand);}
+                if ($model !== '') {$query -> bindValue(':model', $model);}
+                if ($color !== '') {$query -> bindValue(':color', $color);}
+                if ($seats !== '' || (int)$seats != 0) {$query->bindValue(':places', (int)$seats);}
+            
+                $query->bindValue(':user_id', $id);
+                $query->execute();
+            }
         }
         
         dbDisconnect($db);
