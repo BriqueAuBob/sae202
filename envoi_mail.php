@@ -7,7 +7,7 @@ $errors = 0;
 $report = '';
 
 if (count($_POST) == 0) {
-    header('Location: /contact.php');
+    header('Location: contact.php');
 }
 
 //name
@@ -41,7 +41,7 @@ if (!empty($_POST['message'])) {
 
 //envoi
 if ($errors == 0) {
-    $to = "mmi22c14@mmi-troyes.fr";
+    $to = "mmi22d01@mmi-troyes.fr";
     $subject = "Demande de contact de $name";
     $headers = "From: $from" . "\r\n" .
         "Reply-To: $from" . "\r\n" .
