@@ -22,12 +22,6 @@ SET time_zone = "+00:00";
 -- Base de données : `sae202`
 --
 
---
--- Déchargement des données de la table `parkings`
---
-
-INSERT INTO `parkings` (`id`, `name`, `area`) VALUES
-(1, 'p1', 'z1');
 
 --
 -- Déchargement des données de la table `trips`
