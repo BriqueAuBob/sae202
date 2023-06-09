@@ -1,4 +1,4 @@
-<?= isset($_SESSION['user_id']) ? '<button id="trip_reveal" class="btn green">Nouveau trajet</button>' : '' ?>
+<?= isset($_SESSION['user']['id']) ? '<button id="trip_reveal" class="btn green">Nouveau trajet</button>' : '' ?>
 
 <form id="trip_form" action="trips_create.php" method="post">
     <p>PROTOTYPE</p>

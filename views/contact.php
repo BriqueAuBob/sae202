@@ -5,11 +5,11 @@
     <form class="form" method="post" action="envoi_mail.php">
         <div>
             <label for="name">Nom</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" <?= isset($_SESSION['name']) ? 'value="' . $_SESSION['firstname'] . ' ' . $_SESSION['name'] . '" disabled' : '' ?> required>
+            <input type="text" id="name" name="name" placeholder="John Doe" <?= isset($_SESSION['user']['name']) ? 'value="' . $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['name'] . '" disabled' : '' ?> required>
         </div>
         <div>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="john.doe@gmail.com" <?= isset($_SESSION['name']) ? 'value="' . $_SESSION['email'] . '" disabled' : '' ?> required>
+            <input type="email" id="email" name="email" placeholder="john.doe@gmail.com" <?= isset($_SESSION['user']['name']) ? 'value="' . $_SESSION['user']['email'] . '" disabled' : '' ?> required>
         </div>
         <div>
             <label for="message">Message</label>
