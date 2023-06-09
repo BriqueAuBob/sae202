@@ -1,4 +1,4 @@
-<form action="profile_update.php" method="POST">
+<form action="profil.php" method="POST">
     <header class="small">
         <h1>Bonjour <?= $_SESSION['user']['firstname'] ?> !</h1>
         <div class="avatar huge center upload_input">
