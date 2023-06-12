@@ -76,6 +76,10 @@ a {
   color: black;
 }
 
+body.dark a {
+  color: white;
+}
+
 img.full {
   display: block;
   width: 100%;
@@ -116,7 +120,7 @@ nav .branding {
   margin-right: auto;
 }
 
-nav ul {
+nav .wrapper > ul {
   display: flex;
   align-items: center;
   list-style: none;
@@ -127,7 +131,7 @@ nav ul {
   justify-content: center;
 }
 
-nav ul a {
+nav .wrapper > ul a {
   color: white;
   padding: 8px 16px;
   border-radius: 100px;
@@ -135,8 +139,8 @@ nav ul a {
   font-weight: 500;
 }
 
-nav ul a.active,
-nav ul a:hover {
+nav .wrapper > ul a.active,
+nav .wrapper > ul a:hover {
   background: white;
   color: black;
 }
@@ -160,6 +164,7 @@ nav .btn-list #profile {
   padding: 8px 16px;
   border-radius: 100px;
   border: 2px solid var(--color-primary-300);
+  color: black !important;
   transition: ease-in 0.2s;
 }
 
@@ -196,6 +201,7 @@ button img {
   border: 2px solid transparent;
   transition: var(--transitionShort);
   font-weight: 500;
+  color: black !important;
 }
 
 .btn.big {
@@ -222,9 +228,14 @@ button img {
   color: var(--color-primary-800);
 }
 
+body.dark .btn.gray {
+  background: rgba(255, 255, 255, 1);
+  color: var(--color-primary-200);
+}
+
 .btn.red {
   background: #f20f20;
-  color: white;
+  color: white !important;
 }
 .btn.red:hover {
   background: #e00e0e;
@@ -696,13 +707,14 @@ footer > p {
 section.overlap {
   position: relative;
   z-index: 1;
+  margin-bottom: 200px;
 }
 
 section.overlap > * {
   position: absolute;
   z-index: 1;
   width: 100%;
-  top: -270px;
+  top: -150px;
   background: white;
   padding: 48px;
   border-radius: 24px;
@@ -768,6 +780,11 @@ input:read-only {
   border: 2px solid var(--color-primary-100);
 }
 
+body.dark .save_changes_popup {
+  background: var(--color-primary-900);
+  border: 2px solid var(--color-primary-800);
+}
+
 .save_changes_popup.hidden {
   opacity: 0;
   pointer-events: none;
@@ -814,6 +831,134 @@ input:read-only {
 
 .modal.hidden .modal-container {
   transform: translateY(100px);
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.error {
+  background: #ffbabf;
+  color: white;
+}
+
+.success {
+  background: var(--color-primary-100);
+  color: var(--color-primary-800);
+}
+
+.info {
+  background: #92a6ee;
+  color: black;
+}
+
+.popover-wrapper {
+  position: relative;
+  z-index: 99;
+}
+
+.popover-wrapper .popover {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.164);
+  z-index: 99999;
+  transition: var(--transitionLong);
+  border: 2px solid var(--color-primary-100);
+  width: max-content;
+  padding: 16px;
+  max-width: 400px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.dark .popover-wrapper .popover {
+  background: var(--color-primary-900);
+  border: 2px solid var(--color-primary-800);
+}
+
+.popover-wrapper .popover::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 16px solid white;
+}
+
+body.dark .popover-wrapper .popover::before {
+  border-bottom: 16px solid var(--color-primary-900);
+}
+
+.popover-wrapper:hover .popover {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.notification {
+  transition: var(--transitionShort);
+  border-radius: 8px;
+}
+
+.notification > a {
+  display: flex;
+  align-items: center;
+  color: black !important;
+  gap: 8px;
+  padding: 16px;
+}
+
+.notification img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 100px;
+  padding: 4px;
+  background: white;
+}
+
+.badge {
+  position: relative;
+}
+
+.badge > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  position: absolute;
+  right: 0;
+  top: -25%;
+  background: var(--color-primary-400);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  border: 1px solid var(--color-primary-200);
+  font-weight: 700;
 }
 
 @media screen and (max-width: 768px) {

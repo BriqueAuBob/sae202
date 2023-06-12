@@ -124,6 +124,7 @@ function transformToWebp($picture, $path)
     imagewebp($webp, $path, 60);
 }
 
+<<<<<<< HEAD
 function imgCompression($picture, $path, $location) {
     if ($picture['name'] !== '') {
         $name = date("Y_m_d_H_i_s");
@@ -148,4 +149,9 @@ function imgCompression($picture, $path, $location) {
         
         return $name;
     }
+=======
+function isAuthenticated()
+{
+    return isset($_SESSION['user']);
+>>>>>>> 23f0883b4f050434d6dae3b54896119f35d06d4c
 }

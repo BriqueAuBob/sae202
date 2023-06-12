@@ -15,6 +15,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <button class="no-style" id="dark-mode-toggle"><img src="./assets/images/icons/moon.svg" alt="Moon icon"></button>
         <?php
         if (isset($_SESSION['user']['id'])) {
+            include(__DIR__ . '/notifications.php');
             echo '<a href="./profil.php" id="profile"><img src="./assets/images/avatars/' . $_SESSION['user']['picture'] . '" alt="Avatar">' . $_SESSION['user']['firstname'] . '</a>';
         } else {
             echo '<a href="./connexion.php" class="btn">Accéder à mon compte</a>';

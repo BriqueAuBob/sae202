@@ -1,9 +1,5 @@
 <?php
 
-if (!isset($_SESSION['user'])) {
-    header('Location: connexion.php');
-    die();
-}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require 'inc/lib.inc.php';
     $db = dbConnect();
