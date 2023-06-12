@@ -11,33 +11,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die();
     }
 
-    $parking_name = htmlspecialchars($_POST['parking_name']);
-    $adress = htmlspecialchars($_POST['adress']);
-    $location = htmlspecialchars($_POST['location']);
-    $spaces = (int)$_POST['spaces'];
-    $picture = $_FILES['picture'];
-
-    if ($picture['name'] !== '') {
-        $name = date("Y_m_d_H_i_s");
-        $type = $picture['type'];
-        $size = $picture['size'];
-
-        if ($type != 'image/png' && $type != 'image/jpeg' && $type != 'image/jpg' && $type != 'image/webp') {
-            $_SESSION['crudLog'] = 'Le format de l\'image n\'est pas valide !';
-            header('Location: ./create.php');
-            die();
-        }
-
-        if ($size > 1000000) {
-            $_SESSION['crudLog'] = 'L\'image est trop lourde !';
-            header('Location: ./create.php');
-            die();
-        }
-
-        if ($type != 'image/webp') {
-            transformToWebp(file_get_contents($picture['tmp_name']), '../../assets/images/parkings/' . $name . '.webp');
-        }
+    if(strlen($_POST['parking_name']) > 50) {
+        $_SESSION['crudLog'] = 'Le nom du parking ne peut pas dépasser 50 caractères !';
+        header('Location: ./create.php');
+        die();
     }
+    $parking_name = htmlspecialchars($_POST['parking_name']);
+
+    if(strlen($_POST['adress']) > 100) {
+        $_SESSION['crudLog'] = 'L\'adresse du parking ne peut pas dépasser les 100 caractères !';
+        header('Location: ./create.php');
+        die();
+    }
+    $adress = htmlspecialchars($_POST['adress']);
+
+    if(strlen($_POST['location']) > 500) {
+        $_SESSION['crudLog'] = 'Le lien MAPS ne peut pas dépasser les 100 caractères !';
+        header('Location: ./create.php');
+        die();
+    }
+    $location = htmlspecialchars($_POST['location']);
+
+    $spaces = (int)$_POST['spaces'];
+
+    $picture = $_FILES['picture'];
+    $name = imgCompression($picture, '../../assets/images/parkings/', './create.php');
 
     $query = $bd -> prepare('INSERT INTO parkings (name, address, location, spaces, picture) VALUES (:name, :address, :location, :spaces, :picture)');
     $query -> execute([
@@ -48,8 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'picture' => $name . '.webp'
     ]);
 
+    dbDisconnect($bd);
+
     $_SESSION['crudLog'] = 'Le parking a bien été ajouté !';
-    header('Location: ./index.php');
+    header('Location: ./');
     die();
 }
 

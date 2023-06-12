@@ -1,17 +1,18 @@
 <?php
-require '../../inc/lib.inc.php';
+    require '../../inc/lib.inc.php';
 
-$bd = dbConnect();
+    $bd = dbConnect();
 
-$id = $_GET['id'];
+    $id = $_GET['id'];
 
-$query = $bd->prepare('DELETE FROM users WHERE id = :id');
-$query->execute([
-    'id' => $id
-]);
+    $query = $bd->prepare('DELETE FROM users WHERE id = :id');
+    $query->execute([
+        'id' => $id
+    ]);
 
-$_SESSION['crudLog'] = 'L\'utilisateur n°' . $id . ' a bien été supprimé !';
+    $_SESSION['crudLog'] = 'L\'utilisateur n°' . $id . ' a bien été supprimé !';
 
 
-dbDisconnect($bd);
-header('Location: index.php');
+    dbDisconnect($bd);
+    header('Location: ./');
+?>

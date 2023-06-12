@@ -253,7 +253,11 @@ header {
   padding: 270px 24px 290px 24px;
   background: var(--color-primary-500);
 }
-
+.no-background{
+  text-align: center;
+  padding: 220px 24px 150px 24px;
+  background: var(--color-primary-950);
+}
 header.small {
   padding: 180px 24px 82px 24px;
 }
@@ -445,7 +449,6 @@ section.green {
 }
 
 section.black {
-  background: var(--color-primary-950);
   color: white;
 }
 

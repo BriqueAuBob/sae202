@@ -15,7 +15,7 @@
     </div>
     <div>
         <label for="spaces">Nombre de places disponibles</label>
-        <input type="number" name="spaces" id="spaces" placeholder="Nombre de places">
+        <input type="number" name="spaces" id="spaces" min="0" max="999" placeholder="Nombre de places">
     </div>
     <div>
         <label for="picture">Photo du parking</label>

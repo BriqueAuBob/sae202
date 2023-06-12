@@ -14,4 +14,4 @@ $_SESSION['crudLog'] = 'Le parking n°' . $id . ' a bien été supprimé !';
 
 
 dbDisconnect($bd);
-header('Location: index.php');
+header('Location: ./');

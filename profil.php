@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require 'inc/lib.inc.php';
     $db = dbConnect();
 
-    if (empty($_POST['lastname']) || empty($_POST['firstname']) || empty($_POST['email'])) {
+    if (empty($_POST['lastname']) || empty($_POST['firstname']) || empty($_POST['email']) || !filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) {
         $_SESSION['error'] = "Merci de remplir tous les champs";
         header('Location: profil.php');
         die();
