@@ -1,4 +1,10 @@
 <h1>Connexion</h1>
+<?php
+if (isset($_SESSION['error'])) {
+    echo '<p class="message error">' . $_SESSION['error'] . '</p>';
+    // unset($_SESSION['error']);
+}
+?>
 <form method="post">
     <div>
         <label for="email">Email :</label>
@@ -11,11 +17,4 @@
     <button class="btn green" type=" submit">Se connecter</button>
 </form>
 
-<a href="./inscription.php">Je n'ai pas encore de compte</a>
-
-<?php
-if (isset($_SESSION['error'])) {
-    echo '<p>' . $_SESSION['error'] . '</p>';
-    unset($_SESSION['error']);
-}
-?>
+<a class="mt-md" href="./inscription.php">Je n'ai pas encore de compte</a>

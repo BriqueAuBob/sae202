@@ -1,3 +1,9 @@
+<?php
+if (!isAuthenticated()) {
+    header('Location: connexion.php');
+    die();
+}
+?>
 <form action="profil.php" method="POST">
     <header class="small">
         <h1>Bonjour <?= $_SESSION['user']['firstname'] ?> !</h1>

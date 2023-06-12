@@ -123,3 +123,8 @@ function transformToWebp($picture, $path)
     imagecopyresized($webp, $jpeg, 0, 0, 0, 0, $width, $height, imagesx($jpeg), imagesy($jpeg));
     imagewebp($webp, $path, 60);
 }
+
+function isAuthenticated()
+{
+    return isset($_SESSION['user']);
+}

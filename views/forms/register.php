@@ -1,3 +1,9 @@
+<?php
+if (isset($_SESSION['error'])) {
+    echo '<p class="message error">' . $_SESSION['error'] . '</p>';
+    unset($_SESSION['error']);
+}
+?>
 <form method="post">
     <label for="first_name">Prénom :</label>
     <input type="text" id="first_name" name="first_name" placeholder="Patrice">
@@ -14,13 +20,4 @@
     <button class="btn green" type="submit">Créer mon compte</button>
 </form>
 
-<a href="./connexion.php">J'ai déjà un compte</a>
-
-<?php
-if (isset($_SESSION['error'])) {
-    echo '<p>' . $_SESSION['error'] . '</p>';
-    unset($_SESSION['error']);
-} else if (isset($_SESSION['account'])) {
-    echo '<p>' . $_SESSION['account'] . '</p>';
-    unset($_SESSION['account']);
-}
+<a class="mt-md" href="./connexion.php">J'ai déjà un compte</a>

@@ -816,6 +816,27 @@ input:read-only {
   transform: translateY(100px);
 }
 
+.message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.error {
+  background: #f20f20;
+  color: white;
+}
+
+.success {
+  background: var(--color-primary-100);
+  color: var(--color-primary-800);
+}
+
 @media screen and (max-width: 768px) {
   .cols-2,
   .cols-3,
