@@ -4,7 +4,7 @@ if (!isAuthenticated()) {
     die();
 }
 ?>
-<form action="profil.php" method="POST">
+<form action="profil.php" method="POST" enctype="multipart/form-data">
     <header class="small">
         <h1>Bonjour <?= $_SESSION['user']['firstname'] ?> !</h1>
         <div class="avatar huge center upload_input">
@@ -14,31 +14,33 @@ if (!isAuthenticated()) {
                 Modifier
             </div>
         </div>
+        <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
+        <?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
     </header>
     <section class="form container">
         <h1 class="center">Informations personnelles</h1>
         <div class="form-group">
             <div>
-                <label for="firstname">Prénom</label>
+                <label for="firstname">Prénom*</label>
                 <input type="text" name="firstname" id="firstname" value="<?= $_SESSION['user']['firstname'] ?>">
             </div>
             <div>
-                <label for="lastname">Nom</label>
+                <label for="lastname">Nom*</label>
                 <input type="text" name="lastname" id="lastname" value="<?= $_SESSION['user']['name'] ?>">
             </div>
         </div>
         <div>
-            <label for="email">Email</label>
+            <label for="email">Email*</label>
             <input type="email" name="email" id="email" value="<?= $_SESSION['user']['email'] ?>">
         </div>
         <div class="form-group">
             <div>
-                <label for="password">Mot de passe</label>
+                <label for="password">Nouveau mot de passe</label>
                 <input type="password" name="password" id="password" placeholder="Mot de passe">
             </div>
-            <div>
-                <label for="password_confirm">Confirmez votre mot de passe</label>
-                <input type="password" name="password_confirm" id="password_confirm" placeholder="Mot de passe">
+            <div> 
+                <label for="password_confirm">Confirmez votre mot de passe actuel pour toute modification</label>
+                <input type="password" name="password_confirm" id="password_confirm" placeholder="Mot de passe actuel">
             </div>
         </div>
     </section>
@@ -56,6 +58,7 @@ if (!isAuthenticated()) {
                 $model = $vehicle['model'];
                 $color = $vehicle['color'];
                 $seats = $vehicle['places'];
+                $car_picture = $vehicle['image'];
             }
         }
 
@@ -82,7 +85,7 @@ if (!isAuthenticated()) {
             </div>
         </div>
         <div class="half center upload_input">
-            <img class="full rounded" src="assets/images/polo.jpg" alt="Profile picture">
+            <img class="full rounded" src="assets/images/vehicles/<?= $car_picture ?>" alt="Profile picture">
             <input type="file" name="car_picture" id="car_picture">
             <div class="gradient">
                 Changer la photo
@@ -116,8 +119,13 @@ if (!isAuthenticated()) {
             </main>
             <footer class="btn-list">
                 <button type="button" class="btn no-margin" data-close-modal="modal_delete_account">Annuler</button>
-                <a href="./deconnexion.php" class="btn no-margin red">Supprimer</a>
+                <a href="./desinscription.php" class="btn no-margin red">Supprimer</a>
             </footer>
         </div>
     </form>
 </div>
+
+<?php
+    unset($_SESSION['error']);
+    unset($_SESSION['message']);
+?>

@@ -1,9 +1,4 @@
-<?php
-if (isset($_SESSION['error'])) {
-    echo '<p class="message error">' . $_SESSION['error'] . '</p>';
-    unset($_SESSION['error']);
-}
-?>
+<?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
 <form method="post">
     <label for="first_name">Prénom :</label>
     <input type="text" id="first_name" name="first_name" placeholder="Patrice">
@@ -21,3 +16,4 @@ if (isset($_SESSION['error'])) {
 </form>
 
 <a class="mt-md" href="./connexion.php">J'ai déjà un compte</a>
+<?php unset($_SESSION['error']) ?>
