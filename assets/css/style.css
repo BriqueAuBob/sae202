@@ -707,13 +707,14 @@ footer > p {
 section.overlap {
   position: relative;
   z-index: 1;
+  margin-bottom: 200px;
 }
 
 section.overlap > * {
   position: absolute;
   z-index: 1;
   width: 100%;
-  top: -270px;
+  top: -150px;
   background: white;
   padding: 48px;
   border-radius: 24px;
@@ -878,8 +879,8 @@ body.dark .save_changes_popup {
   width: max-content;
   padding: 16px;
   max-width: 400px;
-  /* opacity: 0;
-  pointer-events: none; */
+  opacity: 0;
+  pointer-events: none;
 }
 
 body.dark .popover-wrapper .popover {
@@ -919,7 +920,6 @@ body.dark .popover-wrapper .popover::before {
 
 .notification {
   transition: var(--transitionShort);
-  padding: 16px;
   border-radius: 8px;
 }
 
@@ -928,6 +928,7 @@ body.dark .popover-wrapper .popover::before {
   align-items: center;
   color: black !important;
   gap: 8px;
+  padding: 16px;
 }
 
 .notification img {
@@ -937,6 +938,27 @@ body.dark .popover-wrapper .popover::before {
   border-radius: 100px;
   padding: 4px;
   background: white;
+}
+
+.badge {
+  position: relative;
+}
+
+.badge > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  position: absolute;
+  right: 0;
+  top: -25%;
+  background: var(--color-primary-400);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  border: 1px solid var(--color-primary-200);
+  font-weight: 700;
 }
 
 @media screen and (max-width: 768px) {

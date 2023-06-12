@@ -22,7 +22,10 @@ function displayNotification(NotificationType $type, $message)
 }
 ?>
 <div class="popover-wrapper">
-    <button class="no-style"><img src="./assets/images/icons/bell.svg" alt="Bell icon"></button>
+    <button class="no-style badge">
+        <img src="./assets/images/icons/bell.svg" alt="Bell icon">
+        <span>3</span>
+    </button>
     <div class="popover">
         <ul class="notifications">
             <?php
@@ -30,6 +33,7 @@ function displayNotification(NotificationType $type, $message)
             displayNotification(NotificationType::ERROR, 'Jade a annulé sa réservation.');
             displayNotification(NotificationType::INFO, 'Cassandre vous a envoyé un message.');
             ?>
+            <li class="mt-sm"><a href="#">Voir toutes les notifications</a></li>
         </ul>
     </div>
 </div>
