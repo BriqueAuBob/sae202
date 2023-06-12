@@ -1,5 +1,5 @@
 <?php
-require '../inc/lib.inc.php';
+require '../../inc/lib.inc.php';
 
 $bd = dbConnect();
 
@@ -14,4 +14,4 @@ $_SESSION['crudLog'] = 'Le véhicule n°' . $id . ' a bien été supprimé !';
 
 
 dbDisconnect($bd);
-header('Location: index.php');
+header('Location: ./');

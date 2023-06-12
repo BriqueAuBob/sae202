@@ -1,13 +1,15 @@
 <?php
-$bd = dbConnect();
+    $bd = dbConnect();
 
-$query = $bd->prepare('SELECT * FROM users');
-$query->execute();
-$users = $query->fetchAll();
+    $query = $bd->prepare('SELECT * FROM users');
+    $query->execute();
+    $users = $query->fetchAll();
 ?>
 
 <h1>Gestion des utilisateurs</h1>
 <?= isset($_SESSION['crudLog']) ? '<p>' . $_SESSION['crudLog'] . '</p>' : '' ?>
+
+<a href="create.php" class="btn green">Ajouter un utilisateur</a>
 
 <table border>
     <thead>
@@ -33,7 +35,7 @@ $users = $query->fetchAll();
                 <td><?= $user['email'] ?></td>
                 <td><?= $user['status'] ?></td>
                 <td><?= $user['created_at'] ?></td>
-                <th><a href="forms/users_update_form.php?id=<?= $user['id'] ?>">Modifier</a></th>
+                <th><a href="modifications.php?id=<?= $user['id'] ?>">Modifier</a></th>
                 <th><a href="delete.php?from=<?= basename($_SERVER['PHP_SELF']) ?>&id=<?= $user['id'] ?>">Supprimer</a></th>
             </tr>
         <?php endforeach; ?>
@@ -42,4 +44,5 @@ $users = $query->fetchAll();
 
 <?php
 $_SESSION['crudLog'] = '';
+dbDisconnect($bd);
 ?>

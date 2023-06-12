@@ -1,9 +1,9 @@
 <?php
-$bd = dbConnect();
+    $bd = dbConnect();
 
-$query = $bd->prepare('SELECT * FROM parkings ORDER BY name ASC');
-$query->execute();
-$parkings = $query->fetchAll();
+    $query = $bd->prepare('SELECT * FROM parkings ORDER BY name ASC');
+    $query->execute();
+    $parkings = $query->fetchAll();
 ?>
 
 <h1>Gestion des parkings</h1>
@@ -41,5 +41,6 @@ $parkings = $query->fetchAll();
 </table>
 
 <?php
-$_SESSION['crudLog'] = '';
+    $_SESSION['crudLog'] = '';
+    dbDisconnect($bd);
 ?>

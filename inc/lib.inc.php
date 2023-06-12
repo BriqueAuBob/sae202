@@ -123,3 +123,29 @@ function transformToWebp($picture, $path)
     imagecopyresized($webp, $jpeg, 0, 0, 0, 0, $width, $height, imagesx($jpeg), imagesy($jpeg));
     imagewebp($webp, $path, 60);
 }
+
+function imgCompression($picture, $path, $location) {
+    if ($picture['name'] !== '') {
+        $name = date("Y_m_d_H_i_s");
+        $type = $picture['type'];
+        $size = $picture['size'];
+
+        if ($type != 'image/png' && $type != 'image/jpeg' && $type != 'image/jpg' && $type != 'image/webp') {
+            $_SESSION['crudLog'] = 'Le format de l\'image n\'est pas valide !';
+            header('Location: ' . $location);
+            die();
+        }
+
+        if ($size > 1000000) {
+            $_SESSION['crudLog'] = 'L\'image est trop lourde !';
+            header('Location:  ' . $location);
+            die();
+        }
+
+        if ($type != 'image/webp') {
+            transformToWebp(file_get_contents($picture['tmp_name']), $path . $name . '.webp');
+        }
+        
+        return $name;
+    }
+}

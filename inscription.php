@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require 'inc/lib.inc.php';
     $db = dbConnect();
 
-    if(empty($_POST['last_name']) || empty($_POST['first_name']) || empty($_POST['email']) || empty($_POST['password'])) {
+    if(empty($_POST['last_name']) || empty($_POST['first_name']) || empty($_POST['email']) || !filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL) || empty($_POST['password'])) {
         $_SESSION['error'] = "Merci de remplir tous les champs";
         header('Location: inscription.php');
         die();

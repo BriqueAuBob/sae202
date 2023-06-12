@@ -1,13 +1,15 @@
 <?php
     $bd = dbConnect();
 
-    $query = $bd -> prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id');
+    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id');
     $query -> execute();
-    $vehicles = $query -> fetchAll();
+    $vehicles = $query->fetchAll();
 ?>
 
 <h1>Gestion des véhicules</h1>
 <?= isset($_SESSION['crudLog']) ? '<p>' . $_SESSION['crudLog'] . '</p>': '' ?>
+
+<a href="create.php" class="btn green">Ajouter un véhicule</a>
 
 <table border>
     <thead>
@@ -35,7 +37,7 @@
                 <td><?= $vehicle['image'] ?></td>
                 <td><?= $vehicle['first_name'] ?> <?= $vehicle['last_name'] ?></td>
                 <td><?= $vehicle['user_id'] ?></td>
-                <th><a href="forms/users_update_form.php?id=<?= $vehicle['vehicle_id'] ?>">Modifier</a></th>
+                <th><a href="./modifications.php?id=<?= $vehicle['vehicle_id'] ?>">Modifier</a></th>
                 <th><a href="delete.php?from=<?= basename($_SERVER['PHP_SELF']) ?>&id=<?= $vehicle['vehicle_id'] ?>">Supprimer</a></th>
             </tr>
         <?php endforeach; ?>
@@ -43,5 +45,6 @@
 </table>
 
 <?php
-    $_SESSION['crudLog'] = '';
+    unset($_SESSION['crudLog']);
+    dbDisconnect($bd);
 ?>
