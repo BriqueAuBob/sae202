@@ -180,6 +180,13 @@ nav .btn-list #profile img {
   margin-right: 8px;
 }
 
+.burger_icon {
+  width: 24px;
+  height: 24px;
+  flex: 0;
+  display: none;
+}
+
 button.no-style {
   background: none;
   border: none;
@@ -966,5 +973,41 @@ body.dark .popover-wrapper .popover::before {
   .cols-3,
   .cols-4 {
     grid-template-columns: 1fr;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+  }
+
+  nav .wrapper {
+    /* display: none; */
+    background: black;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    justify-content: center;
+  }
+
+  nav .wrapper ul {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 54px;
+    font-size: 32px;
+  }
+
+  nav .wrapper ul a {
+    padding: 24px 48px;
+  }
+
+  nav .btn-list {
+    /* display: none; */
+  }
+
+  .burger_icon {
+    display: block;
   }
 }

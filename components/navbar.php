@@ -22,4 +22,5 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
         ?>
     </div>
+    <button class="no-style burger_icon"><img src="./assets/images/icons/burger.svg" /></button>
 </nav>
