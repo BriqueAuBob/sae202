@@ -1,4 +1,39 @@
-<?= isset($_SESSION['user']['id']) ? '<button id="trip_reveal" class="btn green">Nouveau trajet</button>' : '' ?>
+<header class="no-background">
+    <div class="container">
+        <h1 class="center">Prenez un billet pour vos trajet </h1>
+        <form class="form-header">
+            <div>
+                <label for="departure">Départ</label>
+                <input type="text" name="departure" id="departure" placeholder="Départ">
+            </div>
+            <div>
+                <label for="arrival">Arrivée</label>
+                <input type="text" name="arrival" id="arrival" placeholder="Arrivée">
+            </div>
+            <div>
+                <label for="date_hour">Date et heure</label>
+                <input type="text" name="date_hour" id="date_hour" placeholder="Date et heure">
+            </div>
+            <button class="btn" type="submit">Rechercher</button>
+        </form>
+    </div>
+</header>
+<section class="black">
+    <div class="container">
+        <div class="grid cols-3 mt-md">
+            <?php
+            include('./components/card_trip.php');
+            for ($i = 0; $i < 4; $i++) {
+                cardTrip();
+            }
+            ?>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- <?= isset($_SESSION['user']['id']) ? '<button id="trip_reveal" class="btn green">Nouveau trajet</button>' : '' ?>
 
 <form id="trip_form" action="trips_create.php" method="post">
     <p>PROTOTYPE</p>
@@ -56,4 +91,4 @@
     <button type="submit" class="btn green">Valider le trajet</button>
 </form>
 
-<script src="assets/js/trip_parking.js"></script>
+<script src="assets/js/trip_parking.js"></script> -->
