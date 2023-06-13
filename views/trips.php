@@ -18,12 +18,12 @@
         </form>
     </div>
 </header>
-<section class="black">
+<section>
     <div class="container">
         <div class="grid cols-3 mt-md">
             <?php
             include('./components/card_trip.php');
-            for ($i = 0; $i < 4; $i++) {
+            for ($i = 0; $i < 24; $i++) {
                 cardTrip();
             }
             ?>
