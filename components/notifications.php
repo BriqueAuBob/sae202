@@ -15,7 +15,7 @@ function displayNotification(NotificationType $type, $message)
     };
     echo '<li class="notification ' . $type->value . '">
     <a href="#">
-        <img src="./assets/images/icons/' . $icon . '.svg" alt="Check icon">
+        <img src="/assets/images/icons/' . $icon . '.svg" alt="Check icon">
         <p>' . $message . '</p>
     </a>
 </li>';
@@ -23,7 +23,7 @@ function displayNotification(NotificationType $type, $message)
 ?>
 <div class="popover-wrapper">
     <button class="no-style badge">
-        <img src="./assets/images/icons/bell.svg" alt="Bell icon">
+        <img src="/assets/images/icons/bell.svg" alt="Bell icon">
         <span>3</span>
     </button>
     <div class="popover">

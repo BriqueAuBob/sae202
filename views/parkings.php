@@ -11,7 +11,7 @@ $parkings = $query->fetchAll();
 	<div class="grid cols-2">
 		<?php foreach ($parkings as $parking) : ?>
 			<a target="_blank" href="<?= $parking['location'] ?>" class="card hover dark">
-				<img class="full" src="./assets/images/parkings/<?= $parking['picture'] ?>" alt="car">
+				<img class="full" src="/assets/images/parkings/<?= $parking['picture'] ?>" alt="car">
 				<div class="gradient alpha"></div>
 				<div class="tags top">
 					<span><img src="./assets/images/icons/place.svg" alt="place icon"><?= $parking['spaces'] ?> places</span>

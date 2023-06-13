@@ -49,15 +49,15 @@ if (!function_exists("cardTrip")) {
         $dark = $dark ? 'dark' : 'dark:dark';
         echo <<<HTML
             <div class="card hover $dark">
-                <img class="full" src="./assets/images/{$trip['image']}" alt="car">
+                <img class="full" src="/assets/images/{$trip['image']}" alt="car">
                 <div class="gradient"></div>
                 <div class="tags top">
-                    <span><img src="./assets/images/icons/users.svg" alt="seats icon">{$trip['seats']} places</span>
-                    <span><img src="./assets/images/icons/clock.svg" alt="clock icon">06/06 à 14h00</span>
+                    <span><img src="/assets/images/icons/users.svg" alt="seats icon">{$trip['seats']} places</span>
+                    <span><img src="/assets/images/icons/clock.svg" alt="clock icon">06/06 à 14h00</span>
                 </div>
                 <div class="trip">
                     <span>{$trip['from']}</span>
-                    <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
+                    <img src="/assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
                     <span>{$trip['to']}</span>
                 </div>
             </div>
