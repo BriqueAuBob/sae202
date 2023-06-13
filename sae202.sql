@@ -123,6 +123,7 @@ CREATE TABLE `reservations` (
 
 LOCK TABLES `reservations` WRITE;
 /*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
+INSERT INTO `reservations` VALUES (5,3),(5,4);
 /*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,17 +169,19 @@ DROP TABLE IF EXISTS `trips`;
 CREATE TABLE `trips` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `departure_city` varchar(50) DEFAULT NULL,
-  `departure_address` varchar(50) DEFAULT NULL,
+  `departure_address` varchar(100) DEFAULT NULL,
   `departure_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `destination_city` varchar(50) DEFAULT NULL,
-  `destination_address` varchar(50) DEFAULT NULL,
+  `destination_address` varchar(100) DEFAULT NULL,
   `arrival_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `seats` tinyint(2) NOT NULL DEFAULT 1,
   `user_id` int(11) NOT NULL,
+  `vehicle_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `trips_ibfk_1` (`user_id`),
   CONSTRAINT `trips_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,6 +190,7 @@ CREATE TABLE `trips` (
 
 LOCK TABLES `trips` WRITE;
 /*!40000 ALTER TABLE `trips` DISABLE KEYS */;
+INSERT INTO `trips` VALUES (3,'Troyes','p1z1','2023-06-13 13:02:50','Morthomiers','Boite aux lettres','2023-06-13 15:34:00',1,5,27,'2023-06-13 09:30:47'),(4,'Caca','zizi','2023-06-13 12:59:52','Popo','aaa','2023-06-13 06:32:00',2,5,27,'2023-06-13 10:32:58');
 /*!40000 ALTER TABLE `trips` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,7 +211,7 @@ CREATE TABLE `users` (
   `status` tinyint(4) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,6 +220,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (5,'Lamaty','C','2023_06_13_10_10_00.webp','lamatycassandre@gmail.com','$2y$10$hN0S.Z4ZQR.FeakvoeHuCuYRsnf/l5q8WQfs6OSqSOwDXje0YP1r.',0,'2023-06-12 18:38:19');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,12 +237,12 @@ CREATE TABLE `vehicles` (
   `model` varchar(50) DEFAULT NULL,
   `places` tinyint(2) DEFAULT NULL,
   `color` varchar(20) DEFAULT NULL,
-  `image` varchar(150) DEFAULT NULL,
+  `image` varchar(150) DEFAULT 'default.webp',
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`),
   CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,6 +251,7 @@ CREATE TABLE `vehicles` (
 
 LOCK TABLES `vehicles` WRITE;
 /*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
+INSERT INTO `vehicles` VALUES (27,'maman','papa',3,'blue','default.webp',5);
 /*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -258,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-12 14:56:15
+-- Dump completed on 2023-06-13 13:54:00

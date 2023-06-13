@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VrooMMI <?= isset($pageTitle) ? ' - ' . $pageTitle : '' ?></title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <script src="https://kit.fontawesome.com/1d20ef0596.js" crossorigin="anonymous"></script>
 </head>
 
@@ -19,7 +19,7 @@
     require __DIR__ . '/../components/footer.php';
     ?>
 
-    <script src="./assets/js/script.js"></script>
+    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>
