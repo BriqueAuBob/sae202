@@ -1,3 +1,11 @@
+const mobileMenuButton = document.getElementById("menu-mobile-button");
+const nav = document.querySelector("nav");
+mobileMenuButton.addEventListener("click", () => {
+  document.body.classList.toggle("overflow-hidden");
+  nav.classList.toggle("hidden");
+  nav.classList.toggle("open");
+});
+
 const darkModeButton = document.getElementById("dark-mode-toggle");
 const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 const darkMode = localStorage.getItem("dark-mode");

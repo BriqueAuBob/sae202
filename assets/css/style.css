@@ -80,6 +80,10 @@ body.dark a {
   color: white;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 img.full {
   display: block;
   width: 100%;
@@ -223,7 +227,7 @@ button img {
 
 .btn.green {
   background: var(--color-primary-500);
-  color: white;
+  color: white !important;
 }
 
 .btn.green:hover {
@@ -253,7 +257,7 @@ header {
   padding: 270px 24px 290px 24px;
   background: var(--color-primary-500);
 }
-.no-background{
+.no-background {
   text-align: center;
   padding: 220px 24px 150px 24px;
   background: var(--color-primary-950);
@@ -288,6 +292,10 @@ header.small {
 
 .hidden {
   display: none;
+}
+
+nav.hidden {
+  display: flex;
 }
 
 .form-header > div {
@@ -449,6 +457,7 @@ section.green {
 }
 
 section.black {
+  background: var(--color-primary-950);
   color: white;
 }
 
@@ -542,6 +551,12 @@ form .btn {
   border: 2px solid var(--color-primary-600);
 }
 
+body.dark .card.dark\:dark {
+  background: var(--color-primary-900);
+  color: var(--color-primary-200);
+  border: 2px solid var(--color-primary-800);
+}
+
 .card > img {
   border-radius: 16px;
   width: 100%;
@@ -614,6 +629,7 @@ form .btn {
   width: 100%;
   padding: 0 32px;
   font-weight: 500;
+  color: white;
 }
 
 .card .trip > span {
@@ -683,7 +699,7 @@ ol.buttons .btn {
   border-radius: 16px;
   background: var(--color-primary-800);
   border: 2px solid var(--color-primary-700);
-  color: white;
+  color: white !important;
 }
 
 ol.buttons .btn:hover,
@@ -931,6 +947,12 @@ body.dark .popover-wrapper .popover::before {
 .notification {
   transition: var(--transitionShort);
   border-radius: 8px;
+  border: 2px solid transparent;
+}
+
+.notification:hover {
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.05);
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .notification > a {
@@ -981,17 +1003,29 @@ body.dark .popover-wrapper .popover::before {
   nav {
     position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px !important;
+    width: 100%;
+    position: fixed;
+    left: 50%;
+    top: 0;
+    justify-content: space-between;
+    backdrop-filter: blur(3px);
+    flex-direction: column;
+    z-index: 999;
+    display: flex !important;
+    transition: ease-in 0.2s;
+  }
+
+  nav.open {
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
   }
 
   nav .wrapper {
-    /* display: none; */
-    background: black;
-    width: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
     justify-content: center;
+    transform: translateY(50%);
   }
 
   nav .wrapper ul {
@@ -1000,6 +1034,7 @@ body.dark .popover-wrapper .popover::before {
     align-items: center;
     gap: 54px;
     font-size: 32px;
+    background: transparent;
   }
 
   nav .wrapper ul a {
@@ -1007,10 +1042,38 @@ body.dark .popover-wrapper .popover::before {
   }
 
   nav .btn-list {
-    /* display: none; */
+    flex-direction: column;
+  }
+
+  nav > * {
+    flex: 0;
+  }
+
+  nav.hidden > .wrapper,
+  nav.hidden > .btn-list {
+    display: none;
+  }
+
+  nav .branding {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: max-content;
+    z-index: 9999;
   }
 
   .burger_icon {
     display: block;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .burger_icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }

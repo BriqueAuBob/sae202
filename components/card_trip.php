@@ -1,7 +1,7 @@
 <?php
 
 if (!function_exists("cardTrip")) {
-    function cardTrip($trip = null)
+    function cardTrip($trip = null, $dark = false)
     {
         if ($trip === null) {
             $zones = [
@@ -46,8 +46,9 @@ if (!function_exists("cardTrip")) {
                 $trip['to'] = $zones[rand(0, $countZone - 1)];
             }
         }
+        $dark = $dark ? 'dark' : 'dark:dark';
         echo <<<HTML
-            <div class="card hover dark">
+            <div class="card hover $dark">
                 <img class="full" src="./assets/images/{$trip['image']}" alt="car">
                 <div class="gradient"></div>
                 <div class="tags top">

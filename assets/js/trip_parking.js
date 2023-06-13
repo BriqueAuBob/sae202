@@ -16,7 +16,8 @@ const departure_options = document.querySelector('#departure_options');
 const p1 = document.querySelector('#p1');
 const p2 = document.querySelector('#p2');
 
-const areas = document.querySelectorAll('rect');
+const areas = document.querySelectorAll('.parking > path');
+console.log(areas);
 const departure_address = document.querySelector('#departure_address');
 
 departure_options.style.display = 'none';
@@ -36,6 +37,7 @@ departure_city.addEventListener('input', () => {
 
 departure_options.addEventListener('change', () => {
     let option = departure_options.value;
+    departure_address.value = '';
 
     if(option == 'p1') {
         p1.style.display = 'block';

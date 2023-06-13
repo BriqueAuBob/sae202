@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bd = dbConnect();
     $id = $_POST['id'];
 
-    if (empty($_POST['id']) || empty($_POST['last_name']) || empty($_POST['first_name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['created_at'])) {
+    if (empty($_POST['id']) || empty($_POST['last_name']) || empty($_POST['first_name']) || empty($_POST['email']) || empty($_POST['created_at'])) {
         $_SESSION['crudLog'] = 'Veuillez remplir tous les champs !';
         header('Location: ./modifications.php');
         die();
@@ -34,18 +34,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $email = htmlspecialchars($_POST['email']);
 
-    if(strlen($_POST['password']) < 8 || strlen($_POST['password']) > 255) {
-        $_SESSION['crudLog'] = 'Le mot de passe doit contenir entre 8 et 255 caractères';
-        header('Location: ./create.php');
-        die();
+    if(!empty($_POST['password'])) {
+        if(strlen($_POST['password']) < 8 || strlen($_POST['password']) > 255) {
+            $_SESSION['crudLog'] = 'Le mot de passe doit contenir entre 8 et 255 caractères';
+            header('Location: ./create.php');
+            die();
+        }
+        $password = htmlspecialchars($_POST['password']);
     }
-    $password = htmlspecialchars($_POST['password']);
+
     $status = (int)$_POST['status'];
     $created_at = htmlspecialchars($_POST['created_at']);
 
     $name = imgCompression($picture, '../../assets/images/avatars/', './modifications.php');
 
-    $query = $bd->prepare('UPDATE users SET last_name = :last_name, first_name = :first_name' . (isset($_FILES['picture']) ? ', picture = :picture' : '') . ', email = :email, password = :password, status = :status, created_at = :created_at WHERE id = :id');
+    $query = $bd->prepare('UPDATE users SET last_name = :last_name, first_name = :first_name' . (isset($_FILES['picture']) ? ', picture = :picture' : '') . ', email = :email' . (isset($password) ? ', password = :password' : '') . ', status = :status, created_at = :created_at WHERE id = :id');
     $query->bindValue(':id', $id);
     $query->bindValue(':last_name', $last_name);
     $query->bindValue(':first_name', $first_name);
@@ -53,7 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query -> bindValue(':picture', $name . '.webp');
     }
     $query->bindValue(':email', $email);
-    $query->bindValue(':password', password_hash($password, PASSWORD_DEFAULT));
+    if(isset($password)) {
+        $query->bindValue(':password', password_hash($password, PASSWORD_DEFAULT));
+    }
     $query->bindValue(':status', $status);
     $query->bindValue(':created_at', $created_at);
     $query->execute();
