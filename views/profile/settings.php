@@ -7,6 +7,13 @@ if (!isAuthenticated()) {
 <form action="profil.php" method="POST" enctype="multipart/form-data">
     <section class="form container">
         <h1 class="center">Informations personnelles</h1>
+        <div class="avatar huge center upload_input">
+            <img class="avatar full" src="/assets/images/avatars/<?= $_SESSION['user']['picture'] ?>" alt="Profile picture">
+            <input type="file" name="picture" id="picture">
+            <div class="gradient rounded_full">
+                Modifier
+            </div>
+        </div>
         <div class="form-group">
             <div>
                 <label for="firstname">Prénom*</label>

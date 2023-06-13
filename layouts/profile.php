@@ -17,15 +17,8 @@
     require __DIR__ . '/../components/navbar.php';
     ?>
 
-    <header class="small">
+    <header class="small flex">
         <h1>Bonjour <?= $_SESSION['user']['firstname'] ?> !</h1>
-        <div class="avatar huge center upload_input">
-            <img class="avatar full" src="/assets/images/avatars/<?= $_SESSION['user']['picture'] ?>" alt="Profile picture">
-            <input type="file" name="picture" id="picture">
-            <div class="gradient rounded_full">
-                Modifier
-            </div>
-        </div>
         <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
         <?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
     </header>

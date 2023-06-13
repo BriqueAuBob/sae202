@@ -736,7 +736,8 @@ footer > p {
 .overlap {
   position: relative;
   z-index: 1;
-  margin-bottom: 200px;
+  padding: 0 !important;
+  margin-bottom: 150px;
 }
 
 .overlap > * {
