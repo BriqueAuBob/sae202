@@ -166,9 +166,59 @@
 
 <script src="assets/js/trip_parking.js"></script>
 
+<section>
+    <h2>Mes réservations</h2>
+    <?php
+        $db = dbConnect();
+        $query = $db->query('SELECT trips.id AS trip_id, users.id AS user_id, vehicles.id AS vehicl_id, trips.*, users.*, vehicles.*, reservations.* FROM reservations INNER JOIN trips ON reservations.trip_id = trips.id INNER JOIN users ON reservations.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id WHERE reservations.user_id = ' . $_SESSION['user']['id']);
+        
+        $reservations = $query->fetchAll();
+    ?>
+    <?php foreach ($reservations as $reservation) : ?>
+    <div>
+        <h3><?= $reservation['departure_city'] . ", " . $reservation['departure_address']?> -> <?= $reservation['destination_city'] . ", " . $reservation['destination_address'] ?></h3>
+        <p>Départ le <?= $reservation['departure_at'] ?></p>
+        <h4>Mon conducteur</h4>
+        <p><?= $reservation['first_name'] . " " . $reservation['last_name'] ?></p>
+        <h4>Son bolide</h4>
+        <p><?= $reservation['brand'] . " - " . $reservation['model'] ?></p>
+        <p>Couleur : <?= $reservation['color'] ?></p>
+    </div>
+    <?php endforeach; ?>
+    <h2>Mes trajets</h2>
+    <div>
+        <?php
+            $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, users.*, vehicles.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id WHERE trips.user_id = ' . $_SESSION['user']['id'] . ' ORDER BY trips.created_at DESC');
+            $trips = $query->fetchAll();
+        ?>
+        <?php foreach ($trips as $trip) : ?>
+            <div>
+                <h3><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?> -> <?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></h3>
+                <p><?= $trip['departure_at'] ?></p>
+                <p><?= $trip['seats'] ?> places restantes</p>
+                <h4>Mes passagers</h4>
+                <ul>
+                    <?php
+                        $query = $db->query('SELECT * FROM reservations WHERE trip_id = ' . $trip['trip_id']);
+                        $reservations = $query->fetchAll();
+                    ?>
+                    <?php foreach ($reservations as $reservation) : ?>
+                        <?php
+                            $query = $db->query('SELECT * FROM users WHERE id = ' . $reservation['user_id']);
+                            $user = $query->fetch();
+                        ?>
+                        <li><?= $user['first_name'] ?> <?= $user['last_name'] ?></li>
+                    <?php endforeach; ?>
+            </div>
+    
+        <?php endforeach; ?>
+    </div>
+</section>
+
 
 
 <section>
+    <h2>Trajets récents</h2>
     <div class="container">
         <div class="grid cols-3 mt-md">
             <?php
@@ -176,9 +226,9 @@
             for ($i = 0; $i < 4; $i++) {
                 cardTrip();
             } */
-            $db = dbConnect();
 
-            $query = $db->query('SELECT * FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id');
+
+            $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, users.*, vehicles.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id ORDER BY trips.created_at DESC');
             $trips = $query->fetchAll();
             ?>
             <?php foreach ($trips as $trip) : ?>
@@ -199,7 +249,7 @@
                     <span><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
                     <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
                     <span><?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
-                    <a href="" class="btn">Réserver</a>
+                    <?= $trip['user_id'] == $_SESSION['user']['id'] ? '' : '<a href="reservation.php?trip_id=' . $trip['trip_id'] . '" class="btn">Réserver</a>' ?>
                 </div>
                 <style>
                     .trip2 {
@@ -211,27 +261,41 @@
         </div>
     </div>
     <script>
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-            card.style.gridColumn = '1 / span 3';
-            card.style.gridRow = '1';
+  let previousCard = null;
 
-            const trip1 = card.querySelector('.trip');
-            const trip2 = card.querySelectorAll('.trip2');
-
-            trip1.style.display = 'none';
-            trip2.forEach(trip => {
-                trip.style.display = 'flex';
-                trip.style.alignItems = 'center';
-            });
-
-            });
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (previousCard !== null) {
+        previousCard.style.gridColumn = '';
+        previousCard.style.gridRow = '';
+        const previousTrip1 = previousCard.querySelector('.trip');
+        const previousTrip2 = previousCard.querySelectorAll('.trip2');
+        previousTrip1.style.display = '';
+        previousTrip2.forEach(trip => {
+          trip.style.display = '';
+          trip.style.alignItems = '';
         });
-    </script>
+      }
+
+      card.style.gridColumn = '1 / span 3';
+      card.style.gridRow = '1';
+
+      const trip1 = card.querySelector('.trip');
+      const trip2 = card.querySelectorAll('.trip2');
+
+      trip1.style.display = 'none';
+      trip2.forEach(trip => {
+        trip.style.display = 'flex';
+        trip.style.alignItems = 'center';
+      });
+
+      previousCard = card;
+    });
+  });
+</script>
 </section>
 
 <?php
     unset($_SESSION['message']);
     unset($_SESSION['tripLog']);
 ?>
-
