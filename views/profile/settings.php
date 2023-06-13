@@ -4,7 +4,7 @@ if (!isAuthenticated()) {
     die();
 }
 ?>
-<form action="profil.php" method="POST" enctype="multipart/form-data">
+<form action="./" method="POST" enctype="multipart/form-data">
     <section class="form container">
         <h1 class="center">Informations personnelles</h1>
         <div class="avatar huge center upload_input">
@@ -34,8 +34,8 @@ if (!isAuthenticated()) {
                 <input type="password" name="password" id="password" placeholder="Mot de passe">
             </div>
             <div>
-                <label for="password_confirm">Confirmez votre mot de passe actuel pour toute modification</label>
-                <input type="password" name="password_confirm" id="password_confirm" placeholder="Mot de passe actuel">
+                <label for="password_confirm">Confirmez le nouveau mot de passe</label>
+                <input type="password" name="password_confirm" id="password_confirm" placeholder="Mot de passe">
             </div>
         </div>
     </section>
