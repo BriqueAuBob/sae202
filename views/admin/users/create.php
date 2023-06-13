@@ -19,7 +19,7 @@
     </div>
     <div>
         <label for="password">Mot de passe (hashage automatique)</label>
-        <input type="text" name="password" id="password" placeholder="mot de passe">
+        <input type="password" name="password" id="password" placeholder="mot de passe">
     </div>
     <div>
         <label for="status">Status</label>

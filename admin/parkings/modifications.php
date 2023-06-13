@@ -36,18 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $spaces = (int)$_POST['spaces'];
     
-    if(isset($_FILES['picture'])) {
+    if(isset($_FILES['picture']) && !empty($_FILES['picture']['name'])) {
         $picture = $_FILES['picture'];
         $name = imgCompression($picture, '../../assets/images/parkings/', './modifications.php');
     }
 
-    $query = $bd -> prepare('UPDATE parkings SET name = :name, address = :address, location = :location, spaces = :spaces' . (isset($_FILES['picture']) ? ', picture = :picture' : '') . ' WHERE id = :id');
+    $query = $bd -> prepare('UPDATE parkings SET name = :name, address = :address, location = :location, spaces = :spaces' . (isset($_FILES['picture']) && !empty($_FILES['picture']['name']) ? ', picture = :picture' : '') . ' WHERE id = :id');
     $query -> bindValue(':id', $id);
     $query -> bindValue(':name', $parking_name);
     $query -> bindValue(':address', $address);
     $query -> bindValue(':location', $location);
     $query -> bindValue(':spaces', $spaces);
-    if (isset($_FILES['picture'])) {
+    if (isset($_FILES['picture']) && !empty($_FILES['picture']['name'])) {
         $query -> bindValue(':picture', $name . '.webp');
     }
     $query -> execute();
