@@ -17,7 +17,6 @@ const p1 = document.querySelector('#p1');
 const p2 = document.querySelector('#p2');
 
 const areas = document.querySelectorAll('.parking > path');
-console.log(areas);
 const departure_address = document.querySelector('#departure_address');
 
 departure_options.style.display = 'none';

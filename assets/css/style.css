@@ -605,7 +605,7 @@ body.dark .card.dark\:dark {
   right: 32px;
 }
 
-.card .tags > span {
+.card .tags > span:not(.trip2) {
   padding: 8px 16px;
   border-radius: 100px;
   background: var(--color-primary-200);
@@ -616,7 +616,6 @@ body.dark .card.dark\:dark {
   align-items: center;
   gap: 8px;
 }
-
 .card .trip {
   display: flex;
   align-items: center;
