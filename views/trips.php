@@ -18,21 +18,6 @@
         </form>
     </div>
 </header>
-<<<<<<< HEAD
-=======
-<section>
-    <div class="container">
-        <div class="grid cols-3 mt-md">
-            <?php
-            include('./components/card_trip.php');
-            for ($i = 0; $i < 24; $i++) {
-                cardTrip();
-            }
-            ?>
-        </div>
-    </div>
-</section>
->>>>>>> a4b19c7563de23a7894ef66d627395abd2ed1586
 
 <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
 <?= isset($_SESSION['tripLog']) ? '<p class="message error">' . $_SESSION['tripLog'] . '</p>' : '' ?>
@@ -183,8 +168,7 @@
 
 
 
-
-<section class="black">
+<section>
     <div class="container">
         <div class="grid cols-3 mt-md">
             <?php
@@ -199,21 +183,51 @@
             ?>
             <?php foreach ($trips as $trip) : ?>
             <div class="card hover dark">
-                <img class="full" src="assets/images/vehicles/<?= $trip['image'] ?>" alt="car">
+                <img class="full" src="assets/images/vehicles/<?= $trip['image'] ?>" alt="car" style="max-width: 400px;">
                 <div class="gradient"></div>
                 <div class="tags top">
                     <span><img src="./assets/images/icons/users.svg" alt="seats icon"><?= $trip['seats'] ?> places</span>
                     <span><img src="./assets/images/icons/clock.svg" alt="clock icon"><?= $trip['departure_at'] ?></span>
+                    <span class="trip2"><img src="./assets/images/avatars/<?= $trip['picture'] ?>" alt="profile picture" style="width: 40px; border-radius: 50%;"><p><?= $trip['first_name'] . " " . $trip['last_name']?></p></span>
                 </div>
                 <div class="trip">
-                    <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['departure_city'] : $trip['departure_address'] ?></span>
+                    <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['departure_city'] : $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
                     <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
-                    <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['destination_city'] : $trip['destination_address'] ?></span>
+                    <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['destination_city'] : $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
                 </div>
+                <div class="trip2">
+                    <span><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
+                    <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
+                    <span><?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
+                    <a href="" class="btn">Réserver</a>
+                </div>
+                <style>
+                    .trip2 {
+                        display: none;
+                    }
+                </style>
             </div>
             <?php endforeach; ?>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+            card.style.gridColumn = '1 / span 3';
+            card.style.gridRow = '1';
+
+            const trip1 = card.querySelector('.trip');
+            const trip2 = card.querySelectorAll('.trip2');
+
+            trip1.style.display = 'none';
+            trip2.forEach(trip => {
+                trip.style.display = 'flex';
+                trip.style.alignItems = 'center';
+            });
+
+            });
+        });
+    </script>
 </section>
 
 <?php
