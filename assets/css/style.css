@@ -430,6 +430,10 @@ header h1 {
   gap: 16px;
 }
 
+.grid.no-gap {
+  gap: 0;
+}
+
 .cols-2 {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -995,6 +999,8 @@ body.dark .popover-wrapper .popover::before {
 #profile_navigation {
   list-style: none;
   padding: 0;
+  border-radius: 24px;
+  overflow: hidden;
 }
 
 .overlap .small {
@@ -1014,11 +1020,12 @@ body.dark .popover-wrapper .popover::before {
   border-right: 1px solid var(--color-primary-100);
   width: 100%;
   padding: 48px;
+  transition: ease-in 0.2s;
 }
 
-#profile_navigation a:hover {
+#profile_navigation a:hover,
+#profile_navigation a.active {
   background: var(--color-primary-50);
-  transform: translateY(-4px);
 }
 
 #profile_navigation li:nth-last-child(1) a {
@@ -1029,8 +1036,6 @@ body.dark .popover-wrapper .popover::before {
   width: 48px;
   height: 48px;
   object-fit: cover;
-  border-radius: 100px;
-  background: white;
 }
 
 @media screen and (max-width: 768px) {

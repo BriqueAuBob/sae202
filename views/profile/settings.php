@@ -73,7 +73,7 @@ if (!isAuthenticated()) {
             </div>
         </div>
         <div class="half center upload_input">
-            <img class="full rounded" src="assets/images/vehicles/<?= $car_picture ?>" alt="Car picture">
+            <img class="full rounded" src="/assets/images/vehicles/<?= $car_picture ?>" alt="Car picture">
             <input type="file" name="car_picture" id="car_picture">
             <div class="gradient">
                 Changer la photo
@@ -91,7 +91,7 @@ if (!isAuthenticated()) {
 <section class="container">
     <h1 class="center">Actions</h1>
     <div class="btn-list center mt-md">
-        <a href="./deconnexion.php" class="btn gray">Me déconnecter</a>
+        <a href="/deconnexion.php" class="btn gray">Me déconnecter</a>
         <button class="btn red" type="submit" onclick="openModal('modal_delete_account')">Supprimer définitivement mon compte</button>
     </div>
 </section>
