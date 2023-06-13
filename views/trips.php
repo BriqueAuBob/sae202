@@ -167,7 +167,6 @@
 <script src="assets/js/trip_parking.js"></script>
 
 <section>
-    <h2>Trajets récents</h2>
     <div class="container">
         <div class="grid cols-3 mt-md">
             <?php
@@ -175,7 +174,7 @@
             for ($i = 0; $i < 4; $i++) {
                 cardTrip();
             } */
-
+            $db = dbConnect();
 
             $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, users.*, vehicles.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id ORDER BY trips.created_at DESC');
             $trips = $query->fetchAll();
