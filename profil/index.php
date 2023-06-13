@@ -144,10 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $columns[] = 'places';
                 $values[] = ':places';
             }
-            if ($cp_name !== '') {
-                $columns[] = 'image';
-                $values[] = ':car_picture';
-            }
+            $columns[] = 'image';
+            $values[] = ':car_picture';
 
             $query = $db->prepare('INSERT INTO vehicles (' . implode(', ', $columns) . ', user_id) VALUES (' . implode(', ', $values) . ', :user_id)');
 

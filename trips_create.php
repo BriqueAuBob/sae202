@@ -4,7 +4,7 @@
     $db = dbConnect();
 
     if(empty($_POST['departure_city']) || empty($_POST['departure_address']) || empty($_POST['departure_date']) || empty($_POST['destination_city']) || empty($_POST['destination_address'])) {
-        echo 'Veuillez remplir tous les champs !';
+        $_SESSION['tripLog'] = 'Veuillez remplir tous les champs !';
         header('Location: trajets.php');
         die();
     }
@@ -36,6 +36,13 @@
     $query -> execute([
         'user_id' => $user_id
     ]);
+    
+    if($query->rowCount() == 0) {
+        $_SESSION['tripLog'] = 'Vous devez ajouter un véhicule avant de pouvoir publier un trajet !';
+        header('Location: trajets.php');
+        die();
+    }
+
     $vehicle = $query->fetch();
 
     $query = $db->prepare('INSERT INTO trips (user_id, vehicle_id, departure_city, departure_address, departure_at, destination_city, destination_address, arrival_at, seats) VALUES (:user_id, :vehicle_id, :departure_city, :departure_address, :departure_date, :destination_city, :destination_address, :arrival_at, :seats)');

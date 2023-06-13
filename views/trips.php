@@ -180,31 +180,33 @@
             $trips = $query->fetchAll();
             ?>
             <?php foreach ($trips as $trip) : ?>
-            <div class="card hover dark">
-                <img class="full" src="assets/images/vehicles/<?= $trip['image'] ?>" alt="car" style="max-width: 400px;">
-                <div class="gradient"></div>
-                <div class="tags top">
-                    <span><img src="./assets/images/icons/users.svg" alt="seats icon"><?= $trip['seats'] ?> places</span>
-                    <span><img src="./assets/images/icons/clock.svg" alt="clock icon"><?= $trip['departure_at'] ?></span>
-                    <span class="trip2"><img src="./assets/images/avatars/<?= $trip['picture'] ?>" alt="profile picture" style="width: 40px; border-radius: 50%;"><p><?= $trip['first_name'] . " " . $trip['last_name']?></p></span>
-                </div>
-                <div class="trip">
-                    <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['departure_city'] : $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
-                    <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
-                    <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['destination_city'] : $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
-                </div>
-                <div class="trip2">
-                    <span><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
-                    <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
-                    <span><?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
-                    <?= $trip['user_id'] == $_SESSION['user']['id'] ? '' : '<a href="reservation.php?trip_id=' . $trip['trip_id'] . '" class="btn">Réserver</a>' ?>
-                </div>
-                <style>
-                    .trip2 {
-                        display: none;
-                    }
-                </style>
-            </div>
+                <?php if($trip['seats'] > 0) : ?>
+                    <div class="card hover dark">
+                        <img class="full" src="assets/images/vehicles/<?= $trip['image'] ?>" alt="car" style="max-width: 400px;">
+                        <div class="gradient"></div>
+                        <div class="tags top">
+                            <span><img src="./assets/images/icons/users.svg" alt="seats icon"><?= $trip['seats'] ?> places</span>
+                            <span><img src="./assets/images/icons/clock.svg" alt="clock icon"><?= $trip['departure_at'] ?></span>
+                            <span class="trip2"><img src="./assets/images/avatars/<?= $trip['picture'] ?>" alt="profile picture" style="width: 40px; border-radius: 50%;"><p><?= $trip['first_name'] . " " . $trip['last_name']?></p></span>
+                        </div>
+                        <div class="trip">
+                            <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['departure_city'] : $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
+                            <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
+                            <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['destination_city'] : $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
+                        </div>
+                        <div class="trip2">
+                            <span><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
+                            <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
+                            <span><?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
+                            <?= $trip['user_id'] == $_SESSION['user']['id'] ? '' : '<a href="reservation.php?trip_id=' . $trip['trip_id'] . '" class="btn">Réserver</a>' ?>
+                        </div>
+                        <style>
+                            .trip2 {
+                                display: none;
+                            }
+                        </style>
+                    </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
     </div>

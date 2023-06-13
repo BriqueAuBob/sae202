@@ -21,5 +21,12 @@ $db = dbConnect();
                 ?>
                 <li><?= $user['first_name'] ?> <?= $user['last_name'] ?></li>
             <?php endforeach; ?>
+        </ul>
+        <a href="../annuler_trajet.php?trip_id=<?= $trip['trip_id'] ?>">Annuler le trajet</a>
     </div>
 <?php endforeach; ?>
+
+<?php
+    dbDisconnect($db);
+    unset($_SESSION['message']);
+?>

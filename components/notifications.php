@@ -29,9 +29,19 @@ function displayNotification(NotificationType $type, $message)
     <div class="popover">
         <ul class="notifications">
             <?php
-            displayNotification(NotificationType::SUCCESS, 'Vous avez une nouvelle réservation pour votre trajet de la part de Melvil.');
+            /* displayNotification(NotificationType::SUCCESS, 'Vous avez une nouvelle réservation pour votre trajet de la part de Melvil.');
             displayNotification(NotificationType::ERROR, 'Jade a annulé sa réservation.');
-            displayNotification(NotificationType::INFO, 'Cassandre vous a envoyé un message.');
+            displayNotification(NotificationType::INFO, 'Cassandre vous a envoyé un message.'); */
+
+            $db = dbConnect();
+            $query = $db->prepare('SELECT * FROM notifications WHERE user_id = :user_id ORDER BY created_at ASC');
+            $query->execute([
+                ':user_id' => $_SESSION['user']['id']
+            ]);
+            $notifications = $query->fetchAll();
+            foreach ($notifications as $notification) {
+                displayNotification(NotificationType::from($notification['type']), $notification['content']);
+            }
             ?>
             <li class="mt-sm"><a href="#">Voir toutes les notifications</a></li>
         </ul>

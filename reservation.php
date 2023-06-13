@@ -17,7 +17,17 @@
         'trip_id' => $trip_id
     ]);
 
+    $query = $db->query('SELECT trips.user_id AS driver, trips.created_at AS creation_date, reservations.*, trips.*, users.* FROM reservations INNER JOIN trips ON trips.id = trip_id INNER JOIN users ON users.id = reservations.user_id WHERE reservations.user_id = ' . $_SESSION['user']['id']);
+    $reservation = $query->fetch();
+
+    $query = $db->prepare('INSERT INTO notifications (user_id, content, type) VALUES ( :user_id, :content, :type)');
+    $query->execute([
+        'user_id' => $reservation['driver'],
+        'content' => 'Vous avez une nouvelle réservation de ' . $reservation['first_name'] . ' sur votre trajet du ' . $reservation['creation_date'] . ' !',
+        'type' => 'success'
+    ]);
+
     dbDisconnect($db);
     $_SESSION['message'] = 'Votre réservation a bien été prise en compte !';
-    header('Location: trajets.php')
+    header('Location: profil/reservations.php')
 ?>
