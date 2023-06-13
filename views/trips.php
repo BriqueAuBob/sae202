@@ -1,4 +1,4 @@
-<header class="no-background">
+<header class="green small">
     <div class="container">
         <h1 class="center">Prenez un billet pour vos trajet </h1>
         <form class="form-header">
