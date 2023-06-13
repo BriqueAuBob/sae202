@@ -1,7 +1,7 @@
 <?php
 $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
-<nav class="container">
+<nav class="container hidden">
     <a class="branding" href="./"><img src="./assets/images/logo_white.svg" alt="Logo White VrooMMI"></a>
     <div class="wrapper">
         <ul>
@@ -22,5 +22,5 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
         ?>
     </div>
-    <button class="no-style burger_icon"><img src="./assets/images/icons/burger.svg" /></button>
+    <button id="menu-mobile-button" class=" no-style burger_icon"><img src="./assets/images/icons/burger.svg" /></button>
 </nav>

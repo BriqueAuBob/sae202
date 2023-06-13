@@ -89,9 +89,9 @@
                 <?php
                 include('./components/card_trip.php');
                 for ($i = 0; $i < 4; $i++) {
-                    cardTrip();
+                    cardTrip(dark: true);
                 }
-                ?> 
+                ?>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-<header class="no-background">
+<header class="green small">
     <div class="container">
         <h1 class="center">Prenez un billet pour vos trajet </h1>
         <form class="form-header">
@@ -18,6 +18,21 @@
         </form>
     </div>
 </header>
+<<<<<<< HEAD
+=======
+<section>
+    <div class="container">
+        <div class="grid cols-3 mt-md">
+            <?php
+            include('./components/card_trip.php');
+            for ($i = 0; $i < 24; $i++) {
+                cardTrip();
+            }
+            ?>
+        </div>
+    </div>
+</section>
+>>>>>>> a4b19c7563de23a7894ef66d627395abd2ed1586
 
 <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
 <?= isset($_SESSION['tripLog']) ? '<p class="message error">' . $_SESSION['tripLog'] . '</p>' : '' ?>
