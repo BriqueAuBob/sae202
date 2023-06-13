@@ -114,7 +114,7 @@ if (!isAuthenticated()) {
             </main>
             <footer class="btn-list">
                 <button type="button" class="btn no-margin" data-close-modal="modal_delete_account">Annuler</button>
-                <a href="./desinscription.php" class="btn no-margin red">Supprimer</a>
+                <a href="/desinscription.php" class="btn no-margin red">Supprimer</a>
             </footer>
         </div>
     </form>
