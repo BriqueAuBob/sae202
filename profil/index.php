@@ -15,12 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die();
     }
 
-    if(empty($_POST['password_confirm'])) {
+    if (empty($_POST['password_confirm'])) {
         $_SESSION['error'] = "Merci de confirmer votre mot de passe actuel avant tout changement";
         header('Location: profil.php');
         die();
     }
-    if(!password_verify($_POST['password_confirm'], $user['password'])) {
+    if (!password_verify($_POST['password_confirm'], $user['password'])) {
         $_SESSION['error'] = "Le mot de passe actuel n'est pas correct";
         header('Location: profil.php');
         die();
@@ -28,13 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $id = $_SESSION['user']['id'];
 
-    if(isset($_FILES['picture']) && !empty($_FILES['picture']['name'])) {
+    if (isset($_FILES['picture']) && !empty($_FILES['picture']['name'])) {
         $picture = $_FILES['picture'];
         $name = imgCompression($picture, 'assets/images/avatars/', './modifications.php');
         $_SESSION['user']['picture'] = $name . '.webp';
     }
 
-    if(strlen($_POST['lastname']) > 50 || strlen($_POST['firstname']) > 50) {
+    if (strlen($_POST['lastname']) > 50 || strlen($_POST['firstname']) > 50) {
         $_SESSION['error'] = "Votre prénom et votre nom ne peuvent pas dépasser les 50 caractères !";
         header('Location: profil.php');
         die();
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $last_name = ucwords(strtolower(htmlspecialchars($_POST['lastname'])));
     $first_name = ucwords(strtolower(htmlspecialchars($_POST['firstname'])));
 
-    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || strlen($_POST['email']) > 100) {
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || strlen($_POST['email']) > 100) {
         $_SESSION['error'] = "Votre email n'est pas valide !";
         header('Location: profil.php');
         die();
@@ -61,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = $db->prepare('UPDATE users SET last_name = :last_name, first_name = :first_name' . (isset($_FILES['picture']) && !empty($_FILES['picture']['name']) ? ', picture = :picture' : '') . ', email = :email' . (isset($password) ? ', password = :password' : '') . ' WHERE id = :id');
     $query->bindValue(':last_name', $last_name);
     $query->bindValue(':first_name', $first_name);
-    if(isset($_FILES['picture']) && !empty($_FILES['picture']['name'])) {
-        $query -> bindValue(':picture', $name . '.webp');
+    if (isset($_FILES['picture']) && !empty($_FILES['picture']['name'])) {
+        $query->bindValue(':picture', $name . '.webp');
     }
     $query->bindValue(':email', $email);
     if (isset($password)) {
@@ -80,19 +80,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $color = (isset($_POST['color'])) ? htmlspecialchars($_POST['color']) : '';
     $seats = (isset($_POST['seats'])) ? htmlspecialchars($_POST['seats']) : '';
 
-    if(isset($_FILES['car_picture']) && !empty($_FILES['car_picture']['name'])) {
+    if (isset($_FILES['car_picture']) && !empty($_FILES['car_picture']['name'])) {
         $car_picture = $_FILES['car_picture'];
         $cp_name = imgCompression($car_picture, 'assets/images/vehicles/', './profil.php') . ".webp";
     } else {
         $cp_name = '';
     }
-    
+
     $query = $db->prepare('SELECT * FROM vehicles WHERE user_id = ' . $id);
     $query->execute();
-    
+
     if ($query->rowCount() > 0) {
         $updateColumns = [];
-    
+
         if ($brand !== '') {
             $updateColumns[] = 'brand = :brand';
         }
@@ -108,9 +108,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($cp_name !== '') {
             $updateColumns[] = 'image = :car_picture';
         }
-    
+
         $query = $db->prepare('UPDATE vehicles SET ' . implode(', ', $updateColumns) . ' WHERE user_id = :user_id');
-    
+
         if ($brand !== '') {
             $query->bindValue(':brand', $brand);
         }
@@ -126,14 +126,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($cp_name !== '') {
             $query->bindValue(':car_picture', $cp_name);
         }
-    
+
         $query->bindValue(':user_id', $id);
         $query->execute();
     } else {
         if ($brand !== '' || $model !== '' || $color !== '' || ($seats !== '' || (int)$seats != 0)) {
             $columns = [];
             $values = [];
-    
+
             if ($brand !== '') {
                 $columns[] = 'brand';
                 $values[] = ':brand';
@@ -154,9 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $columns[] = 'image';
                 $values[] = ':car_picture';
             }
-    
+
             $query = $db->prepare('INSERT INTO vehicles (' . implode(', ', $columns) . ', user_id) VALUES (' . implode(', ', $values) . ', :user_id)');
-    
+
             if ($brand !== '') {
                 $query->bindValue(':brand', $brand);
             }
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $query->bindValue(':car_picture', 'default.webp');
             }
-    
+
             $query->bindValue(':user_id', $id);
             $query->execute();
         }
@@ -187,5 +187,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     die();
 }
 
-$template = 'profile';
-require 'layouts/default.php';
+$template = 'profile/settings';
+require '../layouts/profile.php';
