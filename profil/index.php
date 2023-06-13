@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require 'inc/lib.inc.php';
+    require '../inc/lib.inc.php';
     $db = dbConnect();
 
     $query = $db->prepare('SELECT * FROM users WHERE id = ' . $_SESSION['user']['id']);
@@ -11,18 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['lastname']) || empty($_POST['firstname']) || empty($_POST['email'])) {
         $_SESSION['error'] = "Merci de remplir tous les champs obligatoires";
-        header('Location: profil.php');
-        die();
-    }
-
-    if (empty($_POST['password_confirm'])) {
-        $_SESSION['error'] = "Merci de confirmer votre mot de passe actuel avant tout changement";
-        header('Location: profil.php');
-        die();
-    }
-    if (!password_verify($_POST['password_confirm'], $user['password'])) {
-        $_SESSION['error'] = "Le mot de passe actuel n'est pas correct";
-        header('Location: profil.php');
+        header('Location: ./');
         die();
     }
 
@@ -36,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (strlen($_POST['lastname']) > 50 || strlen($_POST['firstname']) > 50) {
         $_SESSION['error'] = "Votre prénom et votre nom ne peuvent pas dépasser les 50 caractères !";
-        header('Location: profil.php');
+        header('Location: ./');
         die();
     }
     $last_name = ucwords(strtolower(htmlspecialchars($_POST['lastname'])));
@@ -44,16 +33,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || strlen($_POST['email']) > 100) {
         $_SESSION['error'] = "Votre email n'est pas valide !";
-        header('Location: profil.php');
+        header('Location: ./');
         die();
     }
     $email = htmlspecialchars($_POST['email']);
 
     if (!($_POST['password'] == '')) {
+        if($_POST['password_confirm'] !== $_POST['password']) {
+            $_SESSION['error'] = "Les mots de passe ne correspondent pas !";
+            header('Location: ./');
+            die();
+        }
         $password = htmlspecialchars($_POST['password']);
         if (strlen($password) < 8 || strlen($password) > 255) {
             echo "Le mot de passe doit contenir entre 8 et 255 caractères";
-            header('Location: profil.php');
+            header('Location: ./');
             die();
         }
     }
@@ -82,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_FILES['car_picture']) && !empty($_FILES['car_picture']['name'])) {
         $car_picture = $_FILES['car_picture'];
-        $cp_name = imgCompression($car_picture, 'assets/images/vehicles/', './profil.php') . ".webp";
+        $cp_name = imgCompression($car_picture, 'assets/images/vehicles/', '././') . ".webp";
     } else {
         $cp_name = '';
     }
@@ -183,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     dbDisconnect($db);
 
     $_SESSION['message'] = "Votre profil a bien été mis à jour";
-    header('Location: profil.php');
+    header('Location: ./');
     die();
 }
 
