@@ -130,19 +130,19 @@ function imgCompression($picture, $path, $location)
         $name = date("Y_m_d_H_i_s");
         $type = $picture['type'];
         $size = $picture['size'];
-
-        if ($type != 'image/png' && $type != 'image/jpeg' && $type != 'image/jpg' && $type != 'image/webp') {
-            $_SESSION['crudLog'] = 'Le format de l\'image n\'est pas valide !';
+    
+        if (($type != 'image/png') && ($type != 'image/jpeg') && ($type != 'image/jpg') && ($type != 'image/webp')) {
+            $_SESSION['error'] = 'Le format de l\'image n\'est pas valide !';
             header('Location: ' . $location);
             die();
         }
 
-        if ($size > 1000000) {
-            $_SESSION['crudLog'] = 'L\'image est trop lourde !';
+        if ($size > 5000000) {
+            $_SESSION['error'] = 'L\'image est trop lourde !';
             header('Location:  ' . $location);
             die();
         }
-
+    
         if ($type != 'image/webp') {
             transformToWebp(file_get_contents($picture['tmp_name']), $path . $name . '.webp');
         }

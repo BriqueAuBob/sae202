@@ -34,7 +34,8 @@ $trips = $query->fetchAll();
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
-
+    <a class="btn green" href="/profil/creer_trajet.php">Créer un nouveau trajet</a>
+    
     <h2 class="center">Historique</h2>
     <?php foreach ($trips as $trip) : ?>
         <?php if( strtotime($trip['arrival_at']) < strtotime(date('Y-m-d H:i:s')) ) : ?>
@@ -58,7 +59,6 @@ $trips = $query->fetchAll();
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
-    <a class="btn green" href="/profil/creer_trajet.php">Créer un nouveau trajet</a>
 </section>
 
 <?php

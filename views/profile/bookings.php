@@ -7,6 +7,9 @@ $acc = 0;
 ?>
 <section class="container">
     <h1 class="mb-md center">Mes réservations</h1>
+    <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
+    <?= isset($_SESSION['tripLog']) ? '<p class="message error">' . $_SESSION['tripLog'] . '</p>' : '' ?>
+    
     <?php foreach ($reservations as $reservation) : ?>
         <?php $acc += 1; ?>
         <div class="card big">

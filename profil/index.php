@@ -1,5 +1,4 @@
 <?php
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require '../inc/lib.inc.php';
     $db = dbConnect();
@@ -46,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $password = htmlspecialchars($_POST['password']);
         if (strlen($password) < 8 || strlen($password) > 255) {
-            echo "Le mot de passe doit contenir entre 8 et 255 caractères";
+            $_SESSION['error'] = "Le mot de passe doit contenir entre 8 et 255 caractères";
             header('Location: ./');
             die();
         }

@@ -4,8 +4,10 @@ if (!isAuthenticated()) {
     die();
 }
 ?>
-<?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
-<?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
+
+    <?= isset($_SESSION['message']) ? '<div class="container" style="padding-top: 108px; text-align: center;"><p>' . $_SESSION['message'] . '</p></div>' : '' ?>
+    <?= isset($_SESSION['error']) ? '<div class="container" style="padding-top: 108px; text-align: center;"><p class="message error">' . $_SESSION['error'] . '</p></div>' : '' ?>
+
 <form action="./" method="POST" enctype="multipart/form-data">
     <section class="form container">
         <h1 class="center">Informations personnelles</h1>
