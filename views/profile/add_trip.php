@@ -1,30 +1,71 @@
-<header class="green small">
-    <div class="container">
-        <h1 class="center">Prenez un billet pour vos trajet </h1>
-        <form class="form-header">
-            <div>
-                <label for="departure">Départ</label>
-                <input type="text" name="departure" id="departure" placeholder="Départ">
-            </div>
-            <div>
-                <label for="arrival">Arrivée</label>
-                <input type="text" name="arrival" id="arrival" placeholder="Arrivée">
-            </div>
-            <div>
-                <label for="date_hour">Date et heure</label>
-                <input type="text" name="date_hour" id="date_hour" placeholder="Date et heure">
-            </div>
-            <button class="btn" type="submit">Rechercher</button>
-        </form>
-    </div>
-</header>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $db = dbConnect();
 
-<?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
-<?= isset($_SESSION['tripLog']) ? '<p class="message error">' . $_SESSION['tripLog'] . '</p>' : '' ?>
-<?= isset($_SESSION['user']['id']) ? '<button id="trip_reveal" class="btn green"><i class="fa-solid fa-circle-plus"></i> Nouveau trajet</button>' : '' ?>
+    if (empty($_POST['departure_city']) || empty($_POST['departure_address']) || empty($_POST['departure_date']) || empty($_POST['destination_city']) || empty($_POST['destination_address'])) {
+        $_SESSION['tripLog'] = 'Veuillez remplir tous les champs !';
+        header('Location: trajets.php');
+        die();
+    }
 
-<form id="trip_form" action="trips_create.php" method="post">
+    $user_id = $_SESSION['user']['id'];
 
+    if (strlen($_POST['departure_city']) > 50 || strlen($_POST['destination_city']) > 50) {
+        $_SESSION['tripLog'] = 'Le nom des villes doivent contenir au maximum 50 caractères !';
+        header('Location: trajets.php');
+        die();
+    }
+    $departure_city = htmlspecialchars(ucwords(strtolower($_POST['departure_city'])));
+    $destination_city = htmlspecialchars(ucwords(strtolower($_POST['destination_city'])));
+
+    if (strlen($_POST['departure_address']) > 100 || strlen($_POST['destination_address']) > 100) {
+        $_SESSION['tripLog'] = 'Les adresses doivent contenir au maximum 100 caractères !';
+        header('Location: trajets.php');
+        die();
+    }
+    $departure_address = htmlspecialchars($_POST['departure_address']);
+    $destination_address = htmlspecialchars($_POST['destination_address']);
+
+    $departure_date = $_POST['departure_date'];
+    $arrival_at = date('Y-m-d H:i', strtotime("$departure_date + 1 hour"));
+
+    $seats = (int)$_POST['seats'];
+
+    $query = $db->prepare('SELECT id FROM vehicles WHERE user_id = :user_id');
+    $query->execute([
+        'user_id' => $user_id
+    ]);
+
+    if ($query->rowCount() == 0) {
+        $_SESSION['tripLog'] = 'Vous devez ajouter un véhicule avant de pouvoir publier un trajet !';
+        header('Location: trajets.php');
+        die();
+    }
+
+    $vehicle = $query->fetch();
+
+    $query = $db->prepare('INSERT INTO trips (user_id, vehicle_id, departure_city, departure_address, departure_at, destination_city, destination_address, arrival_at, seats) VALUES (:user_id, :vehicle_id, :departure_city, :departure_address, :departure_date, :destination_city, :destination_address, :arrival_at, :seats)');
+    $query->execute([
+        'user_id' => $user_id,
+        'vehicle_id' => $vehicle['id'],
+        'departure_city' => $departure_city,
+        'departure_address' => $departure_address,
+        'departure_date' => $departure_date,
+        'destination_city' => $destination_city,
+        'destination_address' => $destination_address,
+        'arrival_at' => $arrival_at,
+        'seats' => $seats
+    ]);
+
+    dbDisconnect($db);
+
+    $_SESSION['message'] = 'Votre trajet a bien été publié !';
+    header('Location: /profil/trajets.php');
+    die();
+}
+?>
+<form class="container" id="trip_form" action="/profil/creer_trajet.php" method="post">
+    <h1 class="mb-md center">Création d'un nouveau trajet</h1>
     <p>Définir le point de rendez-vous</p>
     <div>
         <label for="departure_city">Ville de départ</label>
@@ -185,90 +226,4 @@
     <button type="submit" class="btn green">Valider le trajet</button>
 </form>
 
-<script src="assets/js/trip_parking.js"></script>
-
-<section>
-    <div class="container">
-        <div class="grid cols-3 mt-md">
-            <?php
-            /* include('./components/card_trip.php');
-            for ($i = 0; $i < 4; $i++) {
-                cardTrip();
-            } */
-            $db = dbConnect();
-
-            $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, users.*, vehicles.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id ORDER BY trips.created_at DESC');
-            $trips = $query->fetchAll();
-            ?>
-            <?php foreach ($trips as $trip) : ?>
-                <?php if ($trip['seats'] > 0) : ?>
-                    <div class="card hover dark">
-                        <img class="full" src="assets/images/vehicles/<?= $trip['image'] ?>" alt="car" style="max-width: 400px;">
-                        <div class="gradient"></div>
-                        <div class="tags top">
-                            <span><img src="./assets/images/icons/users.svg" alt="seats icon"><?= $trip['seats'] ?> places</span>
-                            <span><img src="./assets/images/icons/clock.svg" alt="clock icon"><?= $trip['departure_at'] ?></span>
-                            <span class="trip2"><img src="./assets/images/avatars/<?= $trip['picture'] ?>" alt="profile picture" style="width: 40px; border-radius: 50%;">
-                                <p><?= $trip['first_name'] . " " . $trip['last_name'] ?></p>
-                            </span>
-                        </div>
-                        <div class="trip">
-                            <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['departure_city'] : $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
-                            <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
-                            <span><?= $trip['departure_city'] != $trip['destination_city'] ? $trip['destination_city'] : $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
-                        </div>
-                        <div class="trip2">
-                            <span><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
-                            <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
-                            <span><?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
-                            <?= $trip['user_id'] == $_SESSION['user']['id'] ? '' : '<a href="reservation.php?trip_id=' . $trip['trip_id'] . '" class="btn">Réserver</a>' ?>
-                        </div>
-                        <style>
-                            .trip2 {
-                                display: none;
-                            }
-                        </style>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    <script>
-        let previousCard = null;
-
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-                if (previousCard !== null) {
-                    previousCard.style.gridColumn = '';
-                    previousCard.style.gridRow = '';
-                    const previousTrip1 = previousCard.querySelector('.trip');
-                    const previousTrip2 = previousCard.querySelectorAll('.trip2');
-                    previousTrip1.style.display = '';
-                    previousTrip2.forEach(trip => {
-                        trip.style.display = '';
-                        trip.style.alignItems = '';
-                    });
-                }
-
-                card.style.gridColumn = '1 / span 3';
-                card.style.gridRow = '1';
-
-                const trip1 = card.querySelector('.trip');
-                const trip2 = card.querySelectorAll('.trip2');
-
-                trip1.style.display = 'none';
-                trip2.forEach(trip => {
-                    trip.style.display = 'flex';
-                    trip.style.alignItems = 'center';
-                });
-
-                previousCard = card;
-            });
-        });
-    </script>
-</section>
-
-<?php
-unset($_SESSION['message']);
-unset($_SESSION['tripLog']);
-?>
+<script src="/assets/js/trip_parking.js"></script>
