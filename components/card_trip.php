@@ -1,7 +1,7 @@
 <?php
 
 if (!function_exists("cardTrip")) {
-    function cardTrip($trip = null, $dark = false)
+    function cardTrip($trip = null, $dark = false, $url = null)
     {
         if ($trip === null) {
             $zones = [
@@ -47,8 +47,10 @@ if (!function_exists("cardTrip")) {
             }
         }
         $dark = $dark ? 'dark' : 'dark:dark';
+        $htmlElement = $url ? 'a' : 'div';
+        $href = $url ? "href=\"$url\"" : '';
         echo <<<HTML
-            <div class="card hover $dark">
+            <$htmlElement $href class="card hover $dark">
                 <img class="full" src="/assets/images/{$trip['image']}" alt="car">
                 <div class="gradient"></div>
                 <div class="tags top">
@@ -60,7 +62,7 @@ if (!function_exists("cardTrip")) {
                     <img src="/assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
                     <span>{$trip['to']}</span>
                 </div>
-            </div>
+            </$htmlElement>
         HTML;
     }
 }

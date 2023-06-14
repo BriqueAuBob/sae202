@@ -1,4 +1,4 @@
-<header>
+<header class="small">
     <div class="container">
         <h1>Prenez un billet pour vos trajets</h1>
         <form class="form-header">
@@ -29,10 +29,9 @@
                 include('./components/card_trip.php');
                 foreach ($trips as $trip){
                     if (strtotime($trip['date']) > strtotime(date('Y-m-d H:i:s'))) {
-                        cardTrip($trip, dark: true);
+                        cardTrip($trip, dark: true, url: '/trajet.php?id=' . $trip['id']);
                     }
                 }
-            ?>
         </div>
     </div>
 </section>

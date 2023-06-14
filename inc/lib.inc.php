@@ -156,6 +156,32 @@ function isAuthenticated()
     return isset($_SESSION['user']);
 }
 
+enum NotificationType: int
+{
+    case SUCCESS = 0;
+    case ERROR = 1;
+    case INFO = 2;
+}
+
+function displayNotification(NotificationType $type, $message)
+{
+    $icon = match ($type) {
+        NotificationType::SUCCESS => 'check',
+        NotificationType::ERROR => 'cross',
+        NotificationType::INFO => 'info',
+    };
+    $color = match ($type) {
+        NotificationType::SUCCESS => 'success',
+        NotificationType::ERROR => 'error',
+        NotificationType::INFO => 'info',
+    };
+    echo '<li class="notification ' . $color . '">
+    <a href="#">
+        <img src="/assets/images/icons/' . $icon . '.svg" alt="Check icon">
+        <p>' . $message . '</p>
+    </a>
+</li>';
+}
 function distance($address1, $address2) {
     $addressHash1 = urlencode($address1);
     $addressHash2 = urlencode($address2);
