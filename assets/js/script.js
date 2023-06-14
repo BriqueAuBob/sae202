@@ -46,7 +46,7 @@ if (saveChangesPopup) {
   inputs.forEach((input) => {
     if (input.getAttribute("data-no-trigger-save") !== null) return;
     input.addEventListener("input", (data) => {
-      if (!data.data) return;
+      // if (!data.data) return;
       saveChangesPopup.classList.remove("hidden");
     });
   });
