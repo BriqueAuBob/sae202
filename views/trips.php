@@ -1,4 +1,4 @@
-<header>
+<header class="small">
     <div class="container">
         <h1>Prenez un billet pour vos trajets</h1>
         <form class="form-header">
