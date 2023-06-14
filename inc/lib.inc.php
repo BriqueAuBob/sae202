@@ -182,6 +182,7 @@ function displayNotification(NotificationType $type, $message)
     </a>
 </li>';
 }
+
 function distance($address1, $address2) {
     $addressHash1 = urlencode($address1);
     $addressHash2 = urlencode($address2);
