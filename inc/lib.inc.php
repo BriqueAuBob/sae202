@@ -87,22 +87,42 @@ function login($db, $email, $password)
 function deleteAcc($db, $email, $password)
 {
     $query = $db->prepare('SELECT * FROM users WHERE email LIKE :email');
-    $query->execute(array(
+    $query->execute([
         'email' => $email
-    ));
-
+    ]);
     $user = $query->fetch();
+
     if (password_verify($password, $user['password'])) {
+        $query = $db->prepare('DELETE FROM notifications WHERE user_id LIKE :id');
+        $query->execute([
+            'id' => $user['id']
+        ]);
+
+        $query = $db->prepare('DELETE FROM vehicles WHERE user_id LIKE :id');
+        $query->execute([
+            'id' => $user['id']
+        ]);
+
+        $query = $db->prepare('DELETE FROM trips WHERE user_id LIKE :id');
+        $query->execute([
+            'id' => $user['id']
+        ]);
+
+        $query = $db->prepare('DELETE FROM reservations WHERE user_id LIKE :id');
+        $query->execute([
+            'id' => $user['id']
+        ]);
+
         $query = $db->prepare('DELETE FROM users WHERE email LIKE :email');
-        $query->execute(array(
+        $query->execute([
             'email' => $email
-        ));
+        ]);
 
         $_SESSION['message'] = 'Votre compte a bien été supprimé !';
-        header('Location: index.php');
+        header('Location: /');
     } else {
         $_SESSION['error'] = 'Mauvais mot de passe';
-        header('Location: profil.php');
+        header('Location: profil');
     }
 }
 
