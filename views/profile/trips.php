@@ -13,6 +13,11 @@ $trips = $query->fetchAll();
         <?php if( strtotime($trip['arrival_at']) > strtotime(date('Y-m-d H:i:s')) ) : ?>
             <div class="card big mb-sm">
                 <h3><?= $trip['departure_address'] . ", " . $trip['departure_city'] ?> ---> <?= $trip['destination_address'] . ", " . $trip['destination_city'] ?></h3>
+                <?php 
+                    if(implode(" ", array_slice(explode(" ", $trip['departure_address']), 0, 2)) == "Parking IUT") {
+                        echo '<a href="../parkings.php">Trouver le parking</a>';
+                    } 
+                ?>
                 <p><?= $trip['departure_at'] ?></p>
                 <p><?= $trip['seats'] ?> places restantes</p>
                 <h4>Mes passagers</h4>
