@@ -73,7 +73,7 @@ if (!isAuthenticated()) {
             </div>
         </div>
         <div class="half center upload_input">
-            <img class="full rounded" src="assets/images/vehicles/<?= $car_picture ?>" alt="Car picture">
+            <img class="full rounded" src="assets/images/vehicles/<?= isset($car_picture) ? $car_picture : 'default.webp' ?>" alt="Car picture">
             <input type="file" name="car_picture" id="car_picture">
             <div class="gradient">
                 Changer la photo

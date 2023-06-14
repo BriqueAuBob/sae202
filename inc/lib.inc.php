@@ -121,7 +121,7 @@ function transformToWebp($picture, $path)
     }
     $webp = imagecreatetruecolor($width, $height);
     imagecopyresized($webp, $jpeg, 0, 0, 0, 0, $width, $height, imagesx($jpeg), imagesy($jpeg));
-    imagewebp($webp, $path, 60);
+    imagewebp($webp, $path, 70);
 }
 
 function imgCompression($picture, $path, $location)
