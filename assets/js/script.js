@@ -15,8 +15,8 @@ const toggleDarkMode = (shouldSave = false, value = undefined) => {
   darkModeButton.children[0].setAttribute(
     "src",
     document.body.classList.contains("dark")
-      ? "./assets/images/icons/sun.svg"
-      : "./assets/images/icons/moon.svg"
+      ? "/assets/images/icons/sun.svg"
+      : "/assets/images/icons/moon.svg"
   );
   darkModeButton.children[0].setAttribute(
     "alt",
