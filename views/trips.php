@@ -21,16 +21,16 @@
 <section>
     <div class="container">
         <div class="grid cols-3 mt-md">
-                <?php
-                $db=dbConnect();
-                $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, trips.destination_city as `to`, trips.seats as `seats`, trips.departure_at as `date`, trips.departure_city as `from`, CONCAT("/vehicles/", vehicles.image) as `image`, users.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id ORDER BY trips.created_at DESC');
-                $trips = $query->fetchAll();
-            
-                include('./components/card_trip.php');
-                foreach ($trips as $trip){
-                    cardTrip($trip, dark: true);
-                }
-                ?>
+            <?php
+            $db = dbConnect();
+            $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, trips.destination_city as `to`, trips.seats as `seats`, trips.departure_at as `date`, trips.departure_city as `from`, CONCAT("/vehicles/", vehicles.image) as `image`, users.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id ORDER BY trips.created_at DESC');
+            $trips = $query->fetchAll();
+
+            include('./components/card_trip.php');
+            foreach ($trips as $trip) {
+                cardTrip($trip, dark: true, url: '/trajet.php?id=' . $trip['id']);
+            }
+            ?>
         </div>
     </div>
 </section>
