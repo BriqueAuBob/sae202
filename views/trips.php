@@ -32,6 +32,7 @@
                         cardTrip($trip, dark: true, url: '/trajet.php?id=' . $trip['id']);
                     }
                 }
+            ?>
         </div>
     </div>
 </section>
