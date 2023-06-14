@@ -20,11 +20,19 @@ function displayNotification(NotificationType $type, $message)
     </a>
 </li>';
 }
+
+$db = dbConnect();
+$query = $db->prepare('SELECT * FROM notifications WHERE user_id = :user_id ORDER BY created_at ASC');
+$query->execute([
+    ':user_id' => $_SESSION['user']['id']
+]);
+$count = $query->rowCount();
+$notifications = $query->fetchAll();
 ?>
 <div class="popover-wrapper">
     <button class="no-style badge">
         <img src="/assets/images/icons/bell.svg" alt="Bell icon">
-        <span>3</span>
+        <span><?= $count ?></span>
     </button>
     <div class="popover">
         <ul class="notifications">
@@ -33,12 +41,6 @@ function displayNotification(NotificationType $type, $message)
             displayNotification(NotificationType::ERROR, 'Jade a annulé sa réservation.');
             displayNotification(NotificationType::INFO, 'Cassandre vous a envoyé un message.'); */
 
-            $db = dbConnect();
-            $query = $db->prepare('SELECT * FROM notifications WHERE user_id = :user_id ORDER BY created_at ASC');
-            $query->execute([
-                ':user_id' => $_SESSION['user']['id']
-            ]);
-            $notifications = $query->fetchAll();
             foreach ($notifications as $notification) {
                 displayNotification(NotificationType::from($notification['type']), $notification['content']);
             }
