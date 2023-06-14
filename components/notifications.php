@@ -1,26 +1,4 @@
 <?php
-enum NotificationType: string
-{
-    case SUCCESS = 'success';
-    case ERROR = 'error';
-    case INFO = 'info';
-}
-
-function displayNotification(NotificationType $type, $message)
-{
-    $icon = match ($type) {
-        NotificationType::SUCCESS => 'check',
-        NotificationType::ERROR => 'cross',
-        NotificationType::INFO => 'info',
-    };
-    echo '<li class="notification ' . $type->value . '">
-    <a href="#">
-        <img src="/assets/images/icons/' . $icon . '.svg" alt="Check icon">
-        <p>' . $message . '</p>
-    </a>
-</li>';
-}
-
 $db = dbConnect();
 $query = $db->prepare('SELECT * FROM notifications WHERE user_id = :user_id ORDER BY created_at ASC');
 $query->execute([
