@@ -39,7 +39,9 @@ $recupUser->execute([
 
 $conversations = $recupUser->fetchAll();
 if (!isset($_GET['id'])) {
-    header('Location: /profil/messages.php?id=' . $conversations[0]['user_id']);
+    if (isset($conversations[0])) {
+        header('Location: /profil/messages.php?id=' . $conversations[0]['user_id']);
+    }
 } else {
     $conversationId = $_GET['id'];
     $conversationUser = $db->prepare('
@@ -88,7 +90,7 @@ if (!isset($_GET['id'])) {
 }
 ?>
 <section class="grid cols-3 align-top container">
-    <div class="card big">
+    <div class="card big <?= !isset($conversationUser) ? 'col-3' : '' ?>">
         <h1>Vos conversations</h1>
         <ul class="conversations">
             <?php
@@ -99,11 +101,14 @@ if (!isset($_GET['id'])) {
             ?>
         </ul>
     </div>
-    <div class="col-2 chatbox">
-        <h1><?= $conversationUser['first_name'] . ' ' . $conversationUser['last_name'] ?></h1>
-        <div class="messages">
-            <?php
-            $recupMessages = $db->prepare('
+    <?php
+    if (isset($conversationUser)) {
+    ?>
+        <div class="col-2 chatbox">
+            <h1><?= $conversationUser['first_name'] . ' ' . $conversationUser['last_name'] ?></h1>
+            <div class="messages">
+                <?php
+                $recupMessages = $db->prepare('
                 SELECT 
                     *, 
                     messages.created_at as creation_date,
@@ -113,21 +118,24 @@ if (!isset($_GET['id'])) {
                 WHERE author_id = ? AND target_id = ? OR author_id = ? AND target_id = ?
                 ORDER BY creation_date DESC
             ');
-            $recupMessages->execute([
-                $_SESSION['user']['id'],
-                $conversationId,
-                $conversationId,
-                $_SESSION['user']['id']
-            ]);
-            $messages = $recupMessages->fetchAll();
-            foreach ($messages as $message) {
-                echo '<div class="chat_message ' . ($message['author_id'] === $_SESSION['user']['id'] ? 'sent' : 'received') . '"><p>' . htmlspecialchars($message['content']) . '</p></div>';
-            }
-            ?>
+                $recupMessages->execute([
+                    $_SESSION['user']['id'],
+                    $conversationId,
+                    $conversationId,
+                    $_SESSION['user']['id']
+                ]);
+                $messages = $recupMessages->fetchAll();
+                foreach ($messages as $message) {
+                    echo '<div class="chat_message ' . ($message['author_id'] === $_SESSION['user']['id'] ? 'sent' : 'received') . '"><p>' . htmlspecialchars($message['content']) . '</p></div>';
+                }
+                ?>
+            </div>
+            <form action="/profil/messages.php?id=<?= $conversationId ?>" method="post" class="flex">
+                <input type="text" name="message" id="message" placeholder="Votre message">
+                <button class="btn green" type="submit">Envoyer</button>
+            </form>
         </div>
-        <form action="/profil/messages.php?id=<?= $conversationId ?>" method="post" class="flex">
-            <input type="text" name="message" id="message" placeholder="Votre message">
-            <button class="btn green" type="submit">Envoyer</button>
-        </form>
-    </div>
+    <?php
+    }
+    ?>
 </section>

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_FILES['picture']) && !empty($_FILES['picture']['name'])) {
         $picture = $_FILES['picture'];
-        $name = imgCompression($picture, 'assets/images/avatars/', './modifications.php');
+        $name = imgCompression($picture, '../assets/images/avatars/', './modifications.php');
         $_SESSION['user']['picture'] = $name . '.webp';
     }
 
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_FILES['car_picture']) && !empty($_FILES['car_picture']['name'])) {
         $car_picture = $_FILES['car_picture'];
-        $cp_name = imgCompression($car_picture, 'assets/images/vehicles/', '././') . ".webp";
+        $cp_name = imgCompression($car_picture, '../assets/images/vehicles/', './') . ".webp";
     } else {
         $cp_name = '';
     }
@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query->bindValue(':user_id', $id);
         $query->execute();
     } else {
-        if ($brand !== '' || $model !== '' || $color !== '' || ($seats !== '' || (int)$seats != 0)) {
+        if ($brand !== '' || $model !== '' || $color !== '' || ($seats !== '' || (int)$seats != 0) || $cp_name !== '') {
             $columns = [];
             $values = [];
 
