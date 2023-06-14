@@ -7,30 +7,56 @@ $trips = $query->fetchAll();
     <h1 class="mb-md center">Mes trajets</h1>
     
     <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
-    <?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
+    <?= isset($_SESSION['tripLog']) ? '<p class="message error">' . $_SESSION['tripLog'] . '</p>' : '' ?>
 
     <?php foreach ($trips as $trip) : ?>
-        <div class="card big mb-sm">
-            <h3><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?> ---> <?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></h3>
-            <p><?= $trip['departure_at'] ?></p>
-            <p><?= $trip['seats'] ?> places restantes</p>
-            <h4>Mes passagers</h4>
-            <ul>
-                <?php
-                $query = $db->query('
-                    SELECT * FROM reservations INNER JOIN users ON reservations.user_id = users.id WHERE trip_id = ' . $trip['trip_id']);
-                $reservations = $query->fetchAll();
-                if (count($reservations) > 0) {
-                    foreach ($reservations as $reservation) {
-                        echo '<li>' . $reservation['first_name'] . ' ' . $reservation['last_name'] . '</li>';
+        <?php if( strtotime($trip['arrival_at']) > strtotime(date('Y-m-d H:i:s')) ) : ?>
+            <div class="card big mb-sm">
+                <h3><?= $trip['departure_address'] . ", " . $trip['departure_city'] ?> ---> <?= $trip['destination_address'] . ", " . $trip['destination_city'] ?></h3>
+                <p><?= $trip['departure_at'] ?></p>
+                <p><?= $trip['seats'] ?> places restantes</p>
+                <h4>Mes passagers</h4>
+                <ul>
+                    <?php
+                    $query = $db->query('
+                        SELECT * FROM reservations INNER JOIN users ON reservations.user_id = users.id WHERE trip_id = ' . $trip['trip_id']);
+                    $reservations = $query->fetchAll();
+                    if (count($reservations) > 0) {
+                        foreach ($reservations as $reservation) {
+                            echo '<li>' . $reservation['first_name'] . ' ' . $reservation['last_name'] . '</li>';
+                        }
+                    } else {
+                        echo '<li>Vous n\'avez aucun passagers pour le moment</li>';
                     }
-                } else {
-                    echo '<li>Vous n\'avez aucun passagers pour le moment</li>';
-                }
-                ?>
-            </ul>
-            <a class="btn red" href="../annuler_trajet.php?trip_id=<?= $trip['trip_id'] ?>">Annuler le trajet</a>
-        </div>
+                    ?>
+                </ul>
+                <a class="btn red" href="../annuler_trajet.php?trip_id=<?= $trip['trip_id'] ?>">Annuler le trajet</a>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+    <h2 class="center">Historique</h2>
+    <?php foreach ($trips as $trip) : ?>
+        <?php if( strtotime($trip['arrival_at']) < strtotime(date('Y-m-d H:i:s')) ) : ?>
+            <div class="card big mb-sm">
+                <h3><?= $trip['departure_address'] . ", " . $trip['departure_city'] ?> ---> <?= $trip['destination_address'] . ", " . $trip['destination_city'] ?></h3>
+                <p><?= $trip['departure_at'] ?></p>
+                <p><?= $trip['seats'] ?> places restantes</p>
+                <h4>Mes passagers</h4>
+                <ul>
+                    <?php
+                    $query = $db->query('
+                        SELECT * FROM reservations INNER JOIN users ON reservations.user_id = users.id WHERE trip_id = ' . $trip['trip_id']);
+                    $reservations = $query->fetchAll();
+                    if (count($reservations) > 0) {
+                        foreach ($reservations as $reservation) {
+                            echo '<li>' . $reservation['first_name'] . ' ' . $reservation['last_name'] . '</li>';
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+        <?php endif; ?>
     <?php endforeach; ?>
     <a class="btn green" href="/profil/creer_trajet.php">Créer un nouveau trajet</a>
 </section>
@@ -38,5 +64,5 @@ $trips = $query->fetchAll();
 <?php
 dbDisconnect($db);
 unset($_SESSION['message']);
-unset($_SESSION['error']);
+unset($_SESSION['tripLog']);
 ?>

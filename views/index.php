@@ -61,6 +61,18 @@
         $query = $db->prepare('SELECT COUNT(*) AS users FROM users');
         $query->execute();
         $users = $query->fetch()['users'];
+
+        $query = $db->prepare('SELECT COUNT(*) AS trips FROM trips');
+        $query->execute();
+        $trips = $query->fetch()['trips'];
+
+        $query = $db->prepare('SELECT distance FROM trips');
+        $query->execute();
+        $distances = $query->fetchAll();
+        $d = 0;
+        foreach ($distances as $distance) {
+            $d += $distance['distance'];
+        }
     ?>
     <div class="grid cols-4 mt-md">
         <div class="stat">
@@ -69,15 +81,16 @@
         </div>
         <div class="stat">
             <p>Trajets effectués</p>
-            <div>123</div>
+            <div><?= $trips ?></div>
         </div>
         <div class="stat">
+            <!-- 148,2 g/km -->
             <p>CO2 évité</p>
-            <div>2 tonnes</div>
+            <div><?= round($d * 0.1482, 1) ?> kg</div>
         </div>
         <div class="stat">
             <p>Distance parcourue</p>
-            <div>1000km</div>
+            <div><?= $d ?> km</div>
         </div>
     </div>
 </section>
@@ -123,3 +136,6 @@
         </div>
     </div>
 </section>
+<?php
+    dbDisconnect($db);
+?>

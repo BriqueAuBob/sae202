@@ -15,6 +15,12 @@
         $query->execute();
     }
 
+    $query = $db->prepare('INSERT INTO notifications (user_id, content, type) VALUES ( :user_id, :content, :type)');
+    $query->bindValue(':user_id', $_SESSION['user']['id']);
+    $query->bindValue(':content', 'Vous avez annulé le trajet ' . $reservation['departure_city'] . ' -> ' . $reservation['destination_city'] . '.');
+    $query->bindValue(':type', 'info');
+    $query->execute();
+
     $query = $db->query('DELETE FROM trips WHERE id = ' . $trip_id);
     $query = $db->query('DELETE FROM reservations WHERE trip_id = ' . $trip_id);
 
