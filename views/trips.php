@@ -221,7 +221,15 @@
                             <span><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?></span>
                             <img src="./assets/images/icons/arrow-dotted.svg" alt="arrow dotted icon">
                             <span><?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></span>
-                            <?= $trip['user_id'] == $_SESSION['user']['id'] ? '' : '<a href="reservation.php?trip_id=' . $trip['trip_id'] . '" class="btn">Réserver</a>' ?>
+                            <?php
+                                if(isAuthenticated()) {
+                                    if($trip['user_id'] !== $_SESSION['user']['id']) {
+                                        echo '<a href="reservation.php?trip_id=' . $trip['trip_id'] . '" class="btn">Réserver</a>';
+                                    } else {
+                                        echo '<a href="edit_trip.php?trip_id=' . $trip['trip_id'] . '" class="btn">Modifier</a>';
+                                    }
+                                }
+                            ?>
                         </div>
                         <style>
                             .trip2 {

@@ -56,10 +56,16 @@
 </section>
 <section class="container">
     <h1 class="center">Quelques statistiques</h1>
+    <?php
+        $db = dbConnect();
+        $query = $db->prepare('SELECT COUNT(*) AS users FROM users');
+        $query->execute();
+        $users = $query->fetch()['users'];
+    ?>
     <div class="grid cols-4 mt-md">
         <div class="stat">
             <p>Utilisateurs</p>
-            <div>105</div>
+            <div><?= $users ?></div>
         </div>
         <div class="stat">
             <p>Trajets effectués</p>
