@@ -27,14 +27,13 @@ $recupUser = $db->prepare('
         messages.created_at as creation_date,
         users.id as user_id
     FROM messages 
-    INNER JOIN users ON messages.author_id = messages.author_id OR messages.target_id = users.id
+    INNER JOIN users ON messages.author_id = users.id
     WHERE author_id = ? OR target_id = ?
-    GROUP BY users.id
     ORDER BY creation_date DESC
 ');
 $recupUser->execute([
     $_SESSION['user']['id'],
-    $_SESSION['user']['id']
+    $_SESSION['user']['id'],
 ]);
 
 $conversations = $recupUser->fetchAll();

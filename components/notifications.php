@@ -37,10 +37,6 @@ $notifications = $query->fetchAll();
     <div class="popover">
         <ul class="notifications">
             <?php
-            /* displayNotification(NotificationType::SUCCESS, 'Vous avez une nouvelle réservation pour votre trajet de la part de Melvil.');
-            displayNotification(NotificationType::ERROR, 'Jade a annulé sa réservation.');
-            displayNotification(NotificationType::INFO, 'Cassandre vous a envoyé un message.'); */
-
             foreach ($notifications as $notification) {
                 displayNotification(NotificationType::from($notification['type']), $notification['content']);
             }
