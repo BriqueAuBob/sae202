@@ -6,7 +6,7 @@ $trips = $query->fetchAll();
 <section class="container">
     <h1 class="mb-md center">Mes trajets</h1>
     <?php foreach ($trips as $trip) : ?>
-        <div class=" card big mb-sm">
+        <div class="card big mb-sm">
             <h3><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?> -> <?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></h3>
             <p><?= $trip['departure_at'] ?></p>
             <p><?= $trip['seats'] ?> places restantes</p>

@@ -22,7 +22,7 @@
         <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
         <?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
     </header>
-    <div class="overlap container">
+    <div class="overlap small container">
         <div class="small">
             <ul class="grid cols-4 no-gap" id="profile_navigation">
                 <?php

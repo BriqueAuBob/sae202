@@ -755,17 +755,19 @@ footer > p {
 }
 
 .overlap {
-  position: relative;
+  /* position: relative;
   z-index: 1;
   padding: 0 !important;
-  margin-bottom: 150px;
+  margin-bottom: 150px; */
+  transform: translateY(-300px);
+  margin-bottom: -300px;
 }
 
 .overlap > * {
-  position: absolute;
+  /* position: absolute; */
   z-index: 1;
   width: 100%;
-  top: -150px;
+  /* top: -150px; */
   background: white;
   padding: 48px;
   border-radius: 24px;
@@ -775,6 +777,20 @@ footer > p {
 body.dark .overlap > * {
   background: var(--color-primary-900);
   box-shadow: none;
+}
+
+.overlap.small {
+  margin-bottom: -100px;
+  transform: translateY(-64px);
+}
+
+.overlap .small {
+  padding: 0;
+  border: 1px solid var(--color-primary-100);
+}
+
+body.dark .overlap .small {
+  border: 1px solid var(--color-primary-700);
 }
 
 input:read-only {
@@ -1023,16 +1039,6 @@ body.dark .popover-wrapper .popover::before {
   padding: 0;
   border-radius: 24px;
   overflow: hidden;
-}
-
-.overlap .small {
-  transform: translateY(50%);
-  padding: 0;
-  border: 1px solid var(--color-primary-100);
-}
-
-body.dark .overlap .small {
-  border: 1px solid var(--color-primary-700);
 }
 
 #profile_navigation a {
