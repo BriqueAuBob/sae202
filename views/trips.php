@@ -1,6 +1,6 @@
 <header>
     <div class="container">
-        <h1>Un trajet en un click</h1>
+        <h1>Prenez un billet pour vos trajets</h1>
         <form class="form-header">
             <div>
                 <label for="departure">Départ</label>
