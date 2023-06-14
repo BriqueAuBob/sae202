@@ -23,3 +23,9 @@ $acc = 0;
         </div>
     <?php endforeach; ?>
 </section>
+
+<?php
+    dbDisconnect($db);
+    unset($_SESSION['message']);
+    unset($_SESSION['error']);
+?>

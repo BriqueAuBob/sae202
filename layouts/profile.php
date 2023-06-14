@@ -19,8 +19,6 @@
 
     <header class="small flex">
         <h1>Bonjour <?= $_SESSION['user']['firstname'] ?> !</h1>
-        <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
-        <?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
     </header>
     <div class="overlap small container">
         <div class="small">
