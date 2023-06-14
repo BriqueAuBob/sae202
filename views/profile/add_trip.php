@@ -31,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $seats = (int)$_POST['seats'];
 
+    $distance = distance($departure_address . ", " . $departure_city, $destination_address . ", " . $destination_city);
+
     $query = $db->prepare('SELECT id FROM vehicles WHERE user_id = :user_id');
     $query->execute([
         'user_id' => $user_id
@@ -44,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $vehicle = $query->fetch();
 
-    $query = $db->prepare('INSERT INTO trips (user_id, vehicle_id, departure_city, departure_address, departure_at, destination_city, destination_address, arrival_at, seats) VALUES (:user_id, :vehicle_id, :departure_city, :departure_address, :departure_date, :destination_city, :destination_address, :arrival_at, :seats)');
+    $query = $db->prepare('INSERT INTO trips (user_id, vehicle_id, departure_city, departure_address, departure_at, destination_city, destination_address, distance, arrival_at, seats) VALUES (:user_id, :vehicle_id, :departure_city, :departure_address, :departure_date, :destination_city, :destination_address, :distance, :arrival_at, :seats)');
     $query->execute([
         'user_id' => $user_id,
         'vehicle_id' => $vehicle['id'],
@@ -53,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'departure_date' => $departure_date,
         'destination_city' => $destination_city,
         'destination_address' => $destination_address,
+        'distance' => $distance,
         'arrival_at' => $arrival_at,
         'seats' => $seats
     ]);

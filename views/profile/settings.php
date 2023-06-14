@@ -4,6 +4,8 @@ if (!isAuthenticated()) {
     die();
 }
 ?>
+<?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
+<?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
 <form action="./" method="POST" enctype="multipart/form-data">
     <section class="form container">
         <h1 class="center">Informations personnelles</h1>
@@ -121,6 +123,7 @@ if (!isAuthenticated()) {
 </div>
 
 <?php
+dbDisconnect($db);
 unset($_SESSION['error']);
 unset($_SESSION['message']);
 ?>

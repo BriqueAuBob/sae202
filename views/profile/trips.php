@@ -5,9 +5,13 @@ $trips = $query->fetchAll();
 ?>
 <section class="container">
     <h1 class="mb-md center">Mes trajets</h1>
+    
+    <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
+    <?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
+
     <?php foreach ($trips as $trip) : ?>
         <div class="card big mb-sm">
-            <h3><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?> -> <?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></h3>
+            <h3><?= $trip['departure_city'] . ", " . $trip['departure_address'] ?> ---> <?= $trip['destination_city'] . ", " . $trip['destination_address'] ?></h3>
             <p><?= $trip['departure_at'] ?></p>
             <p><?= $trip['seats'] ?> places restantes</p>
             <h4>Mes passagers</h4>
@@ -34,4 +38,5 @@ $trips = $query->fetchAll();
 <?php
 dbDisconnect($db);
 unset($_SESSION['message']);
+unset($_SESSION['error']);
 ?>

@@ -182,3 +182,27 @@ function displayNotification(NotificationType $type, $message)
     </a>
 </li>';
 }
+function distance($address1, $address2) {
+    $addressHash1 = urlencode($address1);
+    $addressHash2 = urlencode($address2);
+
+    $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' . $addressHash1 . '&destinations=' . $addressHash2 . '&key=' . KEY;
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $query = curl_exec($curl);
+    if (curl_errno($curl)) {
+        curl_close($curl);
+        return false;
+    }
+    curl_close($curl);
+
+    $data = json_decode($query, true);
+    if ($data['status'] == 'OK') {
+        $distance = $data['rows'][0]['elements'][0]['distance']['value'];
+        $km = $distance / 1000;
+        return round($km, 1);
+    } else {
+        return false;
+    }
+}
