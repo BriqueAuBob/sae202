@@ -57,25 +57,25 @@
 <section class="container">
     <h1 class="center">Quelques statistiques</h1>
     <?php
-        $db = dbConnect();
-        $query = $db->prepare('SELECT COUNT(*) AS users FROM users');
-        $query->execute();
-        $users = $query->fetch()['users'];
+    $db = dbConnect();
+    $query = $db->prepare('SELECT COUNT(*) AS users FROM users');
+    $query->execute();
+    $users = $query->fetch()['users'];
 
-        $query = $db->prepare('SELECT COUNT(*) AS trips FROM trips');
-        $query->execute();
-        $trips = $query->fetch()['trips'];
+    $query = $db->prepare('SELECT COUNT(*) AS trips FROM trips');
+    $query->execute();
+    $trips = $query->fetch()['trips'];
 
-        $query = $db->prepare('SELECT trips.id, trips.distance, reservations.user_id AS user FROM trips INNER JOIN reservations ON trips.id = reservations.trip_id WHERE reservations.trip_id = trips.id');
+    $query = $db->prepare('SELECT trips.id, trips.distance, reservations.user_id AS user FROM trips INNER JOIN reservations ON trips.id = reservations.trip_id WHERE reservations.trip_id = trips.id');
+    $query->execute();
+    $distances = $query->fetchAll();
+    $d = 0;
+    foreach ($distances as $distance) {
+        $query = $db->prepare('SELECT COUNT(*) AS reservations FROM reservations WHERE trip_id =' . $distance['id']);
         $query->execute();
-        $distances = $query->fetchAll();
-        $d = 0;
-        foreach ($distances as $distance) {
-            $query = $db->prepare('SELECT COUNT(*) AS reservations FROM reservations WHERE trip_id =' . $distance['id']);
-            $query->execute();
-            $reservations = $query->fetch()['reservations'];
-            $d += $distance['distance'] * $reservations;
-        }
+        $reservations = $query->fetch()['reservations'];
+        $d += $distance['distance'] * $reservations;
+    }
     ?>
     <div class="grid cols-4 mt-md">
         <div class="stat">
@@ -98,22 +98,66 @@
     </div>
 </section>
 <section class="black">
-    <div class="container">
+    <div class="container" id="demo">
         <h1>Démonstration</h1>
         <p>Voici comment fonctionne notre système pour la réservation de trajet.</p>
         <div class="grid cols-3 mt-md">
             <ol class="buttons">
-                <li><button class="btn big active">Trouver un trajet</button></li>
-                <li><button class="btn big">Réservation du trajet</button></li>
-                <li><button class="btn big">Récompenser le chauffeur</button></li>
+                <li><button class="btn big active" data-toggle="first">Trouver un trajet</button></li>
+                <li><button class="btn big" data-toggle="second">Réservation du trajet</button></li>
+                <li><button class="btn big" data-toggle="third">Récompenser le chauffeur</button></li>
             </ol>
-            <div class="col-2 grid cols-2 small-gap">
-                <?php
-                include('./components/card_trip.php');
-                for ($i = 0; $i < 4; $i++) {
-                    cardTrip(dark: true);
-                }
-                ?>
+            <div class="col-2">
+                <div id="first" class="grid cols-2 small-gap">
+                    <?php
+                    include('./components/card_trip.php');
+                    for ($i = 0; $i < 4; $i++) {
+                        cardTrip(dark: true);
+                    }
+                    ?>
+                </div>
+                <div id="second" class="hidden">
+                    <div class="card dark big">
+                        <p>Départ le 24/06/2023</p>
+                        <h4>Mon conducteur</h4>
+                        <div class="flex">
+                            <img class="avatar" src="/assets/images/avatars/default.png" alt="Avatar default" />
+                            <h3>John Doe<h3>
+                        </div>
+                        <h4>Son véhicule</h4>
+                        <img src="/assets/images/206.jpeg" alt="Peugeot 208">
+                        <p>Peugeot 208</p>
+                    </div>
+                </div>
+                <div id="third" class="hidden">
+                    <div class="col-2 grid cols-3 small-gap">
+                        <div class="card big hover dark">
+                            <span class="emoji">🚗</span>
+                            <h2>Nettoyer son véhicule</h2>
+                        </div>
+                        <div class="card big hover dark">
+                            <span class="emoji">🥐</span>
+                            <h2>Ramener des viennoiseries</h2>
+                        </div>
+                        <div class="card big hover dark">
+                            <span class="emoji">🍹</span>
+                            <h2>Payer un verre</h2>
+                        </div>
+                        <div class="card big hover dark">
+                            <span class="emoji">⛽</span>
+                            <h2>Carte cadeau station service</h2>
+                        </div>
+                        <div class="card big hover dark">
+                            <span class="emoji">📖</span>
+                            <h2>Un livre</h2>
+                        </div>
+                        <div class="card big hover dark">
+                            <span class="emoji">🪴</span>
+                            <h2>Une plante d'intérieur</h2>
+                        </div>
+                        <input type="text" class="input col-3" placeholder="Autre">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -140,5 +184,5 @@
     </div>
 </section>
 <?php
-    dbDisconnect($db);
+dbDisconnect($db);
 ?>

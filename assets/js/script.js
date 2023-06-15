@@ -91,3 +91,28 @@ closeModalButton.forEach((button) => {
     closeModal(button.getAttribute("data-close-modal"));
   });
 });
+
+const demo = document.getElementById("demo");
+if (demo) {
+  const buttons = document.querySelectorAll("#demo .buttons .btn");
+  let currentActive = document.querySelector("#demo .buttons .btn.active");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.classList.contains("active")) return;
+      currentActive.classList.remove("active");
+      document.body.classList.remove("overflow-hidden");
+      button.classList.add("active");
+      currentActive = button;
+
+      const demoContainer = document.getElementById(
+        button.getAttribute("data-toggle")
+      );
+      const currentDemoContainer = document.querySelector(
+        "#demo .col-2 > div:not(.hidden)"
+      );
+      console.log(currentDemoContainer);
+      currentDemoContainer.classList.add("hidden");
+      demoContainer.classList.remove("hidden");
+    });
+  });
+}
