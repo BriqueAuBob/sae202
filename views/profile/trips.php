@@ -4,7 +4,7 @@ $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trip
 $trips = $query->fetchAll();
 ?>
 <section class="container flex-center">
-    <h1 class="mb-md center">Mes trajets</h1>
+    <h1 class="mb-md center">Mes trajets en cours</h1>
 
     <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
     <?= isset($_SESSION['tripLog']) ? '<p class="message error">' . $_SESSION['tripLog'] . '</p>' : '' ?>

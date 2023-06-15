@@ -28,44 +28,67 @@ if (!$trip) {
 <section class="container grid cols-3 align-top">
     <div class="col-2">
         <div class="card big">
-            <div class="card-header">
-                <h3>Informations</h3>
-            </div>
-            <div class="card-body">
-                <ul>
-                    <li><strong>Départ:</strong>
-                        <?= $trip['departure_city'] ?>,
-                        <?= $trip['departure_address'] ?>
-                    </li>
-                    <li><strong>Destination:</strong>
-                        <?= $trip['destination_city'] ?>,
-                        <?= $trip['destination_address'] ?>
-                    </li>
-                    <li><strong>Date et heure:</strong>
-                        <?= $trip['departure_at'] ?>
-                    </li>
-                    <li><strong>Nombre de places:</strong>
-                        <?= $trip['seats'] ?>
-                    </li>
-                </ul>
-            </div>
+            <h3>Informations</h3>
+            <ul class="no-style">
+                <li><strong>Départ:</strong>
+                    <?= $trip['departure_city'] ?>,
+                    <?= $trip['departure_address'] ?>
+                </li>
+                <li><strong>Destination:</strong>
+                    <?= $trip['destination_city'] ?>,
+                    <?= $trip['destination_address'] ?>
+                </li>
+                <li><strong>Date et heure:</strong>
+                    <?= $trip['departure_at'] ?>
+                </li>
+                <li><strong>Nombre de places:</strong>
+                    <?= $trip['seats'] ?>
+                </li>
+            </ul>
         </div>
-        <div class="card big mt-sm">
-            <div class="card-header">
-                <h3>Avis</h3>
-            </div>
-            <div class="card-body">
-                <div>
-                    <li>
-                        <img class="avatar" src="/assets/images/avatars/<?= $trip['picture'] ?>"/> Melvil Pasdeloup <img class="icons" src="/assets/images/icons/star.svg" />
-                    </li>
-                    <li><strong>Avis : </strong>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat magnam temporibus,
-                            necessitatibus neque ullam itaque animi dolores vitae modi corrupti dignissimos est
-                            reiciendis?
-                            Odio, quibusdam expedita ratione fugit exercitationem facilis.</p>
-                    </li>
+        <div class="mt-md">
+            <h3>Avis de ce conducteur</h3>
+            <div class="card big mt-sm">
+                <div class="flex space-between">
+                    <div class="flex bold">
+                        <img class="avatar" src="/assets/images/avatars/<?= $trip['picture'] ?>" />
+                        Melvil Pasdeloup
+                    </div>
+                    <div>
+                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
+                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
+                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
+                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
+                        <img class="icons" src="/assets/images/icons/star.svg" />
+                    </div>
                 </div>
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat magnam temporibus,
+                    necessitatibus neque ullam itaque animi dolores vitae modi corrupti dignissimos est
+                    reiciendis?
+                    Odio, quibusdam expedita ratione fugit exercitationem facilis.
+                </p>
+            </div>
+            <div class="card big mt-sm">
+                <div class="flex space-between">
+                    <div class="flex bold">
+                        <img class="avatar" src="/assets/images/avatars/<?= $trip['picture'] ?>" />
+                        Melvil Pasdeloup
+                    </div>
+                    <div>
+                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
+                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
+                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
+                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
+                        <img class="icons" src="/assets/images/icons/star.svg" />
+                    </div>
+                </div>
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat magnam temporibus,
+                    necessitatibus neque ullam itaque animi dolores vitae modi corrupti dignissimos est
+                    reiciendis?
+                    Odio, quibusdam expedita ratione fugit exercitationem facilis.
+                </p>
             </div>
         </div>
     </div>
@@ -73,8 +96,7 @@ if (!$trip) {
     <aside class="card big">
         <h3>Conducteur</h3>
         <div class="flex">
-            <img class="avatar" src="/assets/images/avatars/<?= $trip['picture'] ?>"
-                alt="Photo de profil de <?= $trip['first_name'] . ' ' . $trip['last_name'] ?>">
+            <img class="avatar" src="/assets/images/avatars/<?= $trip['picture'] ?>" alt="Photo de profil de <?= $trip['first_name'] . ' ' . $trip['last_name'] ?>">
             <span>
                 <?= $trip['first_name'] . ' ' . $trip['last_name'] ?>
             </span>

@@ -1172,10 +1172,23 @@ body.dark #profile_navigation a img {
   border: 2px solid var(--color-primary-300);
 }
 
+.no-style {
+  list-style: none;
+}
+
 .flex {
   display: flex;
   gap: 4px;
   align-items: center;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.space-between {
+  width: 100%;
+  justify-content: space-between;
 }
 
 .flex > * {
