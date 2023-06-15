@@ -45,6 +45,8 @@
                     break;
             }
         }
+    } else {
+        $query = $bd->prepare('SELECT * FROM vehicles');
     }
 
     $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id');
@@ -52,27 +54,30 @@
     $vehicles = $query->fetchAll();
 ?>
 
-<h1>Gestion des véhicules</h1>
+<section class="container">
+<h1 class="center">Gestion des véhicules</h1>
 <?= isset($_SESSION['crudLog']) ? '<p>' . $_SESSION['crudLog'] . '</p>': '' ?>
 
 <a href="create.php" class="btn green">Ajouter un véhicule</a>
 
-<form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
+<form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" style="margin: 64px 0 32px 0;">
     <label for="sort_by">Trier par :</label>
-    <select name="sort_by" id="sort_by">
-        <option value="id_asc">Identifiant (croissant)</option>
-        <option value="id_desc">Identifiant (décroissant)</option>
-        <option value="brand_asc">Marque (croissant)</option>
-        <option value="brand_desc">Marque (décroissant)</option>
-        <option value="model_asc">Modèle (croissant)</option>
-        <option value="model_desc">Modèle (décroissant)</option>
-        <option value="seats_asc">Places (croissant)</option>
-        <option value="color_desc">Places (décroissant)</option>
-        <option value="color_asc">Couleur (croissant)</option>
-        <option value="seats_desc">Couleur (décroissant)</option>
-        <option value="owner_asc">Identifiant propriétaire(croissant)</option>
-        <option value="owner_desc">Identifiant propriétaire(décroissant)</option>
-    </select>
+    <div class="form-group">
+        <select name="sort_by" id="sort_by">
+            <option value="id_asc">Identifiant (croissant)</option>
+            <option value="id_desc">Identifiant (décroissant)</option>
+            <option value="brand_asc">Marque (croissant)</option>
+            <option value="brand_desc">Marque (décroissant)</option>
+            <option value="model_asc">Modèle (croissant)</option>
+            <option value="model_desc">Modèle (décroissant)</option>
+            <option value="seats_asc">Places (croissant)</option>
+            <option value="color_desc">Places (décroissant)</option>
+            <option value="color_asc">Couleur (croissant)</option>
+            <option value="seats_desc">Couleur (décroissant)</option>
+            <option value="owner_asc">Identifiant propriétaire(croissant)</option>
+            <option value="owner_desc">Identifiant propriétaire(décroissant)</option>
+        </select>
+    </div>
     <button type="submit">Trier</button>
 </form>
 
@@ -108,6 +113,7 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+</section>
 
 <?php
     unset($_SESSION['crudLog']);

@@ -11,8 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     die();
     }
 
-    $id = $_POST['id'];
-
     if(strlen($_POST['parking_name']) > 50) {
         $_SESSION['crudLog'] = 'Le nom du parking ne peut pas dépasser 50 caractères !';
         header('Location: ./modifications.php');
@@ -59,4 +57,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $pageTitle = "Modification parking";
 $template = 'parkings/modify';
-require '../../layouts/administration.php';
+require '../../layouts/crud.php';

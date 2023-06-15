@@ -33,60 +33,66 @@
                     break;
             }
         }
+    } else {
+        $query = $bd->prepare('SELECT * FROM users');
     }
 
     $query->execute();
     $users = $query->fetchAll();
 ?>
 
-<h1>Gestion des utilisateurs</h1>
-<?= isset($_SESSION['crudLog']) ? '<p>' . $_SESSION['crudLog'] . '</p>' : '' ?>
+<section class="container">
+    <h1 class="center">Gestion des utilisateurs</h1>
+    <?= isset($_SESSION['crudLog']) ? '<p>' . $_SESSION['crudLog'] . '</p>' : '' ?>
 
-<a href="create.php" class="btn green">Ajouter un utilisateur</a>
+    <a href="create.php" class="btn green">Ajouter un utilisateur</a>
 
-<form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
-    <label for="sort_by">Trier par :</label>
-    <select name="sort_by" id="sort_by">
-        <option value="id_asc">Identifiant (croissant)</option>
-        <option value="id_desc">Identifiant (décroissant)</option>
-        <option value="name_asc">Nom de famille (croissant)</option>
-        <option value="name_desc">Nom de famille (décroissant)</option>
-        <option value="firstname_asc">Prénom (croissant)</option>
-        <option value="firstname_desc">Prénom (décroissant)</option>
-        <option value="created_at_asc">Date de création (croissant)</option>
-        <option value="created_at_desc">Date de création (décroissant)</option>
-    </select>
-    <button type="submit">Trier</button>
-</form>
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" style="margin: 64px 0 32px 0;">
+        <label for="sort_by">Trier par :</label>
+        <div class="form-group">
+            <select name="sort_by" id="sort_by">
+                <option value="id_asc">Identifiant (croissant)</option>
+                <option value="id_desc">Identifiant (décroissant)</option>
+                <option value="name_asc">Nom de famille (croissant)</option>
+                <option value="name_desc">Nom de famille (décroissant)</option>
+                <option value="firstname_asc">Prénom (croissant)</option>
+                <option value="firstname_desc">Prénom (décroissant)</option>
+                <option value="created_at_asc">Date de création (croissant)</option>
+                <option value="created_at_desc">Date de création (décroissant)</option>
+            </select>
+        </div>
+        <button type="submit">Trier</button>
+    </form>
 
-<table border>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Photo de profil</th>
-            <th>Adresse mail</th>
-            <th>Date de création</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($users as $user) : ?>
+    <table border>
+        <thead>
             <tr>
-                <td><?= $user['id'] ?></td>
-                <td><?= $user['last_name'] ?></td>
-                <td><?= $user['first_name'] ?></td>
-                <td><?= $user['picture'] ?></td>
-                <td><?= $user['email'] ?></td>
-                <td><?= $user['created_at'] ?></td>
-                <th><a href="modifications.php?id=<?= $user['id'] ?>">Modifier</a></th>
-                <th><a href="delete.php?from=<?= basename($_SERVER['PHP_SELF']) ?>&id=<?= $user['id'] ?>">Supprimer</a></th>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Photo de profil</th>
+                <th>Adresse mail</th>
+                <th>Date de création</th>
+                <th></th>
+                <th></th>
             </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php foreach ($users as $user) : ?>
+                <tr>
+                    <td><?= $user['id'] ?></td>
+                    <td><?= $user['last_name'] ?></td>
+                    <td><?= $user['first_name'] ?></td>
+                    <td><?= $user['picture'] ?></td>
+                    <td><?= $user['email'] ?></td>
+                    <td><?= $user['created_at'] ?></td>
+                    <th><a href="modifications.php?id=<?= $user['id'] ?>">Modifier</a></th>
+                    <th><a href="delete.php?from=<?= basename($_SERVER['PHP_SELF']) ?>&id=<?= $user['id'] ?>">Supprimer</a></th>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</section>
 
 <?php
 $_SESSION['crudLog'] = '';

@@ -68,4 +68,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $pageTitle = "Modification utilisateur";
 $template = 'users/modify';
-require '../../layouts/administration.php';
+require '../../layouts/crud.php';

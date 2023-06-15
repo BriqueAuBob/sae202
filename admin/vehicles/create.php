@@ -61,5 +61,5 @@
 
     $pageTitle = "Ajout véhicule";
     $template = 'vehicles/create';
-    require '../../layouts/administration.php';
+    require '../../layouts/crud.php';
 ?>

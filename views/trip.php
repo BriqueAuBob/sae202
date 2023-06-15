@@ -26,34 +26,46 @@ if (!$trip) {
     </h2>
 </header>
 <section class="container grid cols-3 align-top">
-    <div class="card big col-2">
-        <div class="card-header">
-            <h3>Informations</h3>
+    <div class="col-2">
+        <div class="card big">
+            <div class="card-header">
+                <h3>Informations</h3>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li><strong>Départ:</strong>
+                        <?= $trip['departure_city'] ?>,
+                        <?= $trip['departure_address'] ?>
+                    </li>
+                    <li><strong>Destination:</strong>
+                        <?= $trip['destination_city'] ?>,
+                        <?= $trip['destination_address'] ?>
+                    </li>
+                    <li><strong>Date et heure:</strong>
+                        <?= $trip['departure_at'] ?>
+                    </li>
+                    <li><strong>Nombre de places:</strong>
+                        <?= $trip['seats'] ?>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="card-body">
-            <ul>
-                <li><strong>Départ:</strong>
-                    <?= $trip['departure_city'] ?>,
-                    <?= $trip['departure_address'] ?>
-                </li>
-                <li><strong>Destination:</strong>
-                    <?= $trip['destination_city'] ?>,
-                    <?= $trip['destination_address'] ?>
-                </li>
-                <li><strong>Date et heure:</strong>
-                    <?= $trip['departure_at'] ?>
-                </li>
-                <li><strong>Nombre de places:</strong>
-                    <?= $trip['seats'] ?>
-                </li>
-            </ul>
-        </div>
-        <div class="card big col-2">
+        <div class="card big mt-sm">
             <div class="card-header">
                 <h3>Avis</h3>
             </div>
             <div class="card-body">
-                
+                <div>
+                    <li>
+                        <img class="avatar" src="/assets/images/avatars/<?= $trip['picture'] ?>"/> Melvil Pasdeloup <img class="icons" src="/assets/images/icons/star.svg" />
+                    </li>
+                    <li><strong>Avis : </strong>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat magnam temporibus,
+                            necessitatibus neque ullam itaque animi dolores vitae modi corrupti dignissimos est
+                            reiciendis?
+                            Odio, quibusdam expedita ratione fugit exercitationem facilis.</p>
+                    </li>
+                </div>
             </div>
         </div>
     </div>

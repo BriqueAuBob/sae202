@@ -55,4 +55,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $pageTitle = "Ajout parking";
 $template = 'parkings/create';
-require '../../layouts/administration.php';
+require '../../layouts/crud.php';

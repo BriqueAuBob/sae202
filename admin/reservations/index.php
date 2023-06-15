@@ -2,4 +2,4 @@
 
 $pageTitle = "Gestion réservations";
 $template = 'reservations/index';
-require '../../layouts/administration.php';
+require '../../layouts/crud.php';

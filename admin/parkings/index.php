@@ -1,4 +1,4 @@
 <?php
 
 $template = 'parkings/index';
-require '../../layouts/administration.php';
+require '../../layouts/crud.php';
