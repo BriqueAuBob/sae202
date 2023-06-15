@@ -21,14 +21,6 @@
         <label for="password">Mot de passe (hashage automatique)</label>
         <input type="password" name="password" id="password" placeholder="mot de passe">
     </div>
-    <div>
-        <label for="status">Status</label>
-        <select name="status">
-            <option value="0">Aucun</option>
-            <option value="1">Covoitureur</option>
-            <option value="2">Passager</option>
-        </select>
-    </div>
 
     <button class="btn green" type="submit">Valider l'ajout</button>
 </form>

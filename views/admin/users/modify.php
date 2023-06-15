@@ -33,14 +33,6 @@
         <input type="password" name="password" id="password" placeholder="mot de passe">
     </div>
     <div>
-        <label for="status">Status</label>
-        <select name="status">
-            <option value="0" <?= $user['status'] == '' ? 'selected' : '' ?>>Aucun</option>
-            <option value="1" <?= $user['status'] == 'covoitureur' ? 'selected' : '' ?>>Covoitureur</option>
-            <option value="2" <?= $user['status'] == 'passager' ? 'selected' : '' ?>>Passager</option>
-        </select>
-    </div>
-    <div>
         <label for="created_at">Date de création</label>
         <input type="text" name="created_at" id="created_at" value="<?= $user['created_at'] ?>">
     </div>
