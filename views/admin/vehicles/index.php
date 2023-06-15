@@ -5,51 +5,50 @@
         if(isset($_POST['sort_by'])) {
             switch(isset($_POST['sort_by'])) {
                 case 'id_asc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY id ASC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY id ASC');
                     break;
                 case 'id_desc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY id DESC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY id DESC');
                     break;
                 case 'brand_asc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY brand ASC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY brand ASC');
                     break;
                 case 'brand_desc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY brand DESC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY brand DESC');
                     break;
                 case 'model_asc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY model ASC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY model ASC');
                     break;
                 case 'model_desc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY model DESC');
+                    $query = $bd->prepare('SSELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY model DESC');
                     break;
                 case 'seats_asc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY places ASC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY places ASC');
                     break;
                 case 'seats_desc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY places DESC');
+                    $query = $bd->prepare('SSELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY places DESC');
                     break;
                 case 'color_asc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY color ASC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY color ASC');
                     break;
                 case 'color_desc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY color DESC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY color DESC');
                     break;
                 case 'owner_asc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY user_id ASC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY user_id ASC');
                     break;
                 case 'owner_desc':
-                    $query = $bd->prepare('SELECT * FROM vehicles ORDER BY user_id DESC');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id ORDER BY user_id DESC');
                     break;
                 default:
-                    $query = $bd->prepare('SELECT * FROM vehicles');
+                    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id');
                     break;
             }
         }
     } else {
-        $query = $bd->prepare('SELECT * FROM vehicles');
+        $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id');
     }
 
-    $query = $bd->prepare('SELECT vehicles.id AS vehicle_id, vehicles.*, users.* FROM vehicles INNER JOIN users ON vehicles.user_id = users.id');
     $query -> execute();
     $vehicles = $query->fetchAll();
 ?>
