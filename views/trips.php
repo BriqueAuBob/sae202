@@ -1,7 +1,7 @@
 <header class="small">
     <div class="container">
         <h1>Prenez un billet pour vos trajets</h1>
-        <form class="form-header">
+        <form class="form-header" method="post">
             <div>
                 <label for="departure">Départ</label>
                 <input type="text" name="departure" id="departure" placeholder="Départ">
@@ -28,6 +28,10 @@
             } else {
                 $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, trips.destination_city as `to`, trips.seats as `seats`, trips.departure_at as `date`, trips.departure_city as `from`, CONCAT("/vehicles/", vehicles.image) as `image`, users.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id ORDER BY trips.created_at DESC');
                 $trips = $query->fetchAll();
+            }
+
+            if (count($trips) == 0) {
+                echo '<p class="center">Aucun trajet ne correspond à votre recherche</p>';
             }
 
             include('./components/card_trip.php');
