@@ -6,6 +6,39 @@ $db = dbConnect();
 $trip_id = $_GET['trip_id'];
 $user_id = $_SESSION['user']['id'];
 
+$query = $db->prepare('SELECT * FROM reservations WHERE trip_id = :trip_id AND user_id = :user_id');
+$query->execute([
+    'trip_id' => $trip_id,
+    'user_id' => $user_id
+]);
+$reservation = $query->fetch();
+if ($reservation) {
+    dbDisconnect($db);
+    $_SESSION['message'] = 'Vous avez déjà effectué une réservation pour ce trajet !';
+    header('Location: profil/reservations.php');
+    die();
+}
+
+$query = $db->prepare('SELECT * FROM trips WHERE id = :trip_id');
+$query->execute([
+    'trip_id' => $trip_id
+]);
+$trip = $query->fetch();
+
+if (!$trip) {
+    dbDisconnect($db);
+    $_SESSION['message'] = 'Ce trajet n\'existe pas !';
+    header('Location: profil/reservations.php');
+    die();
+}
+
+if ($trip['user_id'] == $user_id) {
+    dbDisconnect($db);
+    $_SESSION['message'] = 'Vous ne pouvez pas réserver votre propre trajet !';
+    header('Location: profil/reservations.php');
+    die();
+}
+
 $query = $db->prepare('INSERT INTO reservations (user_id, trip_id) VALUES (:user_id, :trip_id)');
 $query->execute([
     'user_id' => $user_id,

@@ -22,19 +22,18 @@
     <div class="container">
         <div class="grid cols-3 mt-md">
             <?php
-                $db=dbConnect();
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $trips = research($_POST['departure'], $_POST['arrival'], $_POST['date_hour'], $db);
-                } else {
-                    $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, trips.destination_city as `to`, trips.seats as `seats`, trips.departure_at as `date`, trips.departure_city as `from`, CONCAT("/vehicles/", vehicles.image) as `image`, users.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id ORDER BY trips.created_at DESC');
-                    $trips = $query->fetchAll();
-                }
-            
-                include('./components/card_trip.php');
-                foreach ($trips as $trip){
-                    if (strtotime($trip['date']) > strtotime(date('Y-m-d H:i:s'))) {
-                        cardTrip($trip, dark: true, url: '/trajet.php?id=' . $trip['id']);
-                    }
+            $db = dbConnect();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $trips = research($_POST['departure'], $_POST['arrival'], $_POST['date_hour'], $db);
+            } else {
+                $query = $db->query('SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, trips.destination_city as `to`, trips.seats as `seats`, trips.departure_at as `date`, trips.departure_city as `from`, CONCAT("/vehicles/", vehicles.image) as `image`, users.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id ORDER BY trips.created_at DESC');
+                $trips = $query->fetchAll();
+            }
+
+            include('./components/card_trip.php');
+            foreach ($trips as $trip) {
+                if (strtotime($trip['date']) > strtotime(date('Y-m-d H:i:s'))) {
+                    cardTrip($trip, dark: true, url: '/trajet.php?id=' . $trip['trip_id']);
                 }
             }
             ?>
