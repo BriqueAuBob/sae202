@@ -21,7 +21,7 @@
         <h1>Bonjour <?= $_SESSION['user']['firstname'] ?> !</h1>
     </header>
     <div class="overlap small container">
-        <div class="small">
+        <nav class="small">
             <ul class="grid cols-4 no-gap" id="profile_navigation">
                 <?php
                 $currentPage = basename($_SERVER['PHP_SELF']);
@@ -31,7 +31,7 @@
                 <li><a href="/profil/reservations.php" <?= $currentPage === 'reservations.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/calendar.svg" />Mes réservations</a></li>
                 <li><a href="/profil/messages.php" <?= $currentPage === 'messages.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/message.svg" />Messages</a></li>
             </ul>
-        </div>
+        </nav>
     </div>
 
     <?php

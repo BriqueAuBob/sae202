@@ -83,7 +83,7 @@ if (!isAuthenticated()) {
     <div class="save_changes_popup container hidden">
         <p class="big">Enregistrer les modifications ?</p>
         <div class="btn-list">
-            <a href="./settings.php" class="btn no-margin">Abandonner les modifications</a>
+            <a href="/profil" class="btn no-margin">Abandonner les modifications</a>
             <button class="btn no-margin green">Enregistrer</button>
         </div>
     </div>

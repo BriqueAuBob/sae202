@@ -1,7 +1,7 @@
 <?php
 $currentPage = $_SERVER['PHP_SELF'];
 ?>
-<nav class="container hidden">
+<nav class="navbar container hidden">
     <a class="branding" href="/"><img src="/assets/images/logo_white.svg" alt="Logo White VrooMMI"></a>
     <div class="wrapper">
         <ul>

@@ -93,9 +93,13 @@ if (!isset($_GET['id'])) {
         <h1>Vos conversations</h1>
         <ul class="conversations">
             <?php
-            foreach ($conversations as $conversation) {
-                if ($conversation['user_id'] === $_SESSION['user']['id']) continue;
-                echo '<li><a ' . ($conversation['user_id'] == $conversationId ? 'class="active"' : '') . ' href="/profil/messages.php?id=' . $conversation['user_id'] . '"><img class="avatar" src="/assets/images/avatars/' . $conversation['picture'] . '" />' . $conversation['first_name'] . ' ' . $conversation['last_name'] . '</a></li>';
+            if ($recupUser->rowCount() == 0) {
+                echo '<li>Vous n\'avez aucune conversation pour le moment. Réservez un trajet pour ouvrir une discussion.</li>';
+            } else {
+                foreach ($conversations as $conversation) {
+                    if ($conversation['user_id'] === $_SESSION['user']['id']) continue;
+                    echo '<li><a ' . ($conversation['user_id'] == $conversationId ? 'class="active"' : '') . ' href="/profil/messages.php?id=' . $conversation['user_id'] . '"><img class="avatar" src="/assets/images/avatars/' . $conversation['picture'] . '" />' . $conversation['first_name'] . ' ' . $conversation['last_name'] . '</a></li>';
+                }
             }
             ?>
         </ul>

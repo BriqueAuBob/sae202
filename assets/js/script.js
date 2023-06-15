@@ -110,9 +110,23 @@ if (demo) {
       const currentDemoContainer = document.querySelector(
         "#demo .col-2 > div:not(.hidden)"
       );
-      console.log(currentDemoContainer);
       currentDemoContainer.classList.add("hidden");
       demoContainer.classList.remove("hidden");
     });
   });
 }
+
+const fileInput = document.querySelectorAll("input[type=file]");
+fileInput.forEach((input) => {
+  input.addEventListener("change", () => {
+    const file = input.files[0];
+    const img = input.parentElement.querySelector("img");
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      img.src = reader.result;
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  });
+});

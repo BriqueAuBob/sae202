@@ -1,5 +1,5 @@
 <?php
 
-$template = 'notification';
+$template = 'profile/notification';
 $pageTitle = "Notifications";
 require '../layouts/default.php';
