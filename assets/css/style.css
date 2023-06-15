@@ -1185,6 +1185,10 @@ body.dark #profile_navigation a img {
 .hidden {
   display: none;
 }
+.icons{
+  width: 25px;
+  height: auto;
+}
 
 @media screen and (max-width: 768px) {
   .cols-2,
