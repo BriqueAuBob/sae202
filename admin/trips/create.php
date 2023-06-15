@@ -15,16 +15,16 @@
             header('Location: ./create.php');
             die();
         }
-        $dep_city = htmlspecialchars($_POST['dep_city']);
-        $des_city = htmlspecialchars($_POST['des_city']);
+        $dep_city = htmlspecialchars(ucwords(strtolower($_POST['dep_city'])));
+        $des_city = htmlspecialchars(ucwords(strtolower($_POST['des_city'])));
 
         if(strlen($_POST['dep_address']) > 100 || strlen($_POST['dep_address']) > 100) {
             $_SESSION['crudLog'] = 'Merci de ne pas dépasser les 100 caractères pour les adresses.';
             header('Location: ./create.php');
             die();
         }
-        $dep_address = htmlspecialchars($_POST['dep_address']);
-        $des_address = htmlspecialchars($_POST['des_address']);
+        $dep_address = htmlspecialchars(ucwords(strtolower($_POST['dep_address'])));
+        $des_address = htmlspecialchars(ucwords(strtolower($_POST['des_address'])));
 
         if((int)$_POST['seats'] < 1 || (int)$_POST['seats'] > 99) {
             $_SESSION['crudLog'] = 'Votre véhicule doit avoir entre 1 et 99 places';

@@ -3,7 +3,7 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($_POST['sort_by'])) {
-            switch(isset($_POST['sort_by'])) {
+            switch($_POST['sort_by']) {
                 case 'id_asc':
                     $query = $bd->prepare('SELECT trips.id AS tid, trips.user_id AS user, trips.created_at AS created, trips.*, users.* FROM trips INNER JOIN users ON trips.user_id = users.id ORDER BY trips.id ASC');
                     break;
