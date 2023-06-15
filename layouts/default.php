@@ -12,7 +12,7 @@
 
 <body>
     <?php
-    require 'inc/lib.inc.php';
+    require __DIR__ . '/../inc/lib.inc.php';
 
     require __DIR__ . '/../components/navbar.php';
     include __DIR__ . '/../views/' . $template . '.php';

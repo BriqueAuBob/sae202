@@ -19,7 +19,7 @@ $notifications = $query->fetchAll();
                 displayNotification(NotificationType::from($notification['type']), $notification['content']);
             }
             ?>
-            <li class="mt-sm"><a href="#">Voir toutes les notifications</a></li>
+            <li class="mt-sm"><a href="/profil/notifications.php">Voir toutes les notifications</a></li>
         </ul>
     </div>
 </div>
