@@ -828,6 +828,14 @@ input:read-only {
   height: 64px;
 }
 
+span.small {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-primary-800);
+  display: block;
+  margin-top: 8px;
+}
+
 .avatar.huge {
   width: 128px;
   height: 128px;

@@ -14,7 +14,7 @@ $notifications = $query->fetchAll();
     <ul class="notifications">
         <?php
         foreach ($notifications as $notification) {
-            displayNotification(NotificationType::from($notification['type']), $notification['content']);
+            displayNotification(NotificationType::from($notification['type']), $notification['content'], date('d/m à H\hi', strtotime($notification['created_at'])));
         }
         ?>
     </ul>

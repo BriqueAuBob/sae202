@@ -18,7 +18,7 @@ $notifications = $query->fetchAll();
             $i = 0;
             foreach ($notifications as $notification) {
                 if ($i >= 3) break;
-                displayNotification(NotificationType::from($notification['type']), $notification['content']);
+                displayNotification(NotificationType::from($notification['type']), $notification['content'], date('d/m à H\hi', strtotime($notification['created_at'])));
                 $i++;
             }
             ?>
