@@ -13,7 +13,7 @@ $acc = 0;
     <?php foreach ($reservations as $reservation) : ?>
         <?php $acc += 1; ?>
         <div class="card big">
-            <h3><?= $reservation['departure_city'] . ", " . $reservation['departure_address'] ?> -> <?= $reservation['destination_city'] . ", " . $reservation['destination_address'] ?></h3>
+            <h3><?= $reservation['departure_city'] . ", " . $reservation['departure_address'] ?> -> <?= $reservation['destination_city'] . ", " . $reservation['destination_address'] ?> (<?= $reservation['distance'] ?> km)</h3>
             <?php 
                 if(implode(" ", array_slice(explode(" ", $reservation['departure_address']), 0, 2)) == "Parking IUT") {
                     echo '<a href="../parkings.php">Trouver le parking</a>';

@@ -33,7 +33,7 @@ CREATE TABLE `messages` (
   KEY `messages_ibfk_2` (`target_id`),
   CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`target_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,13 +55,13 @@ DROP TABLE IF EXISTS `notifications`;
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(125) DEFAULT NULL,
-  `type` smallint(6) NOT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT 2,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `notifications_ibfk_1` (`user_id`),
   CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +70,7 @@ CREATE TABLE `notifications` (
 
 LOCK TABLES `notifications` WRITE;
 /*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+INSERT INTO `notifications` VALUES (28,'Vous avez publié un nouveau trajet !',0,7,'2023-06-14 21:11:25'),(29,'Le trajet Troyes -> Morthomiers a été annulé par son conducteur.',1,7,'2023-06-15 07:41:45'),(30,'Le trajet Troyes -> Morthomiers a été annulé par son conducteur.',1,7,'2023-06-15 07:41:45'),(31,'Vous avez annulé le trajet Troyes -> Morthomiers.',1,7,'2023-06-15 07:41:45'),(32,'Vous avez publié un nouveau trajet !',0,7,'2023-06-15 07:42:12'),(33,'Le trajet Saint-doulchard -> Troyes a été annulé par son conducteur.',1,7,'2023-06-15 07:46:06'),(34,'Vous avez annulé le trajet Saint-doulchard -> Troyes.',1,7,'2023-06-15 07:46:06'),(35,'Vous avez publié un nouveau trajet !',0,7,'2023-06-15 07:46:24');
 /*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,8 +111,8 @@ DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE `reservations` (
   `user_id` int(11) NOT NULL,
   `trip_id` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`,`trip_id`),
   KEY `reservations_ibfk_2` (`trip_id`),
+  KEY `reservations_ibfk_1` (`user_id`),
   CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -123,7 +124,7 @@ CREATE TABLE `reservations` (
 
 LOCK TABLES `reservations` WRITE;
 /*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
-INSERT INTO `reservations` VALUES (5,3),(5,4);
+INSERT INTO `reservations` VALUES (8,28);
 /*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,6 +174,7 @@ CREATE TABLE `trips` (
   `departure_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `destination_city` varchar(50) DEFAULT NULL,
   `destination_address` varchar(100) DEFAULT NULL,
+  `distance` smallint(5) NOT NULL DEFAULT 0,
   `arrival_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `seats` tinyint(2) NOT NULL DEFAULT 1,
   `user_id` int(11) NOT NULL,
@@ -181,7 +183,7 @@ CREATE TABLE `trips` (
   PRIMARY KEY (`id`),
   KEY `trips_ibfk_1` (`user_id`),
   CONSTRAINT `trips_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +192,7 @@ CREATE TABLE `trips` (
 
 LOCK TABLES `trips` WRITE;
 /*!40000 ALTER TABLE `trips` DISABLE KEYS */;
-INSERT INTO `trips` VALUES (3,'Troyes','p1z1','2023-06-13 13:02:50','Morthomiers','Boite aux lettres','2023-06-13 15:34:00',1,5,27,'2023-06-13 09:30:47'),(4,'Caca','zizi','2023-06-13 12:59:52','Popo','aaa','2023-06-13 06:32:00',2,5,27,'2023-06-13 10:32:58');
+INSERT INTO `trips` VALUES (28,'Saint-doulchard','41 rue des Bondoires','2023-06-27 09:46:00','Troyes','124 Avenue Pierre Brossolette',253,'2023-06-27 10:46:00',3,7,29,'2023-06-15 07:46:24');
 /*!40000 ALTER TABLE `trips` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +213,7 @@ CREATE TABLE `users` (
   `status` tinyint(4) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +222,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (5,'Lamaty','C','2023_06_13_10_10_00.webp','lamatycassandre@gmail.com','$2y$10$hN0S.Z4ZQR.FeakvoeHuCuYRsnf/l5q8WQfs6OSqSOwDXje0YP1r.',0,'2023-06-12 18:38:19');
+INSERT INTO `users` VALUES (7,'Lamaty','Cassandre','default.png','lamatycassandre@gmail.com','$2y$10$dd7i7g7ucgbVRlFAQE5/zONV6hrihydMUS36mg0ASh6L5T/XW2MRa',0,'2023-06-14 20:51:14'),(8,'Marandat','Julien','default.png','julien@gmail.com','$2y$10$QkFIO.XkRcG/pfAqX4iHIus4VpNVg3O8LkUQ1PBc54R6IBQN8C.T6',0,'2023-06-15 07:46:49');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +244,7 @@ CREATE TABLE `vehicles` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`),
   CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +253,7 @@ CREATE TABLE `vehicles` (
 
 LOCK TABLES `vehicles` WRITE;
 /*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
-INSERT INTO `vehicles` VALUES (27,'maman','papa',3,'blue','default.webp',5);
+INSERT INTO `vehicles` VALUES (29,'maman','papa',4,'kaki','default.webp',7);
 /*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -264,4 +266,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-13 13:54:00
+-- Dump completed on 2023-06-15  8:51:20

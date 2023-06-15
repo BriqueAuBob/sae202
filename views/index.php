@@ -1,7 +1,7 @@
 <header id="head__home">
     <div class="container">
         <h1>Partagez vos trajets en toute tranquillité</h1>
-        <form class="form-header">
+        <form class="form-header" action="trajets.php" method="post">
             <div>
                 <label for="departure">Départ</label>
                 <input type="text" name="departure" id="departure" placeholder="Départ">
@@ -66,12 +66,15 @@
         $query->execute();
         $trips = $query->fetch()['trips'];
 
-        $query = $db->prepare('SELECT distance FROM trips');
+        $query = $db->prepare('SELECT trips.id, trips.distance, reservations.user_id AS user FROM trips INNER JOIN reservations ON trips.id = reservations.trip_id WHERE reservations.trip_id = trips.id');
         $query->execute();
         $distances = $query->fetchAll();
         $d = 0;
         foreach ($distances as $distance) {
-            $d += $distance['distance'];
+            $query = $db->prepare('SELECT COUNT(*) AS reservations FROM reservations WHERE trip_id =' . $distance['id']);
+            $query->execute();
+            $reservations = $query->fetch()['reservations'];
+            $d += $distance['distance'] * $reservations;
         }
     ?>
     <div class="grid cols-4 mt-md">
