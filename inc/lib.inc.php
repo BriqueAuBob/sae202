@@ -227,3 +227,11 @@ function distance($address1, $address2) {
         return false;
     }
 }
+
+function research($departure, $arrival, $date, $db) {
+    $departure = htmlspecialchars($departure);
+    $arrival = htmlspecialchars($arrival);
+    $date = htmlspecialchars($date);
+
+    
+}

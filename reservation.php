@@ -12,6 +12,20 @@
         'trip_id' => $trip_id
     ]);
 
+    $query = $db->prepare('SELECT COUNT(*) AS reservations FROM reservations WHERE trip_id = :trip_id AND user_id = :user_id');
+    $query -> execute([
+        'trip_id' => $trip_id,
+        'user_id' => $user_id
+    ]);
+    $reservations = $query->fetch()['reservations'];
+
+    if ($reservations > 0) {
+        dbDisconnect($db);
+        $_SESSION['message'] = 'Vous avez déjà réservé ce trajet !';
+        header('Location: profil/reservations.php');
+        die();
+    }
+
     $query = $db->prepare('UPDATE trips SET seats = seats - 1 WHERE id = :trip_id');
     $query -> execute([
         'trip_id' => $trip_id
@@ -24,7 +38,7 @@
     $query->execute([
         'user_id' => $reservation['driver'],
         'content' => 'Vous avez une nouvelle réservation de ' . $reservation['first_name'] . ' sur votre trajet du ' . $reservation['departure_city'] . ' -> ' . $reservation['destination_city'] . ' !',
-        'type' => 'success'
+        'type' => 0
     ]);
 
     dbDisconnect($db);
