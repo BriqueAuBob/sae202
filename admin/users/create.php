@@ -4,7 +4,7 @@
     
         $bd = dbConnect();
     
-        if (empty($_POST['last_name'] || empty($_POST['first_name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['status']))) {
+        if (empty($_POST['last_name'] || empty($_POST['first_name']) || empty($_POST['email']) || empty($_POST['password']))) {
             $_SESSION['crudLog'] = 'Veuillez remplir tous les champs !';
             header('Location: ./create.php');
             die();
@@ -42,12 +42,11 @@
             imgCompression($picture, '../../assets/images/avatars/', 'create.php');
         }
 
-        $query = $bd -> prepare('INSERT INTO users (last_name, first_name, email, password, status, picture) VALUES (:last_name, :first_name, :email, :password, :status, :picture)');
+        $query = $bd -> prepare('INSERT INTO users (last_name, first_name, email, password, picture) VALUES (:last_name, :first_name, :email, :password, :picture)');
         $query -> bindValue(':last_name', $last_name);
         $query -> bindValue(':first_name', $first_name);
         $query -> bindValue(':email', $email);
         $query -> bindValue(':password', password_hash($_POST['password'], PASSWORD_DEFAULT));
-        $query -> bindValue(':status', $_POST['status']);
         if(isset($_POST['picture'])) {
             $query -> bindValue(':picture', $name . '.webp');
         } else {
