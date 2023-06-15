@@ -26,10 +26,10 @@
                 <?php
                 $currentPage = basename($_SERVER['PHP_SELF']);
                 ?>
-                <li><a href="/profil/" <?= $currentPage === 'index.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/users.svg" />Mes paramètres</a></li>
-                <li><a href="/profil/trajets.php" <?= $currentPage === 'trajets.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/users.svg" />Mes trajets</a></li>
-                <li><a href="/profil/reservations.php" <?= $currentPage === 'reservations.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/users.svg" />Mes réservations</a></li>
-                <li><a href="/profil/messages.php" <?= $currentPage === 'messages.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/users.svg" />Messages</a></li>
+                <li><a href="/profil/" <?= $currentPage === 'index.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/cog.svg" />Mes paramètres</a></li>
+                <li><a href="/profil/trajets.php" <?= $currentPage === 'trajets.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/travel.svg" />Mes trajets</a></li>
+                <li><a href="/profil/reservations.php" <?= $currentPage === 'reservations.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/calendar.svg" />Mes réservations</a></li>
+                <li><a href="/profil/messages.php" <?= $currentPage === 'messages.php' ? 'class="active"' : '' ?>><img src="/assets/images/icons/message.svg" />Messages</a></li>
             </ul>
         </div>
     </div>
