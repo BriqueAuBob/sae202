@@ -1,6 +1,6 @@
 <?php
 $db = dbConnect();
-$query = $db->prepare('SELECT * FROM notifications WHERE user_id = :user_id ORDER BY created_at ASC');
+$query = $db->prepare('SELECT * FROM notifications WHERE user_id = :user_id ORDER BY created_at DESC');
 $query->execute([
     ':user_id' => $_SESSION['user']['id']
 ]);

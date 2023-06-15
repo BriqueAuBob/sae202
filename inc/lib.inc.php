@@ -87,22 +87,42 @@ function login($db, $email, $password)
 function deleteAcc($db, $email, $password)
 {
     $query = $db->prepare('SELECT * FROM users WHERE email LIKE :email');
-    $query->execute(array(
+    $query->execute([
         'email' => $email
-    ));
-
+    ]);
     $user = $query->fetch();
+
     if (password_verify($password, $user['password'])) {
+        $query = $db->prepare('DELETE FROM notifications WHERE user_id LIKE :id');
+        $query->execute([
+            'id' => $user['id']
+        ]);
+
+        $query = $db->prepare('DELETE FROM vehicles WHERE user_id LIKE :id');
+        $query->execute([
+            'id' => $user['id']
+        ]);
+
+        $query = $db->prepare('DELETE FROM trips WHERE user_id LIKE :id');
+        $query->execute([
+            'id' => $user['id']
+        ]);
+
+        $query = $db->prepare('DELETE FROM reservations WHERE user_id LIKE :id');
+        $query->execute([
+            'id' => $user['id']
+        ]);
+
         $query = $db->prepare('DELETE FROM users WHERE email LIKE :email');
-        $query->execute(array(
+        $query->execute([
             'email' => $email
-        ));
+        ]);
 
         $_SESSION['message'] = 'Votre compte a bien été supprimé !';
-        header('Location: index.php');
+        header('Location: /');
     } else {
         $_SESSION['error'] = 'Mauvais mot de passe';
-        header('Location: profil.php');
+        header('Location: profil');
     }
 }
 
@@ -130,19 +150,19 @@ function imgCompression($picture, $path, $location)
         $name = date("Y_m_d_H_i_s");
         $type = $picture['type'];
         $size = $picture['size'];
-
-        if ($type != 'image/png' && $type != 'image/jpeg' && $type != 'image/jpg' && $type != 'image/webp') {
-            $_SESSION['crudLog'] = 'Le format de l\'image n\'est pas valide !';
+    
+        if (($type != 'image/png') && ($type != 'image/jpeg') && ($type != 'image/jpg') && ($type != 'image/webp')) {
+            $_SESSION['error'] = 'Le format de l\'image n\'est pas valide !';
             header('Location: ' . $location);
             die();
         }
 
-        if ($size > 1000000) {
-            $_SESSION['crudLog'] = 'L\'image est trop lourde !';
+        if ($size > 5000000) {
+            $_SESSION['error'] = 'L\'image est trop lourde !';
             header('Location:  ' . $location);
             die();
         }
-
+    
         if ($type != 'image/webp') {
             transformToWebp(file_get_contents($picture['tmp_name']), $path . $name . '.webp');
         }
@@ -182,6 +202,7 @@ function displayNotification(NotificationType $type, $message)
     </a>
 </li>';
 }
+
 function distance($address1, $address2) {
     $addressHash1 = urlencode($address1);
     $addressHash2 = urlencode($address2);
@@ -205,4 +226,12 @@ function distance($address1, $address2) {
     } else {
         return false;
     }
+}
+
+function research($departure, $arrival, $date, $db) {
+    $departure = htmlspecialchars($departure);
+    $arrival = htmlspecialchars($arrival);
+    $date = htmlspecialchars($date);
+
+    
 }

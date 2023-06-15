@@ -60,6 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'seats' => $seats
     ]);
 
+    $query = $db->prepare('INSERT INTO notifications (user_id, content, type) VALUES ( :user_id, :content, :type)');
+    $query->execute([
+        'user_id' => $user_id,
+        'content' => 'Vous avez publié un nouveau trajet !',
+        'type' => 0
+    ]);
+
     dbDisconnect($db);
 
     $_SESSION['message'] = 'Votre trajet a bien été publié !';

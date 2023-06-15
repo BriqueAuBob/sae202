@@ -1,7 +1,7 @@
 <header id="head__home">
     <div class="container">
         <h1>Partagez vos trajets en toute tranquillité</h1>
-        <form class="form-header">
+        <form class="form-header" action="trajets.php" method="post">
             <div>
                 <label for="departure">Départ</label>
                 <input type="text" name="departure" id="departure" placeholder="Départ">
@@ -61,6 +61,21 @@
         $query = $db->prepare('SELECT COUNT(*) AS users FROM users');
         $query->execute();
         $users = $query->fetch()['users'];
+
+        $query = $db->prepare('SELECT COUNT(*) AS trips FROM trips');
+        $query->execute();
+        $trips = $query->fetch()['trips'];
+
+        $query = $db->prepare('SELECT trips.id, trips.distance, reservations.user_id AS user FROM trips INNER JOIN reservations ON trips.id = reservations.trip_id WHERE reservations.trip_id = trips.id');
+        $query->execute();
+        $distances = $query->fetchAll();
+        $d = 0;
+        foreach ($distances as $distance) {
+            $query = $db->prepare('SELECT COUNT(*) AS reservations FROM reservations WHERE trip_id =' . $distance['id']);
+            $query->execute();
+            $reservations = $query->fetch()['reservations'];
+            $d += $distance['distance'] * $reservations;
+        }
     ?>
     <div class="grid cols-4 mt-md">
         <div class="stat">
@@ -69,15 +84,16 @@
         </div>
         <div class="stat">
             <p>Trajets effectués</p>
-            <div>123</div>
+            <div><?= $trips ?></div>
         </div>
         <div class="stat">
+            <!-- 148,2 g/km -->
             <p>CO2 évité</p>
-            <div>2 tonnes</div>
+            <div><?= round($d * 0.1482, 1) ?> kg</div>
         </div>
         <div class="stat">
             <p>Distance parcourue</p>
-            <div>1000km</div>
+            <div><?= $d ?> km</div>
         </div>
     </div>
 </section>
@@ -123,3 +139,6 @@
         </div>
     </div>
 </section>
+<?php
+    dbDisconnect($db);
+?>

@@ -4,8 +4,10 @@ if (!isAuthenticated()) {
     die();
 }
 ?>
-<?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
-<?= isset($_SESSION['error']) ? '<p class="message error">' . $_SESSION['error'] . '</p>' : '' ?>
+
+    <?= isset($_SESSION['message']) ? '<div class="container" style="padding-top: 108px; text-align: center;"><p>' . $_SESSION['message'] . '</p></div>' : '' ?>
+    <?= isset($_SESSION['error']) ? '<div class="container" style="padding-top: 108px; text-align: center;"><p class="message error">' . $_SESSION['error'] . '</p></div>' : '' ?>
+
 <form action="./" method="POST" enctype="multipart/form-data">
     <section class="form container">
         <h1 class="center">Informations personnelles</h1>
@@ -105,18 +107,19 @@ if (!isAuthenticated()) {
     </div>
 </section>
 <div class="modal hidden" id="modal_delete_account">
-    <form action="./desinscription.php" method="POST">
+    <form action="../desinscription.php" method="post">
         <div class="modal-container">
             <main>
                 <h1>Supprimer mon compte</h1>
                 <p>Êtes-vous sûr de vouloir supprimer définitivement votre compte ? Vous ne serez plus en mesure de le récupérer après et toutes vos réservations en cours seront annulées.</p>
                 <p class="mt-sm"><strong>Entre ton mot de passe pour confirmer la suppression de ton compte.</strong></p>
                 <label class="hidden" for="password_confirmation_delete">Mot de passe</label>
-                <input data-no-trigger-save class="mt-md" type="password" name="password" id="password_confirmation_delete" placeholder="Mot de passe...">
+                <input class="mt-md" type="password" name="password" id="password_confirmation_delete" placeholder="Mot de passe...">
             </main>
             <footer class="btn-list">
                 <button type="button" class="btn no-margin" data-close-modal="modal_delete_account">Annuler</button>
-                <a href="/desinscription.php" class="btn no-margin red">Supprimer</a>
+                <!-- <a href="./desinscription.php" class="btn no-margin red">Supprimer</a> -->
+                <button type="submit" class="btn no-margin red">Supprimer</button>
             </footer>
         </div>
     </form>

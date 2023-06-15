@@ -28,7 +28,9 @@
 
             include('./components/card_trip.php');
             foreach ($trips as $trip) {
-                cardTrip($trip, dark: true, url: '/trajet.php?id=' . $trip['trip_id']);
+                if (strtotime($trip['date']) > strtotime(date('Y-m-d H:i:s'))) {
+                    cardTrip($trip, dark: true, url: '/trajet.php?id=' . $trip['trip_id']);
+                }
             }
             ?>
         </div>
