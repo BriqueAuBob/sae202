@@ -22,5 +22,5 @@
 
     $pageTitle = "Ajout réservation";
     $template = 'reservations/create';
-    require '../../layouts/administration.php';
+    require '../../layouts/crud.php';
 ?>

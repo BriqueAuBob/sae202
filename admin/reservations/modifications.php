@@ -17,12 +17,12 @@
 
         dbDisconnect($bd);
 
-        $_SESSION['crudLog'] = 'La réservation a bien été modifié !';
+        $_SESSION['crudLog'] = 'La réservation a bien été modifiée !';
         header('Location: ./');
         die();
     }
 
     $pageTitle = "Modification réservation";
     $template = 'reservations/modify';
-    require '../../layouts/administration.php';
+    require '../../layouts/crud.php';
 ?>

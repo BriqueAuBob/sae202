@@ -63,4 +63,4 @@
 
     $pageTitle = "Ajout utilisateur";
     $template = 'users/create';
-    require '../../layouts/administration.php';
+    require '../../layouts/crud.php';

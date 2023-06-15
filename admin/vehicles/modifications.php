@@ -65,5 +65,5 @@
 
     $pageTitle = "Modification véhicule";
     $template = 'vehicles/modify';
-    require '../../layouts/administration.php';
+    require '../../layouts/crud.php';
 ?>
