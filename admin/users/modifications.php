@@ -43,12 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = htmlspecialchars($_POST['password']);
     }
 
-    $status = (int)$_POST['status'];
     $created_at = htmlspecialchars($_POST['created_at']);
 
     $name = imgCompression($picture, '../../assets/images/avatars/', './modifications.php');
 
-    $query = $bd->prepare('UPDATE users SET last_name = :last_name, first_name = :first_name' . (isset($_FILES['picture']) ? ', picture = :picture' : '') . ', email = :email' . (isset($password) ? ', password = :password' : '') . ', status = :status, created_at = :created_at WHERE id = :id');
+    $query = $bd->prepare('UPDATE users SET last_name = :last_name, first_name = :first_name' . (isset($_FILES['picture']) ? ', picture = :picture' : '') . ', email = :email' . (isset($password) ? ', password = :password' : '') . ', created_at = :created_at WHERE id = :id');
     $query->bindValue(':id', $id);
     $query->bindValue(':last_name', $last_name);
     $query->bindValue(':first_name', $first_name);
@@ -59,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(isset($password)) {
         $query->bindValue(':password', password_hash($password, PASSWORD_DEFAULT));
     }
-    $query->bindValue(':status', $status);
     $query->bindValue(':created_at', $created_at);
     $query->execute();
 
