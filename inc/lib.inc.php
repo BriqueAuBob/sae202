@@ -228,10 +228,36 @@ function distance($address1, $address2) {
     }
 }
 
-function research($departure, $arrival, $date, $db) {
-    $departure = htmlspecialchars($departure);
-    $arrival = htmlspecialchars($arrival);
-    $date = htmlspecialchars($date);
+function research($departure, $arrival, $datehour, $db) {
+    $datehour = date('Y-m-d H:i:s', strtotime($datehour));
 
-    
+    $query = "SELECT * FROM trips WHERE 1 ";
+
+    if (isset($departure) && $departure !== '') {
+        $query .= "AND (departure_city LIKE :departure OR departure_address LIKE :departure) ";
+    }
+    if (isset($arrival) && $arrival !== '') {
+        $query .= "AND (destination_city LIKE :arrival OR destination_address LIKE :arrival) ";
+    }
+    if (isset($datehour) && $datehour !== '') {
+        $query .= "AND (departure_at LIKE :date OR arrival_at LIKE :date) ";
+    }
+
+    $stmt = $db->prepare($query);
+
+    if (isset($departure) && $departure !== '') {
+        $stmt->bindValue(':departure', '%' . $departure . '%');
+    }
+    if (isset($arrival) && $arrival !== '') {
+        $stmt->bindValue(':arrival', '%' . $arrival . '%');
+    }
+    if (isset($datehour) && $datehour !== '') {
+        $stmt->bindValue(':date', '%' . $datehour . '%');
+    }
+
+    $stmt->execute();
+
+    $trips = $stmt->fetchAll();
+
+    return $trips;
 }

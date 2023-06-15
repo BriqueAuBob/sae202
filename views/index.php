@@ -12,7 +12,7 @@
             </div>
             <div>
                 <label for="date_hour">Date et heure</label>
-                <input type="text" name="date_hour" id="date_hour" placeholder="Date et heure">
+                <input type="datetime" name="date_hour" id="date_hour" placeholder="Date et heure">
             </div>
             <button class="btn" type="submit">Rechercher</button>
         </form>
