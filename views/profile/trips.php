@@ -48,7 +48,7 @@ $trips = $query->fetchAll();
     } ?>
     <a class="btn green center mt-md" href="/profil/creer_trajet.php">Créer un nouveau trajet</a>
 </section>
-<section>
+<section class="container">
     <h2 class="center">Historique</h2>
     <?php
     foreach ($trips as $trip) : ?>

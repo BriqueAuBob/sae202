@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VrooMMI <?= isset($pageTitle) ? ' - ' . $pageTitle : '' ?></title>
     <link rel="stylesheet" href="/assets/css/style.css">
-    <script src="https://kit.fontawesome.com/1d20ef0596.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -19,6 +19,7 @@
     require __DIR__ . '/../components/footer.php';
     ?>
 
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="/assets/js/script.js"></script>
 </body>
 

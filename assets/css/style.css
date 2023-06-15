@@ -808,6 +808,12 @@ input:read-only {
   cursor: not-allowed;
 }
 
+#calendar {
+  background: var(--color-primary-50) !important;
+  color: black !important;
+  opacity: 1;
+}
+
 .avatar {
   width: 48px;
   height: 48px;
@@ -1184,7 +1190,7 @@ body.dark #profile_navigation a img {
 .hidden {
   display: none;
 }
-.icons{
+.icons {
   width: 25px;
   height: auto;
 }

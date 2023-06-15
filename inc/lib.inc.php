@@ -150,7 +150,7 @@ function imgCompression($picture, $path, $location)
         $name = date("Y_m_d_H_i_s");
         $type = $picture['type'];
         $size = $picture['size'];
-    
+
         if (($type != 'image/png') && ($type != 'image/jpeg') && ($type != 'image/jpg') && ($type != 'image/webp')) {
             $_SESSION['error'] = 'Le format de l\'image n\'est pas valide !';
             header('Location: ' . $location);
@@ -162,11 +162,11 @@ function imgCompression($picture, $path, $location)
             header('Location:  ' . $location);
             die();
         }
-    
+
         if ($type != 'image/webp') {
             transformToWebp(file_get_contents($picture['tmp_name']), $path . $name . '.webp');
         }
-        
+
         return $name;
     }
 }
@@ -203,7 +203,8 @@ function displayNotification(NotificationType $type, $message)
 </li>';
 }
 
-function distance($address1, $address2) {
+function distance($address1, $address2)
+{
     $addressHash1 = urlencode($address1);
     $addressHash2 = urlencode($address2);
 
@@ -228,11 +229,12 @@ function distance($address1, $address2) {
     }
 }
 
-function research($departure, $arrival, $datehour, $db) {
+function research($departure, $arrival, $datehour, $db)
+{
     $datehour = date('Y-m-d H:i:s', strtotime($datehour));
 
     $query = "SELECT trips.id AS trip_id, vehicles.id AS vehicle_id, trips.*, trips.destination_city as `to`, trips.seats as `seats`, trips.departure_at as `date`, trips.departure_city as `from`, CONCAT('/vehicles/', vehicles.image) as `image`, users.* FROM trips INNER JOIN users ON trips.user_id = users.id INNER JOIN vehicles ON trips.vehicle_id = vehicles.id WHERE 1 ";
-    
+
 
     if (isset($departure) && $departure !== '') {
         $query .= "AND (departure_city LIKE :departure OR departure_address LIKE :departure) ";
@@ -240,9 +242,9 @@ function research($departure, $arrival, $datehour, $db) {
     if (isset($arrival) && $arrival !== '') {
         $query .= "AND (destination_city LIKE :arrival OR destination_address LIKE :arrival) ";
     }
-    /* if (isset($datehour) && $datehour !== '' && !empty($datehour)) {
-        $query .= "AND (departure_at LIKE :date OR arrival_at LIKE :date) ";
-    } */
+    if (isset($datehour) && $datehour !== '' && !empty($datehour)) {
+        $query .= "AND (departure_at > :date) ";
+    }
 
     $stmt = $db->prepare($query);
 
@@ -252,10 +254,10 @@ function research($departure, $arrival, $datehour, $db) {
     if (isset($arrival) && $arrival !== '') {
         $stmt->bindValue(':arrival', '%' . $arrival . '%');
     }
-    /* if (isset($datehour) && $datehour !== '' && !empty($datehour)) {
-        $stmt->bindValue(':date', '%' . $datehour . '%');
+    if (isset($datehour) && $datehour !== '' && !empty($datehour)) {
+        $stmt->bindValue(':date', $datehour);
     }
- */
+
     $stmt->execute();
 
     $trips = $stmt->fetchAll();

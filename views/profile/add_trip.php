@@ -216,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" id="departure_address" name="departure_address" placeholder="Adresse de départ">
         </div>
         <div>
-            <input type="datetime-local" id="departure_date" name="departure_date">
+            <input id="calendar" type="text" id="departure_date" name="departure_date" placeholder="Date et heure du trajet...">
         </div>
         <p>Définir le point d'arrivée</p>
         <div class="form-group">

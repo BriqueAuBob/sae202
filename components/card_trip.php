@@ -45,6 +45,8 @@ if (!function_exists("cardTrip")) {
             while ($trip['from'] === $trip['to']) {
                 $trip['to'] = $zones[rand(0, $countZone - 1)];
             }
+        } else {
+            $trip['date'] = date('d/m à H\hi', strtotime($trip['departure_at']));
         }
         $dark = $dark ? 'dark' : 'dark:dark';
         $htmlElement = $url ? 'a' : 'div';
@@ -55,7 +57,7 @@ if (!function_exists("cardTrip")) {
                 <div class="gradient"></div>
                 <div class="tags top">
                     <span><img src="/assets/images/icons/users.svg" alt="seats icon">{$trip['seats']} places</span>
-                    <span><img src="/assets/images/icons/clock.svg" alt="clock icon">06/06 à 14h00</span>
+                    <span><img src="/assets/images/icons/clock.svg" alt="clock icon">{$trip['date']}</span>
                 </div>
                 <div class="trip">
                     <span>{$trip['from']}</span>

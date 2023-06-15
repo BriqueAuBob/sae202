@@ -12,12 +12,12 @@
             </div>
             <div>
                 <label for="date_hour">Date et heure</label>
-                <input type="text" name="date_hour" id="date_hour" placeholder="Date et heure">
+                <input id="calendar" type="text" name="date_hour" id="date_hour" placeholder="Date et heure">
             </div>
             <button class="btn" type="submit">Rechercher</button>
         </form>
     </div>
-</header> 
+</header>
 <section class="container grid cols-3">
     <div class="col-2">
         <h1>Que faisons nous?</h1>

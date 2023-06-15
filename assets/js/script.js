@@ -130,3 +130,9 @@ fileInput.forEach((input) => {
     }
   });
 });
+
+flatpickr("#calendar", {
+  dateFormat: "Y-m-d H:i",
+  minDate: "today",
+  enableTime: true,
+});
