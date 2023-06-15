@@ -3,8 +3,8 @@
 
     $db = dbConnect();
 
-    if(empty($_POST['departure_city']) || empty($_POST['departure_address']) || empty($_POST['departure_date']) || empty($_POST['destination_city']) || empty($_POST['destination_address'])) {
-        $_SESSION['tripLog'] = 'Veuillez remplir tous les champs !';
+    if(empty($_POST['departure_city']) || empty($_POST['departure_date']) || empty($_POST['destination_city'])) {
+        $_SESSION['tripLog'] = 'Veuillez remplir tous les champs obligatoires !';
         header('Location: trajets.php');
         die();
     }
@@ -28,7 +28,20 @@
     $destination_address = htmlspecialchars($_POST['destination_address']);
 
     $departure_date = $_POST['departure_date'];
-    $arrival_at = date('Y-m-d H:i', strtotime("$departure_date + 1 hour"));
+    
+    if (!empty($departure_address) && !empty($destination_address)) {
+        $tps = timeDistance($departure_address . ", " . $departure_city, $destination_address . ", " . $destination_city);
+        $arrival_at = date('Y-m-d H:i', strtotime("$dep_at + $tps"));
+    } elseif (!empty($departure_address) && empty($destination_address)) {
+        $tps = timeDistance($departure_address . ", " . $departure_city, $destination_city);
+        $arrival_at = date('Y-m-d H:i', strtotime("$dep_at + $tps"));
+    } elseif (empty($departure_address) && !empty($destination_address)) {
+        $tps = timeDistance($departure_address, $destination_address . ", " . $destination_city);
+        $arrival_at = date('Y-m-d H:i', strtotime("$dep_at + $tps"));
+    } else {
+        $tps = timeDistance($departure_city, $destination_city);
+        $arrival_at = date('Y-m-d H:i', strtotime("$dep_at + $tps"));
+    }
 
     $seats = (int)$_POST['seats'];
 

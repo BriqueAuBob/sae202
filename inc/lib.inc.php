@@ -218,7 +218,7 @@ function distance($address1, $address2)
     $query = curl_exec($curl);
     if (curl_errno($curl)) {
         curl_close($curl);
-        return false;
+        return 0;
     }
     curl_close($curl);
 
@@ -228,7 +228,32 @@ function distance($address1, $address2)
         $km = $distance / 1000;
         return round($km, 1);
     } else {
-        return false;
+        return 0;
+    }
+}
+
+function timeDistance($address1, $address2)
+{
+    $addressHash1 = urlencode($address1);
+    $addressHash2 = urlencode($address2);
+
+    $url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' . $addressHash1 . '&destination=' . $addressHash2 . '&key=' . KEY . '&mode=driving';
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($curl);
+    if (curl_errno($curl)) {
+        curl_close($curl);
+        return 0;
+    }
+    curl_close($curl);
+
+    $data = json_decode($response, true);
+    if ($data['status'] == 'OK') {
+        $duration = $data['routes'][0]['legs'][0]['duration']['text'];
+        return $duration;
+    } else {
+        return 0;
     }
 }
 
