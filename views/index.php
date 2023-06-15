@@ -17,7 +17,7 @@
             <button class="btn" type="submit">Rechercher</button>
         </form>
     </div>
-</header>
+</header> 
 <section class="container grid cols-3">
     <div class="col-2">
         <h1>Que faisons nous?</h1>
@@ -32,21 +32,21 @@
         <div class="grid cols-3 mt-md">
             <div class="card big">
                 <div class="title">
-                    <img src="./assets/images/icons/load_icon.svg" alt="load">
+                    <img src="./assets/images/icons/calendar.svg" alt="load">
                     <h2>Réservation de trajets</h2>
                 </div>
                 <p>Il est possible de réserver son trajet pour se déplacer où vous le voulez et en toute simplicité.</p>
             </div>
             <div class="card big">
                 <div class="title">
-                    <img src="./assets/images/icons/load_icon.svg" alt="load">
+                    <img src="./assets/images/icons/point.svg" alt="load">
                     <h2>Sélection de l'emplacement</h2>
                 </div>
                 <p>Vous pouvez indiquer l'emplacement de votre place pour faciliter le lieu de rendez-vous.</p>
             </div>
             <div class="card big">
                 <div class="title">
-                    <img src="./assets/images/icons/load_icon.svg" alt="load">
+                    <img src="./assets/images/icons/message.svg" alt="load">
                     <h2>Une organisation parfaite</h2>
                 </div>
                 <p>Avec notre système de messagerie instantanée vous pouvez discuter avec le covoitureur pour tout planifier avant de partir.</p>
