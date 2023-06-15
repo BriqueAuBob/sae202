@@ -89,7 +89,7 @@ CREATE TABLE `parkings` (
   `spaces` smallint(3) DEFAULT NULL,
   `picture` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,6 +98,7 @@ CREATE TABLE `parkings` (
 
 LOCK TABLES `parkings` WRITE;
 /*!40000 ALTER TABLE `parkings` DISABLE KEYS */;
+INSERT INTO `parkings` VALUES (4,'Parking IUT 1','9 Rue Quebec, Rosières-prés-Troyes','https://www.google.com/maps/@48.2684303,4.079687,261m/data=!3m1!1e3?entry=ttu',100,'2023_06_15_14_06_45.webp');
 /*!40000 ALTER TABLE `parkings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +125,7 @@ CREATE TABLE `reservations` (
 
 LOCK TABLES `reservations` WRITE;
 /*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
-INSERT INTO `reservations` VALUES (8,28);
+INSERT INTO `reservations` VALUES (7,28);
 /*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +137,7 @@ DROP TABLE IF EXISTS `testimonials`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `testimonials` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `stars` smallint(6) DEFAULT NULL,
   `content` varchar(70) DEFAULT NULL,
   `type` smallint(6) DEFAULT NULL,
@@ -148,7 +149,7 @@ CREATE TABLE `testimonials` (
   KEY `testimonials_ibfk_1` (`user_id`),
   CONSTRAINT `testimonials_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `testimonials_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,6 +158,7 @@ CREATE TABLE `testimonials` (
 
 LOCK TABLES `testimonials` WRITE;
 /*!40000 ALTER TABLE `testimonials` DISABLE KEYS */;
+INSERT INTO `testimonials` VALUES (2,1,'g',2,8,7,'2023-06-15 15:59:59');
 /*!40000 ALTER TABLE `testimonials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +185,7 @@ CREATE TABLE `trips` (
   PRIMARY KEY (`id`),
   KEY `trips_ibfk_1` (`user_id`),
   CONSTRAINT `trips_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,7 +194,7 @@ CREATE TABLE `trips` (
 
 LOCK TABLES `trips` WRITE;
 /*!40000 ALTER TABLE `trips` DISABLE KEYS */;
-INSERT INTO `trips` VALUES (28,'Saint-doulchard','41 rue des Bondoires','2023-06-27 09:46:00','Troyes','124 Avenue Pierre Brossolette',253,'2023-06-27 10:46:00',3,7,29,'2023-06-15 07:46:24');
+INSERT INTO `trips` VALUES (28,'Saint-doulchard','41 rue des Bondoires','2023-06-27 09:46:00','Troyes','124 Avenue Pierre Brossolette',253,'2023-06-27 10:46:00',3,7,29,'2023-06-15 07:46:24'),(29,'Troyes','124 Avenue Pierre Brossolette','2023-06-22 21:33:00','Morthomiers','11 Rue Des Varennes',268,'2023-06-23 00:40:00',2,7,29,'2023-06-15 19:49:21');
 /*!40000 ALTER TABLE `trips` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,7 +212,6 @@ CREATE TABLE `users` (
   `picture` varchar(150) DEFAULT 'default.png',
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
@@ -222,7 +223,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (7,'Lamaty','Cassandre','default.png','lamatycassandre@gmail.com','$2y$10$dd7i7g7ucgbVRlFAQE5/zONV6hrihydMUS36mg0ASh6L5T/XW2MRa',0,'2023-06-14 20:51:14'),(8,'Marandat','Julien','default.png','julien@gmail.com','$2y$10$QkFIO.XkRcG/pfAqX4iHIus4VpNVg3O8LkUQ1PBc54R6IBQN8C.T6',0,'2023-06-15 07:46:49');
+INSERT INTO `users` VALUES (7,'Lamaty','Cassandre','default.png','lamatycassandre@gmail.com','$2y$10$dd7i7g7ucgbVRlFAQE5/zONV6hrihydMUS36mg0ASh6L5T/XW2MRa','2023-06-14 20:51:14'),(8,'Marandat','Julien','default.png','julien@gmail.com','$2y$10$QkFIO.XkRcG/pfAqX4iHIus4VpNVg3O8LkUQ1PBc54R6IBQN8C.T6','2023-06-15 07:46:49');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,4 +267,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-15  8:51:20
+-- Dump completed on 2023-06-15 20:53:17
