@@ -9,20 +9,20 @@ $acc = 0;
     <h1 class="mb-md center">Mes réservations</h1>
     <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
     <?= isset($_SESSION['tripLog']) ? '<p class="message error">' . $_SESSION['tripLog'] . '</p>' : '' ?>
-    
+
     <?php foreach ($reservations as $reservation) : ?>
         <?php $acc += 1; ?>
         <div class="card big">
             <h3><?= $reservation['departure_city'] . ", " . $reservation['departure_address'] ?> -> <?= $reservation['destination_city'] . ", " . $reservation['destination_address'] ?> (<?= $reservation['distance'] ?> km)</h3>
-            <?php 
-                if(implode(" ", array_slice(explode(" ", $reservation['departure_address']), 0, 2)) == "Parking IUT") {
-                    echo '<a href="../parkings.php">Trouver le parking</a>';
-                } 
+            <?php
+            if (implode(" ", array_slice(explode(" ", $reservation['departure_address']), 0, 2)) == "Parking IUT") {
+                echo '<a href="../parkings.php">Trouver le parking</a>';
+            }
             ?>
             <p>Départ le <?= $reservation['departure_at'] ?></p>
             <h4>Mon conducteur</h4>
             <p><?= $reservation['first_name'] . " " . $reservation['last_name'] ?></p>
-            <h4>Son bolide</h4>
+            <h4>Son véhicule</h4>
             <p><?= $reservation['brand'] . " - " . $reservation['model'] ?></p>
             <p>Couleur : <?= $reservation['color'] ?></p>
             <p>Nombre de places total : <?= (int)$reservation['places'] + $acc ?></p>
@@ -33,7 +33,7 @@ $acc = 0;
 </section>
 
 <?php
-    dbDisconnect($db);
-    unset($_SESSION['message']);
-    unset($_SESSION['error']);
+dbDisconnect($db);
+unset($_SESSION['message']);
+unset($_SESSION['error']);
 ?>

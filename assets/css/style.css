@@ -296,10 +296,6 @@ header.small {
   display: none;
 }
 
-.hidden {
-  display: none;
-}
-
 nav.hidden {
   display: flex;
 }
@@ -1179,6 +1175,15 @@ body.dark #profile_navigation a img {
 
 .flex > * {
   margin-top: 0 !important;
+}
+
+.emoji {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.hidden {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
