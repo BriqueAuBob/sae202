@@ -221,6 +221,11 @@ button img {
   font-size: 16px;
 }
 
+.btn.full {
+  width: 100%;
+  text-align: center;
+}
+
 .btn:hover {
   background: rgb(240, 240, 240);
   border: 2px solid lightgray;
@@ -411,6 +416,13 @@ label {
 header h1 {
   margin: 0 auto;
   font-size: 48px;
+  margin-bottom: 24px;
+  color: white;
+}
+
+header h2 {
+  margin: 0 auto;
+  font-size: 32px;
   margin-bottom: 24px;
   color: white;
 }

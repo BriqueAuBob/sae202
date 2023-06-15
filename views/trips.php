@@ -28,7 +28,7 @@
 
             include('./components/card_trip.php');
             foreach ($trips as $trip) {
-                cardTrip($trip, dark: true, url: '/trajet.php?id=' . $trip['id']);
+                cardTrip($trip, dark: true, url: '/trajet.php?id=' . $trip['trip_id']);
             }
             ?>
         </div>
