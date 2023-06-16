@@ -174,7 +174,7 @@ CREATE TABLE `trips` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `departure_city` varchar(50) DEFAULT NULL,
   `departure_address` varchar(100) DEFAULT NULL,
-  `departure_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `departure_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `destination_city` varchar(50) DEFAULT NULL,
   `destination_address` varchar(100) DEFAULT NULL,
   `distance` smallint(5) NOT NULL DEFAULT 0,
