@@ -31,65 +31,55 @@ if (!$trip) {
             <h3>Informations</h3>
             <ul class="no-style">
                 <li><strong>Départ:</strong>
-                    <?= $trip['departure_city'] ?>,
-                    <?= $trip['departure_address'] ?>
+                    <?= htmlspecialchars($trip['departure_city']) ?>,
+                    <?= htmlspecialchars($trip['departure_address']) ?>
                 </li>
                 <li><strong>Destination:</strong>
-                    <?= $trip['destination_city'] ?>,
-                    <?= $trip['destination_address'] ?>
+                    <?= htmlspecialchars($trip['destination_city']) ?>,
+                    <?= htmlspecialchars($trip['destination_address']) ?>
                 </li>
                 <li><strong>Date et heure:</strong>
-                    <?= $trip['departure_at'] ?>
+                    <?= htmlspecialchars($trip['departure_at']) ?>
                 </li>
                 <li><strong>Nombre de places:</strong>
-                    <?= $trip['seats'] ?>
+                    <?= htmlspecialchars($trip['seats']) ?>
                 </li>
             </ul>
         </div>
         <div class="mt-md">
             <h3>Avis de ce conducteur</h3>
-            <div class="card big mt-sm">
-                <div class="flex space-between">
-                    <div class="flex bold">
-                        <img class="avatar" src="/assets/images/avatars/<?= $trip['picture'] ?>" />
-                        Melvil Pasdeloup
+            <?php
+            $testimonials = $db->prepare('SELECT *, testimonials.id as testimonial_id FROM testimonials
+            INNER JOIN users ON testimonials.author_id = users.id
+            WHERE user_id = ?');
+            $testimonials->execute([
+                $trip['user_id']
+            ]);
+            $testimonials = $testimonials->fetchAll();
+            if (count($testimonials) == 0) {
+                echo '<p>Ce conducteur n\'a pas encore reçu d\'avis.</p>';
+            } else {
+                foreach ($testimonials as $testimonial) {
+            ?>
+                    <div class="card big mt-sm">
+                        <div class="flex space-between">
+                            <div class="flex bold">
+                                <img class="avatar" src="/assets/images/avatars/<?= $testimonial['picture'] ?>" />
+                                <?= htmlspecialchars($testimonial['first_name']) . ' ' . htmlspecialchars($testimonial['last_name']) ?>
+                            </div>
+                            <div>
+                                <?= str_repeat('<img class="icons" src="/assets/images/icons/star_fill.svg" />', $testimonial['stars']) ?>
+                                <?= str_repeat('<img class="icons" src="/assets/images/icons/star.svg" />', 5 - $testimonial['stars']) ?>
+                            </div>
+                        </div>
+                        <p>
+                            <?= htmlspecialchars($testimonial['content']) ?>
+                        </p>
                     </div>
-                    <div>
-                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
-                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
-                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
-                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
-                        <img class="icons" src="/assets/images/icons/star.svg" />
-                    </div>
-                </div>
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat magnam temporibus,
-                    necessitatibus neque ullam itaque animi dolores vitae modi corrupti dignissimos est
-                    reiciendis?
-                    Odio, quibusdam expedita ratione fugit exercitationem facilis.
-                </p>
-            </div>
-            <div class="card big mt-sm">
-                <div class="flex space-between">
-                    <div class="flex bold">
-                        <img class="avatar" src="/assets/images/avatars/<?= $trip['picture'] ?>" />
-                        Melvil Pasdeloup
-                    </div>
-                    <div>
-                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
-                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
-                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
-                        <img class="icons" src="/assets/images/icons/star_fill.svg" />
-                        <img class="icons" src="/assets/images/icons/star.svg" />
-                    </div>
-                </div>
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat magnam temporibus,
-                    necessitatibus neque ullam itaque animi dolores vitae modi corrupti dignissimos est
-                    reiciendis?
-                    Odio, quibusdam expedita ratione fugit exercitationem facilis.
-                </p>
-            </div>
+            <?php
+                }
+            }
+            ?>
         </div>
     </div>
 
@@ -98,13 +88,13 @@ if (!$trip) {
         <div class="flex">
             <img class="avatar" src="/assets/images/avatars/<?= $trip['picture'] ?>" alt="Photo de profil de <?= $trip['first_name'] . ' ' . $trip['last_name'] ?>">
             <span>
-                <?= $trip['first_name'] . ' ' . $trip['last_name'] ?>
+                <?= htmlspecialchars($trip['first_name']) . ' ' . htmlspecialchars($trip['last_name']) ?>
             </span>
         </div>
         <h3 class="mt-sm">Véhicule</h3>
-        <img src="/assets/images/vehicles/<?= $trip['image'] ?>" alt="<?= $trip['brand'] . ' ' . $trip['model'] ?>">
+        <img src="/assets/images/vehicles/<?= $trip['image'] ?>" alt="<?= htmlspecialchars($trip['brand']) . ' ' . htmlspecialchars($trip['model']) ?>">
         <span>
-            <?= $trip['brand'] . ' ' . $trip['model'] . ' - ' . $trip['color'] ?>
+            <?= htmlspecialchars($trip['brand']) . ' ' . htmlspecialchars($trip['model']) . ' - ' . htmlspecialchars($trip['color']) ?>
         </span>
         <a href="/reservation.php?trip_id=<?= $trip['trip_id'] ?>" class="btn green full mt-md">Réserver le trajet</a>
     </aside>
