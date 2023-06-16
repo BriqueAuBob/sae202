@@ -55,6 +55,9 @@ if (!function_exists("cardTrip")) {
         $dark = $dark ? 'dark' : 'dark:dark';
         $htmlElement = $url ? 'a' : 'div';
         $href = $url ? "href=\"$url\"" : '';
+        foreach ($trip as $key => $value) {
+            $trip[$key] = htmlspecialchars($value);
+        }
         echo <<<HTML
             <$htmlElement $href class="card hover $dark">
                 <img class="full" src="/assets/images/{$trip['image']}" alt="car">
