@@ -6,11 +6,10 @@ $trips = $query->fetchAll();
 <section class="container flex-center">
     <h1 class="mb-md center">Mes trajets en cours</h1>
 
-    <?= isset($_SESSION['message']) ? '<p>' . $_SESSION['message'] . '</p>' : '' ?>
-    <?= isset($_SESSION['tripLog']) ? '<p class="message error">' . $_SESSION['tripLog'] . '</p>' : '' ?>
+    <?= isset($_SESSION['message']) ? '<p class="center">' . $_SESSION['message'] . '</p>' : '' ?>
+    <?= isset($_SESSION['tripLog']) ? '<p class="message error centre">' . $_SESSION['tripLog'] . '</p>' : '' ?>
 
     <?php
-
     if ($query->rowCount() == 0) {
         echo '<p class="center">Vous n\'avez aucun trajet prévu pour le moment.</p>';
     } else {

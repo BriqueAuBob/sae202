@@ -77,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <section class="container">
     <h1 class="mb-md center">Création d'un nouveau trajet</h1>
     <form id="trip_form" action="/profil/creer_trajet.php" method="post">
+        <section class="form container">
         <p>Définir le point de rendez-vous</p>
         <div>
             <label for="departure_city">Ville de départ</label>
@@ -235,6 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <button type="submit" class="btn green">Valider le trajet</button>
+        </section>
     </form>
 </section>
 

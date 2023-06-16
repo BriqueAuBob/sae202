@@ -121,11 +121,11 @@
                         <p>Départ le 24/06/2023</p>
                         <h4>Mon conducteur</h4>
                         <div class="flex">
-                            <img class="avatar" src="/assets/images/avatars/default.png" alt="Avatar default" />
+                            <img class="avatar" src="/assets/images/avatars/default.webp" alt="Avatar default" />
                             <h3>John Doe<h3>
                         </div>
                         <h4>Son véhicule</h4>
-                        <img src="/assets/images/206.jpeg" alt="Peugeot 208">
+                        <img src="/assets/images/206.webp" alt="Peugeot 208">
                         <p>Peugeot 208</p>
                     </div>
                 </div>

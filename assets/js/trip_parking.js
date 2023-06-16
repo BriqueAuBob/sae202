@@ -43,6 +43,6 @@ areas.forEach((area) => {
   area.addEventListener("click", () => {
     let id = area.getAttribute("id").match(/p(\d+)z(\d+)/);
 
-    departure_address.value = "Parking IUT" + id[1] + " Zone " + id[2];
+    departure_address.value = "Parking IUT " + id[1] + " Zone " + id[2];
   });
 });

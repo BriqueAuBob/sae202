@@ -24,15 +24,15 @@ if (!function_exists("cardTrip")) {
                 'Bowl de Troyes',
             ];
             $images = [
-                '206.jpeg',
-                'clio3.jpg',
-                'polo.jpg',
-                'twingo.jpg',
-                'twingo1.jpg',
-                'clio2.jpg',
-                'ford_ka.jpeg',
-                'c3.jpg',
-                '208.jpg'
+                '206.webp',
+                'clio3.webp',
+                'polo.webp',
+                'twingo.webp',
+                'twingo1.webp',
+                'clio2.webp',
+                'ford_ka.webp',
+                'c3.webp',
+                '208.webp'
             ];
             $countZone = count($zones);
             $trip = [

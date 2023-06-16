@@ -273,7 +273,7 @@ header.small {
 }
 
 #head__home {
-  background-image: url("../images/backgrounds/header_home.png");
+  background-image: url("../images/backgrounds/header_home.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -500,7 +500,7 @@ section.grid {
   justify-content: center;
   padding: 96px;
   background: var(--color-primary-500);
-  background-image: url("../images/backgrounds/auth.png");
+  background-image: url("../images/backgrounds/auth.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
