@@ -25,9 +25,11 @@ $recupUser = $db->prepare('
     SELECT 
         *, 
         messages.created_at as creation_date,
-        users.id as user_id
+        users.id as user_id,
+        target.id as target_id
     FROM messages 
     INNER JOIN users ON messages.author_id = users.id
+    INNER JOIN users as target ON messages.target_id = users.id
     WHERE author_id = ? OR target_id = ?
     ORDER BY creation_date DESC
 ');
@@ -39,7 +41,8 @@ $recupUser->execute([
 $conversations = $recupUser->fetchAll();
 if (!isset($_GET['id'])) {
     if (isset($conversations[0])) {
-        header('Location: /profil/messages.php?id=' . $conversations[0]['user_id']);
+        header('Location: /profil/messages.php?id=' . ($conversations[0]['user_id'] === $_SESSION['user']['id'] ? $conversations[0]['target_id'] : $conversations[0]['user_id']));
+        die();
     }
 } else {
     $conversationId = $_GET['id'];

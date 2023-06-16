@@ -39,12 +39,6 @@ if ($trip['user_id'] == $user_id) {
     die();
 }
 
-$query = $db->prepare('INSERT INTO reservations (user_id, trip_id) VALUES (:user_id, :trip_id)');
-$query->execute([
-    'user_id' => $user_id,
-    'trip_id' => $trip_id
-]);
-
 $query = $db->prepare('SELECT COUNT(*) AS reservations FROM reservations WHERE trip_id = :trip_id AND user_id = :user_id');
 $query->execute([
     'trip_id' => $trip_id,
@@ -59,6 +53,12 @@ if ($reservations > 0) {
     die();
 }
 
+$query = $db->prepare('INSERT INTO reservations (user_id, trip_id) VALUES (:user_id, :trip_id)');
+$query->execute([
+    'user_id' => $user_id,
+    'trip_id' => $trip_id
+]);
+
 $query = $db->prepare('UPDATE trips SET seats = seats - 1 WHERE id = :trip_id');
 $query->execute([
     'trip_id' => $trip_id
@@ -72,6 +72,13 @@ $query->execute([
     'user_id' => $reservation['driver'],
     'content' => 'Vous avez une nouvelle réservation de ' . $reservation['first_name'] . ' sur votre trajet du ' . $reservation['departure_city'] . ' -> ' . $reservation['destination_city'] . ' !',
     'type' => NotificationType::SUCCESS->value
+]);
+
+$query = $db->prepare('INSERT INTO messages (author_id, content, target_id) VALUES ( :author_id, :content, :target_id)');
+$query->execute([
+    'target_id' => $reservation['user_id'],
+    'author_id' => $_SESSION['user']['id'],
+    'content' => 'Vous avez une nouvelle réservation de ' . $reservation['first_name'] . ' sur votre trajet du ' . $reservation['departure_city'] . ' -> ' . $reservation['destination_city'] . ' !',
 ]);
 
 dbDisconnect($db);

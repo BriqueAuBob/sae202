@@ -30,7 +30,7 @@ $acc = 0;
                 <p><?= $reservation['brand'] . " - " . $reservation['model'] ?></p>
                 <p>Couleur : <?= $reservation['color'] ?></p>
                 <p>Nombre de places total : <?= (int)$reservation['places'] + $acc ?></p>
-                <img src="../assets/images/vehicles/<?= $reservation['image'] ?>" alt="<?= $reservation['brand'] . " - " . $reservation['model'] ?>">
+                <img class="small" src="../assets/images/vehicles/<?= $reservation['image'] ?>" alt="<?= $reservation['brand'] . " - " . $reservation['model'] ?>">
                 <a class="btn red" href="../annuler_reservation.php?trip_id=<?= $reservation['trip_id'] ?>">Annuler la réservation</a>
             </div>
     <?php endforeach;
