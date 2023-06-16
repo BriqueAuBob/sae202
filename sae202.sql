@@ -1,8 +1,8 @@
--- MySQL dump 10.19  Distrib 10.3.36-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.19  Distrib 10.3.29-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: sae202
 -- ------------------------------------------------------
--- Server version	10.3.36-MariaDB-0+deb10u2
+-- Server version	10.3.29-MariaDB-0+deb10u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -56,7 +56,7 @@ CREATE TABLE `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(125) DEFAULT NULL,
   `type` tinyint(1) NOT NULL DEFAULT 2,
-  `readed` BOOLEAN NOT NULL DEFAULT 0,
+  `readed` tinyint(1) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
@@ -68,6 +68,11 @@ CREATE TABLE `notifications` (
 --
 -- Dumping data for table `notifications`
 --
+
+LOCK TABLES `notifications` WRITE;
+/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `parkings`
@@ -84,7 +89,7 @@ CREATE TABLE `parkings` (
   `spaces` smallint(3) DEFAULT NULL,
   `picture` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +98,7 @@ CREATE TABLE `parkings` (
 
 LOCK TABLES `parkings` WRITE;
 /*!40000 ALTER TABLE `parkings` DISABLE KEYS */;
-INSERT INTO `parkings` VALUES (4,'Parking IUT 1','9 Rue Quebec, Rosières-prés-Troyes','https://www.google.com/maps/@48.2684303,4.079687,261m/data=!3m1!1e3?entry=ttu',100,'2023_06_15_14_06_45.webp');
+INSERT INTO `parkings` VALUES (5,'Parking IUT 1','9 Rue Quebec, Rosières-prés-Troyes','https://www.google.com/maps/@48.2684303,4.079687,261m/data=!3m1!1e3?entry=ttu',150,'2023_06_16_11_44_06.webp'),(6,'Parking IUT 2','Rue Gustave Effeil','https://www.google.fr/maps/place/Rosi%C3%A8res-pr%C3%A9s-Troyes/@48.2657695,4.0816344,108m/data=!3m1!1e3!4m6!3m5!1s0x47ee999b8047bebf:0xe2bf29edfb030f2c!8m2!3d48.262698!4d4.062959!16s%2Fm%2F03m8vd_?entry=ttu',120,'2023_06_16_11_52_51.webp');
 /*!40000 ALTER TABLE `parkings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,6 +122,12 @@ CREATE TABLE `reservations` (
 --
 -- Dumping data for table `reservations`
 --
+
+LOCK TABLES `reservations` WRITE;
+/*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `testimonials`
 --
@@ -139,6 +150,15 @@ CREATE TABLE `testimonials` (
   CONSTRAINT `testimonials_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+LOCK TABLES `testimonials` WRITE;
+/*!40000 ALTER TABLE `testimonials` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testimonials` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `trips`
@@ -167,6 +187,15 @@ CREATE TABLE `trips` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `trips`
+--
+
+LOCK TABLES `trips` WRITE;
+/*!40000 ALTER TABLE `trips` DISABLE KEYS */;
+/*!40000 ALTER TABLE `trips` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -191,7 +220,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (7,'Lamaty','Cassandre','default.webp','lamatycassandre@gmail.com','$2y$10$dd7i7g7ucgbVRlFAQE5/zONV6hrihydMUS36mg0ASh6L5T/XW2MRa','2023-06-14 20:51:14'),(8,'Marandat','Julien','default.webp','julien@gmail.com','$2y$10$QkFIO.XkRcG/pfAqX4iHIus4VpNVg3O8LkUQ1PBc54R6IBQN8C.T6','2023-06-15 07:46:49');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,6 +247,11 @@ CREATE TABLE `vehicles` (
 --
 -- Dumping data for table `vehicles`
 --
+
+LOCK TABLES `vehicles` WRITE;
+/*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -229,4 +262,4 @@ CREATE TABLE `vehicles` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-15 20:53:17
+-- Dump completed on 2023-06-16 11:53:22
