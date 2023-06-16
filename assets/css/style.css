@@ -478,7 +478,7 @@ section {
 
 section.green {
   background: var(--color-primary-500);
-  color: white;
+  color: black;
 }
 
 section.black {
