@@ -69,12 +69,6 @@ CREATE TABLE `notifications` (
 -- Dumping data for table `notifications`
 --
 
-LOCK TABLES `notifications` WRITE;
-/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
-INSERT INTO `notifications` VALUES (28,'Vous avez publié un nouveau trajet !',0,0,7,'2023-06-14 21:11:25'),(29,'Le trajet Troyes -> Morthomiers a été annulé par son conducteur.',1,0,7,'2023-06-15 07:41:45'),(30,'Le trajet Troyes -> Morthomiers a été annulé par son conducteur.',1,0,7,'2023-06-15 07:41:45'),(31,'Vous avez annulé le trajet Troyes -> Morthomiers.',1,0,7,'2023-06-15 07:41:45'),(32,'Vous avez publié un nouveau trajet !',0,0,7,'2023-06-15 07:42:12'),(33,'Le trajet Saint-doulchard -> Troyes a été annulé par son conducteur.',1,0,7,'2023-06-15 07:46:06'),(34,'Vous avez annulé le trajet Saint-doulchard -> Troyes.',1,0,7,'2023-06-15 07:46:06'),(35,'Vous avez publié un nouveau trajet !',0,0,7,'2023-06-15 07:46:24');
-/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
-UNLOCK TABLES;
-
 --
 -- Table structure for table `parkings`
 --
@@ -123,13 +117,6 @@ CREATE TABLE `reservations` (
 --
 -- Dumping data for table `reservations`
 --
-
-LOCK TABLES `reservations` WRITE;
-/*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
-INSERT INTO `reservations` VALUES (7,28);
-/*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
-UNLOCK TABLES;
-
 --
 -- Table structure for table `testimonials`
 --
@@ -152,16 +139,6 @@ CREATE TABLE `testimonials` (
   CONSTRAINT `testimonials_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `testimonials`
---
-
-LOCK TABLES `testimonials` WRITE;
-/*!40000 ALTER TABLE `testimonials` DISABLE KEYS */;
-INSERT INTO `testimonials` VALUES (2,1,'g',2,8,7,'2023-06-15 15:59:59');
-/*!40000 ALTER TABLE `testimonials` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `trips`
@@ -188,16 +165,6 @@ CREATE TABLE `trips` (
   CONSTRAINT `trips_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `trips`
---
-
-LOCK TABLES `trips` WRITE;
-/*!40000 ALTER TABLE `trips` DISABLE KEYS */;
-INSERT INTO `trips` VALUES (28,'Saint-doulchard','41 rue des Bondoires','2023-06-27 09:46:00','Troyes','124 Avenue Pierre Brossolette',253,'2023-06-27 10:46:00',3,7,29,'2023-06-15 07:46:24'),(29,'Troyes','124 Avenue Pierre Brossolette','2023-06-22 21:33:00','Morthomiers','11 Rue Des Varennes',268,'2023-06-23 00:40:00',2,7,29,'2023-06-15 19:49:21');
-/*!40000 ALTER TABLE `trips` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -252,12 +219,6 @@ CREATE TABLE `vehicles` (
 --
 -- Dumping data for table `vehicles`
 --
-
-LOCK TABLES `vehicles` WRITE;
-/*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
-INSERT INTO `vehicles` VALUES (29,'maman','papa',4,'kaki','default.webp',7);
-/*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
