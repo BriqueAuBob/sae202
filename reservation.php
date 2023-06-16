@@ -78,7 +78,7 @@ $query = $db->prepare('INSERT INTO messages (author_id, content, target_id) VALU
 $query->execute([
     'target_id' => $reservation['user_id'],
     'author_id' => $_SESSION['user']['id'],
-    'content' => 'Vous avez une nouvelle réservation de ' . $reservation['first_name'] . ' sur votre trajet du ' . $reservation['departure_city'] . ' -> ' . $reservation['destination_city'] . ' !',
+    'content' => 'Salut, j\'aimerais réserver le trajet du ' . $reservation['departure_city'] . ' -> ' . $reservation['destination_city'] . ' !',
 ]);
 
 dbDisconnect($db);

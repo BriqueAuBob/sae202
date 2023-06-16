@@ -26,10 +26,12 @@ $recupUser = $db->prepare('
         *, 
         messages.created_at as creation_date,
         users.id as user_id,
-        target.id as target_id
+        target.first_name as target_first_name,
+        target.last_name as target_last_name,
+        target.picture as target_picture
     FROM messages 
+    INNER JOIN users as target ON messages.target_id = target.id
     INNER JOIN users ON messages.author_id = users.id
-    INNER JOIN users as target ON messages.target_id = users.id
     WHERE author_id = ? OR target_id = ?
     ORDER BY creation_date DESC
 ');
@@ -100,8 +102,11 @@ if (!isset($_GET['id'])) {
                 echo '<li>Vous n\'avez aucune conversation pour le moment. Réservez un trajet pour ouvrir une discussion.</li>';
             } else {
                 foreach ($conversations as $conversation) {
-                    if ($conversation['user_id'] === $_SESSION['user']['id']) continue;
-                    echo '<li><a ' . ($conversation['user_id'] == $conversationId ? 'class="active"' : '') . ' href="/profil/messages.php?id=' . $conversation['user_id'] . '"><img class="avatar" src="/assets/images/avatars/' . $conversation['picture'] . '" />' . $conversation['first_name'] . ' ' . $conversation['last_name'] . '</a></li>';
+                    if ($conversation['user_id'] !== $_SESSION['user']['id']) {
+                        echo '<li><a ' . ($conversation['user_id'] == $conversationId ? 'class="active"' : '') . ' href="/profil/messages.php?id=' . $conversation['user_id'] . '"><img class="avatar" src="/assets/images/avatars/' . $conversation['picture'] . '" />' . $conversation['first_name'] . ' ' . $conversation['last_name'] . '</a></li>';
+                    } else {
+                        echo '<li><a ' . ($conversation['user_id'] == $conversationId ? 'class="active"' : '') . ' href="/profil/messages.php?id=' . $conversation['user_id'] . '"><img class="avatar" src="/assets/images/avatars/' . $conversation['target_picture'] . '" />' . $conversation['target_first_name'] . ' ' . $conversation['target_last_name'] . '</a></li>';
+                    }
                 }
             }
             ?>
