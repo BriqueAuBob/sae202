@@ -44,5 +44,6 @@ areas.forEach((area) => {
     let id = area.getAttribute("id").match(/p(\d+)z(\d+)/);
 
     departure_address.value = "Parking IUT " + id[1] + " Zone " + id[2];
+    area.style.fill = "#ff0000";
   });
 });
