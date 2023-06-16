@@ -183,7 +183,7 @@ enum NotificationType: int
     case INFO = 2;
 }
 
-function displayNotification(NotificationType $type, $message, $date = null)
+function displayNotification(NotificationType $type, $message, $date = null, $notifId = null, $readed = null)
 {
     $icon = match ($type) {
         NotificationType::SUCCESS => 'check',
@@ -195,8 +195,9 @@ function displayNotification(NotificationType $type, $message, $date = null)
         NotificationType::ERROR => 'error',
         NotificationType::INFO => 'info',
     };
-    echo '<li class="notification ' . $color . '">
-    <a href="#" class="flex">
+    $readed =  $readed ? 'readed' : '';
+    echo '<li class="notification ' . $color . ' ' . $readed . '">
+    <a href="#" class="flex" data-notification-id="' . $notifId . '">
         <img src="/assets/images/icons/' . $icon . '.svg" alt="Check icon">
         <div>
             <p>' . $message . '</p>

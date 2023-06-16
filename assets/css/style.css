@@ -1012,6 +1012,10 @@ body.dark .popover-wrapper .popover::before {
   border: 2px solid transparent;
 }
 
+.notification.readed {
+  opacity: 0.2;
+}
+
 .notification:hover {
   box-shadow: 0 0 32px rgba(0, 0, 0, 0.05);
   border: 2px solid rgba(0, 0, 0, 0.1);

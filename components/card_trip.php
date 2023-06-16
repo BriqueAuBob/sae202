@@ -47,6 +47,10 @@ if (!function_exists("cardTrip")) {
             }
         } else {
             $trip['date'] = date('d/m à H\hi', strtotime($trip['departure_at']));
+            if ($trip['from'] === $trip['to']) {
+                $trip['from'] = $trip['departure_address'];
+                $trip['to'] = $trip['arrival_address'];
+            }
         }
         $dark = $dark ? 'dark' : 'dark:dark';
         $htmlElement = $url ? 'a' : 'div';

@@ -56,6 +56,7 @@ CREATE TABLE `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(125) DEFAULT NULL,
   `type` tinyint(1) NOT NULL DEFAULT 2,
+  `readed` BOOLEAN NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
@@ -70,7 +71,7 @@ CREATE TABLE `notifications` (
 
 LOCK TABLES `notifications` WRITE;
 /*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
-INSERT INTO `notifications` VALUES (28,'Vous avez publié un nouveau trajet !',0,7,'2023-06-14 21:11:25'),(29,'Le trajet Troyes -> Morthomiers a été annulé par son conducteur.',1,7,'2023-06-15 07:41:45'),(30,'Le trajet Troyes -> Morthomiers a été annulé par son conducteur.',1,7,'2023-06-15 07:41:45'),(31,'Vous avez annulé le trajet Troyes -> Morthomiers.',1,7,'2023-06-15 07:41:45'),(32,'Vous avez publié un nouveau trajet !',0,7,'2023-06-15 07:42:12'),(33,'Le trajet Saint-doulchard -> Troyes a été annulé par son conducteur.',1,7,'2023-06-15 07:46:06'),(34,'Vous avez annulé le trajet Saint-doulchard -> Troyes.',1,7,'2023-06-15 07:46:06'),(35,'Vous avez publié un nouveau trajet !',0,7,'2023-06-15 07:46:24');
+INSERT INTO `notifications` VALUES (28,'Vous avez publié un nouveau trajet !',0,0,7,'2023-06-14 21:11:25'),(29,'Le trajet Troyes -> Morthomiers a été annulé par son conducteur.',1,0,7,'2023-06-15 07:41:45'),(30,'Le trajet Troyes -> Morthomiers a été annulé par son conducteur.',1,0,7,'2023-06-15 07:41:45'),(31,'Vous avez annulé le trajet Troyes -> Morthomiers.',1,0,7,'2023-06-15 07:41:45'),(32,'Vous avez publié un nouveau trajet !',0,0,7,'2023-06-15 07:42:12'),(33,'Le trajet Saint-doulchard -> Troyes a été annulé par son conducteur.',1,0,7,'2023-06-15 07:46:06'),(34,'Vous avez annulé le trajet Saint-doulchard -> Troyes.',1,0,7,'2023-06-15 07:46:06'),(35,'Vous avez publié un nouveau trajet !',0,0,7,'2023-06-15 07:46:24');
 /*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 

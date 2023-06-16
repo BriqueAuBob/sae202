@@ -1,6 +1,6 @@
 <?php
 $db = dbConnect();
-$query = $db->prepare('SELECT * FROM notifications WHERE user_id = :user_id ORDER BY created_at DESC LIMIT 4');
+$query = $db->prepare('SELECT * FROM notifications WHERE user_id = :user_id AND readed = 0 ORDER BY created_at DESC LIMIT 4');
 $query->execute([
     ':user_id' => $_SESSION['user']['id']
 ]);
@@ -18,7 +18,7 @@ $notifications = $query->fetchAll();
             $i = 0;
             foreach ($notifications as $notification) {
                 if ($i >= 3) break;
-                displayNotification(NotificationType::from($notification['type']), $notification['content'], date('d/m à H\hi', strtotime($notification['created_at'])));
+                displayNotification(NotificationType::from($notification['type']), $notification['content'], date('d/m à H\hi', strtotime($notification['created_at'])), $notification['id']);
                 $i++;
             }
             ?>

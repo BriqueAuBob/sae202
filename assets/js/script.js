@@ -136,3 +136,12 @@ flatpickr("#calendar", {
   minDate: "today",
   enableTime: true,
 });
+
+const notification = document.querySelectorAll("[data-notification-id]");
+notification.forEach((notification) => {
+  notification.addEventListener("click", () => {
+    const notificationId = notification.getAttribute("data-notification-id");
+    fetch(`/api/read_notification.php?id=${notificationId}`);
+    notification.parentElement.classList.add("readed");
+  });
+});
