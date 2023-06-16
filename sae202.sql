@@ -177,7 +177,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `last_name` varchar(50) DEFAULT NULL,
   `first_name` varchar(50) DEFAULT NULL,
-  `picture` varchar(150) DEFAULT 'default.png',
+  `picture` varchar(150) DEFAULT 'default.webp',
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -191,7 +191,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (7,'Lamaty','Cassandre','default.png','lamatycassandre@gmail.com','$2y$10$dd7i7g7ucgbVRlFAQE5/zONV6hrihydMUS36mg0ASh6L5T/XW2MRa','2023-06-14 20:51:14'),(8,'Marandat','Julien','default.png','julien@gmail.com','$2y$10$QkFIO.XkRcG/pfAqX4iHIus4VpNVg3O8LkUQ1PBc54R6IBQN8C.T6','2023-06-15 07:46:49');
+INSERT INTO `users` VALUES (7,'Lamaty','Cassandre','default.webp','lamatycassandre@gmail.com','$2y$10$dd7i7g7ucgbVRlFAQE5/zONV6hrihydMUS36mg0ASh6L5T/XW2MRa','2023-06-14 20:51:14'),(8,'Marandat','Julien','default.webp','julien@gmail.com','$2y$10$QkFIO.XkRcG/pfAqX4iHIus4VpNVg3O8LkUQ1PBc54R6IBQN8C.T6','2023-06-15 07:46:49');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -16,7 +16,7 @@ $currentPage = $_SERVER['PHP_SELF'];
         <?php
         if (isset($_SESSION['user']['id'])) {
             include(__DIR__ . '/notifications.php');
-            echo '<a href="/profil" id="profile"><img src="/assets/images/avatars/' . $_SESSION['user']['picture'] . '" alt="Avatar">' . $_SESSION['user']['firstname'] . '</a>';
+            echo '<a href="/profil" id="profile"><img  class="avatar" src="/assets/images/avatars/' . $_SESSION['user']['picture'] . '" alt="Avatar">' . $_SESSION['user']['firstname'] . '</a>';
         } else {
             echo '<a href="/connexion.php" class="btn">Accéder à mon compte</a>';
         }

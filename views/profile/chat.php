@@ -101,7 +101,12 @@ if (!isset($_GET['id'])) {
             if ($recupUser->rowCount() == 0) {
                 echo '<li>Vous n\'avez aucune conversation pour le moment. Réservez un trajet pour ouvrir une discussion.</li>';
             } else {
+                $display = [];
                 foreach ($conversations as $conversation) {
+                    if (isset($display[$conversation['author_id'] . '-' . $conversation['target_id']]) or isset($display[$conversation['target_id'] . '-' . $conversation['author_id']])) {
+                        continue;
+                    }
+                    $display[$conversation['author_id'] . '-' . $conversation['target_id']] = true;
                     if ($conversation['user_id'] !== $_SESSION['user']['id']) {
                         echo '<li><a ' . ($conversation['user_id'] == $conversationId ? 'class="active"' : '') . ' href="/profil/messages.php?id=' . $conversation['user_id'] . '"><img class="avatar" src="/assets/images/avatars/' . $conversation['picture'] . '" />' . $conversation['first_name'] . ' ' . $conversation['last_name'] . '</a></li>';
                     } else {
